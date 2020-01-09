@@ -168,6 +168,7 @@ enum GSI_ATTR_ID {
 	IB_GSI_PORT_SAMPLES_CONTROL = 0x10,
 	IB_GSI_PORT_SAMPLES_RESULT = 0x11,
 	IB_GSI_PORT_COUNTERS = 0x12,
+	IB_GSI_PORT_RCV_ERROR_DETAILS = 0x15,
 	IB_GSI_PORT_XMIT_DISCARD_DETAILS = 0x16,
 	IB_GSI_PORT_COUNTERS_EXT = 0x1D,
 	IB_GSI_PORT_XMIT_DATA_SL = 0x36,
@@ -659,6 +660,52 @@ enum MAD_FIELDS {
 	IB_PC_XMT_SW_HOL_DISC_F,
 	IB_PC_XMT_DISC_LAST_F,
 
+	/*
+	 * PortRcvErrorDetails fields
+	 */
+	IB_PC_RCV_LOCAL_PHY_ERR_F,
+	IB_PC_RCV_MALFORMED_PKT_ERR_F,
+	IB_PC_RCV_BUF_OVR_ERR_F,
+	IB_PC_RCV_DLID_MAP_ERR_F,
+	IB_PC_RCV_VL_MAP_ERR_F,
+	IB_PC_RCV_LOOPING_ERR_F,
+	IB_PC_RCV_ERR_LAST_F,
+
+	/*
+	 * PortSamplesControl fields
+	 */
+	IB_PSC_OPCODE_F,
+	IB_PSC_PORT_SELECT_F,
+	IB_PSC_TICK_F,
+	IB_PSC_COUNTER_WIDTH_F,
+	IB_PSC_COUNTER_MASK0_F,
+	IB_PSC_COUNTER_MASKS1TO9_F,
+	IB_PSC_COUNTER_MASKS10TO14_F,
+	IB_PSC_SAMPLE_MECHS_F,
+	IB_PSC_SAMPLE_STATUS_F,
+	IB_PSC_OPTION_MASK_F,
+	IB_PSC_VENDOR_MASK_F,
+	IB_PSC_SAMPLE_START_F,
+	IB_PSC_SAMPLE_INTVL_F,
+	IB_PSC_TAG_F,
+	IB_PSC_COUNTER_SEL0_F,
+	IB_PSC_COUNTER_SEL1_F,
+	IB_PSC_COUNTER_SEL2_F,
+	IB_PSC_COUNTER_SEL3_F,
+	IB_PSC_COUNTER_SEL4_F,
+	IB_PSC_COUNTER_SEL5_F,
+	IB_PSC_COUNTER_SEL6_F,
+	IB_PSC_COUNTER_SEL7_F,
+	IB_PSC_COUNTER_SEL8_F,
+	IB_PSC_COUNTER_SEL9_F,
+	IB_PSC_COUNTER_SEL10_F,
+	IB_PSC_COUNTER_SEL11_F,
+	IB_PSC_COUNTER_SEL12_F,
+	IB_PSC_COUNTER_SEL13_F,
+	IB_PSC_COUNTER_SEL14_F,
+	IB_PSC_SAMPLES_ONLY_OPT_MASK_F,
+	IB_PSC_LAST_F,
+
 	IB_FIELD_LAST_		/* must be last */
 };
 
@@ -981,9 +1028,13 @@ MAD_EXPORT ib_mad_dump_fn
     mad_dump_nodedesc, mad_dump_nodeinfo, mad_dump_portinfo,
     mad_dump_switchinfo, mad_dump_perfcounters, mad_dump_perfcounters_ext,
     mad_dump_perfcounters_xmt_sl, mad_dump_perfcounters_rcv_sl,
-    mad_dump_perfcounters_xmt_disc;
+    mad_dump_perfcounters_xmt_disc, mad_dump_perfcounters_rcv_err,
+    mad_dump_portsamples_control;
 
-MAD_EXPORT int ibdebug;
+MAD_EXPORT void mad_dump_fields(char *buf, int bufsz, void *val, int valsz,
+				int start, int end);
+
+extern MAD_EXPORT int ibdebug;
 
 #if __BYTE_ORDER == __LITTLE_ENDIAN
 #ifndef ntohll

@@ -1,6 +1,6 @@
 Summary: OpenFabrics Alliance InfiniBand MAD library
 Name: libibmad
-Version: 1.3.4
+Version: 1.3.7
 Release: 1%{?dist}
 License: GPLv2 or BSD
 Group: System Environment/Libraries
@@ -67,6 +67,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libibmad.a
 
 %changelog
+* Fri Jul 22 2011 Doug Ledford <dledford@redhat.com> - 1.3.7-1
+- Update to latest upstream version (1.3.4 -> 1.3.7)
+- Related: bz725016
+
 * Sat Feb 27 2010 Doug Ledford <dledford@redhat.com> - 1.3.4-1
 - New upstream version
 

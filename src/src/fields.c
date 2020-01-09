@@ -246,24 +246,24 @@ static const ib_field_t ib_mad_f[] = {
 	 */
 	{BITSOFFS(8, 8), "PortSelect", mad_dump_uint},
 	{BITSOFFS(16, 16), "CounterSelect", mad_dump_hex},
-	{BITSOFFS(32, 16), "SymbolErrors", mad_dump_uint},
-	{BITSOFFS(48, 8), "LinkRecovers", mad_dump_uint},
-	{BITSOFFS(56, 8), "LinkDowned", mad_dump_uint},
-	{BITSOFFS(64, 16), "RcvErrors", mad_dump_uint},
-	{BITSOFFS(80, 16), "RcvRemotePhysErrors", mad_dump_uint},
-	{BITSOFFS(96, 16), "RcvSwRelayErrors", mad_dump_uint},
-	{BITSOFFS(112, 16), "XmtDiscards", mad_dump_uint},
-	{BITSOFFS(128, 8), "XmtConstraintErrors", mad_dump_uint},
-	{BITSOFFS(136, 8), "RcvConstraintErrors", mad_dump_uint},
+	{BITSOFFS(32, 16), "SymbolErrorCounter", mad_dump_uint},
+	{BITSOFFS(48, 8), "LinkErrorRecoveryCounter", mad_dump_uint},
+	{BITSOFFS(56, 8), "LinkDownedCounter", mad_dump_uint},
+	{BITSOFFS(64, 16), "PortRcvErrors", mad_dump_uint},
+	{BITSOFFS(80, 16), "PortRcvRemotePhysicalErrors", mad_dump_uint},
+	{BITSOFFS(96, 16), "PortRcvSwitchRelayErrors", mad_dump_uint},
+	{BITSOFFS(112, 16), "PortXmitDiscards", mad_dump_uint},
+	{BITSOFFS(128, 8), "PortXmitConstraintErrors", mad_dump_uint},
+	{BITSOFFS(136, 8), "PortRcvConstraintErrors", mad_dump_uint},
 	{BITSOFFS(144, 8), "CounterSelect2", mad_dump_hex},
-	{BITSOFFS(152, 4), "LinkIntegrityErrors", mad_dump_uint},
-	{BITSOFFS(156, 4), "ExcBufOverrunErrors", mad_dump_uint},
+	{BITSOFFS(152, 4), "LocalLinkIntegrityErrors", mad_dump_uint},
+	{BITSOFFS(156, 4), "ExcessiveBufferOverrunErrors", mad_dump_uint},
 	{BITSOFFS(176, 16), "VL15Dropped", mad_dump_uint},
-	{192, 32, "XmtData", mad_dump_uint},
-	{224, 32, "RcvData", mad_dump_uint},
-	{256, 32, "XmtPkts", mad_dump_uint},
-	{288, 32, "RcvPkts", mad_dump_uint},
-	{320, 32, "XmtWait", mad_dump_uint},
+	{192, 32, "PortXmitData", mad_dump_uint},
+	{224, 32, "PortRcvData", mad_dump_uint},
+	{256, 32, "PortXmitPkts", mad_dump_uint},
+	{288, 32, "PortRcvPkts", mad_dump_uint},
+	{320, 32, "PortXmitWait", mad_dump_uint},
 	{0, 0},			/* IB_PC_LAST_F */
 
 	/*
@@ -457,6 +457,52 @@ static const ib_field_t ib_mad_f[] = {
 	{64, 16, "PortSwLifetimeLimitDiscards", mad_dump_uint},
 	{80, 16, "PortSwHOQLifetimeLimitDiscards", mad_dump_uint},
 	{0, 0},			/* IB_PC_XMT_DISC_LAST_F */
+
+	/*
+	 * PortRcvErrorDetails fields
+	 */
+	{32, 16, "PortLocalPhysicalErrors", mad_dump_uint},
+	{48, 16, "PortMalformedPktErrors", mad_dump_uint},
+	{64, 16, "PortBufferOverrunErrors", mad_dump_uint},
+	{80, 16, "PortDLIDMappingErrors", mad_dump_uint},
+	{96, 16, "PortVLMappingErrors", mad_dump_uint},
+	{112, 16, "PortLoopingErrors", mad_dump_uint},
+	{0, 0},                 /* IB_PC_RCV_ERR_LAST_F */
+
+	/*
+	 * PortSamplesControl fields
+	 */
+	{BITSOFFS(0, 8), "OpCode", mad_dump_hex},
+	{BITSOFFS(8, 8), "PortSelect", mad_dump_uint},
+	{BITSOFFS(16, 8), "Tick", mad_dump_hex},
+	{BITSOFFS(29, 3), "CounterWidth", mad_dump_uint},
+	{BITSOFFS(34, 3), "CounterMask0", mad_dump_hex},
+	{BITSOFFS(37, 27), "CounterMasks1to9", mad_dump_hex},
+	{BITSOFFS(65, 15), "CounterMasks10to14", mad_dump_hex},
+	{BITSOFFS(80, 8), "SampleMechanisms", mad_dump_uint},
+	{BITSOFFS(94, 2), "SampleStatus", mad_dump_uint},
+	{96, 64, "OptionMask", mad_dump_hex},
+	{160, 64, "VendorMask", mad_dump_hex},
+	{224, 32, "SampleStart", mad_dump_uint},
+	{256, 32, "SampleInterval", mad_dump_uint},
+	{288, 16, "Tag", mad_dump_hex},
+	{304, 16, "CounterSelect0", mad_dump_hex},
+	{320, 16, "CounterSelect1", mad_dump_hex},
+	{336, 16, "CounterSelect2", mad_dump_hex},
+	{352, 16, "CounterSelect3", mad_dump_hex},
+	{368, 16, "CounterSelect4", mad_dump_hex},
+	{384, 16, "CounterSelect5", mad_dump_hex},
+	{400, 16, "CounterSelect6", mad_dump_hex},
+	{416, 16, "CounterSelect7", mad_dump_hex},
+	{432, 16, "CounterSelect8", mad_dump_hex},
+	{448, 16, "CounterSelect9", mad_dump_hex},
+	{464, 16, "CounterSelect10", mad_dump_hex},
+	{480, 16, "CounterSelect11", mad_dump_hex},
+	{496, 16, "CounterSelect12", mad_dump_hex},
+	{512, 16, "CounterSelect13", mad_dump_hex},
+	{528, 16, "CounterSelect14", mad_dump_hex},
+	{576, 64, "SamplesOnlyOptionMask", mad_dump_hex},
+	{0, 0},			/* IB_PSC_LAST_F */
 
 	{0, 0}			/* IB_FIELD_LAST_ */
 

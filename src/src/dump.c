@@ -671,6 +671,12 @@ static int _dump_fields(char *buf, int bufsz, void *data, int start, int end)
 	return (int)(s - buf);
 }
 
+void mad_dump_fields(char *buf, int bufsz, void *val, int valsz, int start,
+		     int end)
+{
+	_dump_fields(buf, bufsz, val, start, end);
+}
+
 void mad_dump_nodedesc(char *buf, int bufsz, void *val, int valsz)
 {
 	strncpy(buf, val, bufsz);
@@ -737,6 +743,21 @@ void mad_dump_perfcounters_xmt_disc(char *buf, int bufsz, void *val, int valsz)
 			   IB_PC_EXT_XMT_BYTES_F);
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_XMT_INACT_DISC_F,
 		     IB_PC_XMT_DISC_LAST_F);
+}
+
+void mad_dump_perfcounters_rcv_err(char *buf, int bufsz, void *val, int valsz)
+{
+	int cnt;
+
+	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
+			   IB_PC_EXT_XMT_BYTES_F);
+	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_RCV_LOCAL_PHY_ERR_F,
+		     IB_PC_RCV_ERR_LAST_F);
+}
+
+void mad_dump_portsamples_control(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_PSC_OPCODE_F, IB_PSC_LAST_F);
 }
 
 void xdump(FILE * file, char *msg, void *p, int size)
