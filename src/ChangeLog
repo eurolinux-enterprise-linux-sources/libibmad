@@ -1,0 +1,1508 @@
+
+** Version: libibmad-1.3.4
+
+Sun Dec 13 19:39:11 2009 +0200 Sasha Khapyorsky
+2ebf19e61bb887b226017c0ac5a7f30ea0cd9e3f
+
+	* management: package versions bump
+
+Sun Dec 13 19:36:19 2009 +0200 Sasha Khapyorsky
+b7f0e58ada74b4da01a39a9c5fd2f5517d70d26a
+
+	* management: update library versions
+
+Thu Nov 26 18:00:28 2009 +0200 Sasha Khapyorsky
+e940dc8a0631c8e3e8ac261f85f7ae362b5b1d53
+
+	* libibmad: remove repeated comment
+
+Mon Nov 23 12:04:19 2009 +0200 Doron Shoham
+6882bf30e73d1d235a7dfeb830c0571eb3fd8797
+
+	* Add different print macros
+
+Tue Nov 17 14:39:37 2009 -0800 Ira Weiny
+f25da9f189638c1772d7c3cc5e1942b8d1e8abf8
+
+	* libibmad: libibumad: Print warnings and errors to stderr not stdout
+
+Fri Nov 6 15:35:19 2009 -0500 Hal Rosenstock
+c089e65c3feaff8ca5dd18ba56cc03f469a6f7b2
+
+	* libibmad: Add support for new PortInfo:McastPkeyTrapSuppressionEnabled field
+
+** Version: libibmad-1.3.3
+
+Sun Nov 1 21:55:47 2009 +0200 Sasha Khapyorsky
+46a65a2d7dc546ce1181ed9f47a8694912522de1
+
+	* management: bump package versions
+
+Sun Nov 1 21:42:56 2009 +0200 Sasha Khapyorsky
+80e9377a523c2f6216b95306b650e5d1774adfd7
+
+	* management: update libraries version information
+
+Mon Nov 2 02:09:14 2009 +0200 Sasha Khapyorsky
+86debe9612d21ffdc3573bbbe06afc8e67cf7bb3
+
+	* management: update/add Voltaire copyright
+
+Wed Sep 23 08:57:41 2009 -0400 Hal Rosenstock
+d957198dcc9c5fd5f82c9a5bea2b6c0ad4dfdec8
+
+	* libibmad: Add support for PortXmitDiscardDetails
+
+Sat Oct 24 01:41:16 2009 +0200 Sasha Khapyorsky
+ff45f6f229ade2934c7caf2c77d82780dc1bcb79
+
+	* libibmad: fix strinct-aliasing breakage warnings
+
+Wed Sep 30 16:22:26 2009 -0700 Sean Hefty
+18b6df51a255b40baa6823fadc9eb85c7ec6112b
+
+	* libibmad/resolve: add include to pick up inet_pton
+
+Wed Sep 30 16:21:38 2009 -0700 Sean Hefty
+1046bc4eccd7a35cd49d843bd8f74e5eed17423e
+
+	* libibmad/rpc: fix build warning casting from uint32 to uint8
+
+Tue Sep 22 09:46:11 2009 -0400 Hal Rosenstock
+0b6c8362bbfe0ec056536d694c3b18333fbffb50
+
+	* libibmad/dump.c: Fix typo
+
+Wed Sep 2 10:42:50 2009 -0400 Hal Rosenstock
+cc4002c3f1261421ffcc497c5dad8310bcd9be21
+
+	* libibmad/mad.h: Add a couple of SM class attribute IDs
+
+Wed Sep 2 10:36:27 2009 -0400 Hal Rosenstock
+9f0fb40647b0b3408b5b05f562b6bf380c497e5e
+
+	* libibmad/dump.c: In mad_dump_portcapmask, decode new capabilities
+
+Wed Aug 26 10:02:02 2009 -0400 Hal Rosenstock
+c5e0772cbef3fffeb2f644bf8ba52aeba9c20f05
+
+	* libibmad: Add support for MulticastFDBTop
+
+Sun Aug 16 11:37:08 2009 +0300 Sasha Khapyorsky
+0524cfe69f8abebe75e33cead0e02ab029493adb
+
+	* libibmad: indentation fixes
+
+Sun Aug 16 11:24:55 2009 +0300 Sasha Khapyorsky
+06a2615744f19f258f5dd8f21153765684816c0d
+
+	* libibmad: fix warnings
+
+Thu Aug 6 15:27:30 2009 -0700 Ira Weiny
+339b02d127736bc13c71b65b1d8639c868b91ade
+
+	* libibmad: make accessors function for retry values used in libibmad
+
+Thu Aug 6 16:01:06 2009 -0700 Ira Weiny
+65f109a6826cb388bc1f9d01ea098f3680de7613
+
+	* libibmad: make accessors function for timeout values used in libibmad
+
+Tue Aug 11 10:04:28 2009 -0700 Ira Weiny
+f741a60e0fb441ce665aa28884811e09e5715b85
+
+	* libibmad: clear packet buffer correctly before formating and sending
+
+Sun Jul 12 18:23:26 2009 +0300 Sasha Khapyorsky
+9b49ef7b58f140455fc9d4d08021bdf80fd7ed51
+
+	* libibmad: use NULL as null pointer
+
+Fri Jul 31 10:57:29 2009 -0400 Hal Rosenstock
+3b295f05b29a46380b57e0dd27c6c57cc030cb82
+
+	* libibmad/mad.c: Validate DR hop count for SMPs and handle errors
+
+Tue Jul 21 15:50:00 2009 -0700 Ira Weiny
+588c986e292c5f68cd04d46bf84c981af0d051e3
+
+	* libibmad: Ensure the proper length is passed into umad_recv on each call
+
+Wed Apr 22 17:12:58 2009 -0700 Ira Weiny
+d6d05cf1d15daf81089211e560d1b5a7d318289f
+
+	* Add ib_resolve_gid_via and make portid an out only parameter of ib_resolve_portid_str_via
+
+Tue Jul 7 16:20:19 2009 +0200 Joachim Fenkes
+f6a4cef591e2bde3e848109c3fcb409b5c7458ca
+
+	* libibmad: Handle MAD redirection
+
+Wed Jul 8 16:52:09 2009 -0700 Ira Weiny
+dfb9d0051554477f2a93cbe901594532b647ba40
+
+	* Fix error return code from mad_send_via
+
+Wed Jun 17 16:08:11 2009 -0400 Hal Rosenstock
+c294bcb3d478da5fad986a56a5f66440b664f436
+
+	* libibmad/resolve.c: Remove compile warning on x86_64 arch
+
+Fri May 29 11:35:15 2009 -0400 Hal Rosenstock
+a80b2c7b6624206d7be2305c86b7490fe5fbe6b7
+
+	* libibmad/resolve.c: Determine SL properly
+
+Mon May 4 15:50:53 2009 -0700 Sean Hefty
+d0cfb1acd85c5dcad3c4fb2044ad1e47814ec806
+
+	* ib-mgmt/libibmad: export ibdebug
+
+Thu Apr 30 11:19:26 2009 -0700 Ira Weiny
+2dc3bf3f30adc8527a0aa548a6f22c0007b26876
+
+	* Fix reversal of DRSLID and DRDLID in MAD_FIELDS enum.
+
+Fri May 1 17:33:12 2009 -0400 Hal Rosenstock
+f1b7f68cb9d8e16be706af5079d3233c70d2d2d3
+
+	* libibmad: Add support for SA PathRecord SL field
+
+Mon Apr 27 12:59:05 2009 +0200 Nicolas Morey-Chaisemartin
+9f8bd4a4ad06ede184b38eac68dbb9d337a6892e
+
+	* management: Fixed custom_release in SPEC files
+
+Thu Apr 23 10:57:10 2009 -0700 Ira Weiny
+1c11da15749597b9639b5f290077ac6ae892f0b0
+
+	* Add mad_field_name function
+
+Tue Apr 21 12:05:21 2009 -0700 Sean Hefty
+0ff91896b7f270e256410c1457c94d2e37369720
+
+	* ib-mgmt/ibn3 branch: libibmad: remove ib_resolve_guid function prototype
+
+Tue Apr 21 12:04:08 2009 -0700 Sean Hefty
+dae787ad595dc009186d3c8defbedcb36f819243
+
+	* ib-mgmt/ibn3 branch: libibmad update for windows support
+
+** Version: libibmad-1.3.2
+
+Sun Apr 26 17:05:13 2009 +0300 Sasha Khapyorsky
+7804058463fb55c4329265051b0c88a966593269
+
+	* management: bump package versions
+
+Wed Mar 11 10:44:28 2009 -0700 Ira Weiny
+94dda847d47219b01eb7f4fa65984e1c834283a2
+
+	* libibmad: bump library interface version
+
+Tue Apr 14 09:54:19 2009 -0400 Hal Rosenstock
+97d82b77c6333ea0186808237ae500d940a980dc
+
+	* libibmad: Add decode support for SwitchInfo OptimizedSLtoVLMappingProgramming
+
+Sat Apr 25 21:53:10 2009 +0300 Sasha Khapyorsky
+c9cdce86583842791f4d5c9df12a905066abb54f
+
+	* libibmad: indentation fixes
+
+Sat Apr 25 21:48:13 2009 +0300 Sasha Khapyorsky
+acbeb4c9dc0040cca2302b96c3e3a14ae2e1ba20
+
+	* infiniabnd-diags/bm.c: check mad_rpc() status
+
+Thu Mar 19 16:25:24 2009 +0200 Itai Baz
+54d06513b2da973c5752b9233cf341e8e789d0df
+
+	* libibmad: added support for handling of BM (Baseboard management) MADs - FIXED without rmpp
+
+Thu Apr 16 09:23:29 2009 -0700 Ira Weiny
+37b2541547cff9c0f5543f6773ec4a9070d568c2
+
+	* change missed LID conversion functions from hex to uint
+
+Wed Mar 11 06:30:59 2009 -0500 Hal Rosenstock
+e66b6e53a82b7138079b49c8924122e76079a463
+
+	* libibmad/rpc.c: wrap ERRS macro.
+
+Thu Mar 26 11:39:08 2009 -0500 Hal Rosenstock
+2a7dd22a811073437f1c1d712bb249b970dda467
+
+	* libibmad/fields.c: Display CounterSelect2 in hex rather than decimal
+
+Tue Mar 24 07:16:42 2009 -0500 Hal Rosenstock
+3b31b089c2919b0add28144b68bb53f6bdb54aeb
+
+	* libibmad/dump.c: Cosmetic formatting changes
+
+Fri Mar 20 18:11:01 2009 -0500 Hal Rosenstock
+a7e0cbe221f397128f682334c97cd5e6919f97a2
+
+	* libibmad: Add PortSelect and CounterSelect fields for PortXmit/RcvDataSL
+
+Sat Mar 21 07:08:40 2009 -0500 Hal Rosenstock
+53485a2c584bc70ead13b522419ac79e5a5d8fe1
+
+	* libibmad/sa.c: Cosmetic formatting changes
+
+Fri Mar 20 08:37:21 2009 -0500 Hal Rosenstock
+d6e3b16a2e049f9ec8e5cf8641c8715d9044852d
+
+	* libibmad/sa.c: No need to specify NumbPath field in Get request of SA PathRecord
+
+Tue Mar 17 16:17:56 2009 +0200 Itai Baz
+c4d4448b447339d13728f789008b3fe08781512b
+
+	* libibmad/serv.c: Fixed respond function to return proper result code
+
+Mon Mar 16 11:52:25 2009 -0500 Hal Rosenstock
+aedb14ccddd775df8a186e187ce6a487289b3978
+
+	* libibmad/libibmad.map: Eliminate perf_classportinfo_query_via
+
+Tue Mar 10 17:51:14 2009 -0500 Hal Rosenstock
+df2ca2d5bbc0deb4556ad2a41810e6e3612a405d
+
+	* libibmad/mad.h: Cosmetic formatting changes
+
+Thu Mar 12 09:57:32 2009 -0500 Hal Rosenstock
+5bbbb92d988eb3b8928d43613820fb8d5b49493f
+
+	* libibmad/register.c: Cosmetic formatting change
+
+Thu Mar 12 15:24:47 2009 +0200 Sasha Khapyorsky
+f69109ff81c983141f2f8d194f4e4608767cb8b2
+
+	* libibmad/rpc: fix _do_madrpc() parameter value
+
+Wed Mar 11 12:28:03 2009 +0200 Sasha Khapyorsky
+2c4658457764cba71a75c0c4db515cf468e67243
+
+	* libibmad: deprecate old API calls
+
+Wed Mar 11 12:43:47 2009 +0200 Sasha Khapyorsky
+91774cc5924a86bf94680e70581cbc52554e0d28
+
+	* libibmad: add mad_rpc_class_agent() call
+
+Wed Mar 11 12:15:54 2009 +0200 Sasha Khapyorsky
+b7fbd8187a86a97e21d4a5abf9a1c790b044b7bf
+
+	* libibmad: per port timeout and retires setup
+
+Thu Mar 12 13:55:44 2009 +0200 Sasha Khapyorsky
+b5a666be0b290b3dea9240e22f62b148b27fd15e
+
+	* libibmad/rpc: fix class registration bug
+
+Sat Mar 7 23:27:34 2009 +0200 Sasha Khapyorsky
+070649d6dc832edde9cc3a289109b39211d80d7d
+
+	* libibmad: cleanup deprecated function use
+
+Thu Feb 19 17:53:30 2009 -0800 Ira Weiny
+68cf8af50114a9aa4f9599b9f7b208626f7caff0
+
+	* infiniband-diags: Convert ibsendtrap to "new" ibmad interface
+
+Fri Mar 6 10:48:08 2009 -0800 Ira Weiny
+50f93933d36a75d10b60d71695d53e84b772590a
+
+	* infiniband-diags: Convert ibaddr to "new" ibmad interface
+
+Thu Mar 5 16:45:04 2009 +0200 Or Gerlitz
+d88a93fa2a5fb3a5cb55e82a71de345658a7017b
+
+	* fix offset used for parsing of XmtDataSL & RcvDataSL
+
+Wed Feb 18 16:37:36 2009 -0800 Ira Weiny
+17c6fb9787e5d3a10de97f555fcb0b130c4ede99
+
+	* libibmad: Clean up "new" interface
+
+Sun Mar 1 14:40:32 2009 +0200 Or Gerlitz
+3a2583f6b2288c15b679ae540d92953a19fb4910
+
+	* libimad implementation of PortXmtDataSL and PortRcvDataSL
+
+Sun Mar 1 14:39:48 2009 +0200 Or Gerlitz
+6961ab9e34332f88a2688866b37e6268f9d587f6
+
+	* generic libibmad perf query/reset api
+
+** Version: libibmad-1.3.1
+
+Sat Feb 28 18:50:54 2009 +0200 Sasha Khapyorsky
+b67cfc045fd9056eae0ed8bac1529503c8a38220
+
+	* management: bump all package versions
+
+Fri Feb 20 16:58:45 2009 -0500 Hal Rosenstock
+a6dcef7ee5872bfd027bcf2938531130bd5a135f
+
+	* libibmad/fields.c: Dump LIDs as unsigned decimal
+
+Thu Feb 12 23:31:31 2009 -0800 Stan Smith
+2f1e3b32c68fcaa4b853c93ae2309430db0522a3
+
+	* libibmad: add MAD_EXPORT to exported calls
+
+Wed Feb 11 04:50:37 2009 +0200 Sasha Khapyorsky
+c4036d1c64749124830813d1059727eddcbfb781
+
+	* libibmad/fields.c: define SA SM_Key field details
+
+Wed Feb 11 04:49:58 2009 +0200 Sasha Khapyorsky
+d8d6c7cde6894d026b752b2286c09cded490e68c
+
+	* libibmad/mad.h: define more SA attributed
+
+Thu Feb 5 16:42:59 2009 -0700 Hal Rosenstock
+dc5d53d0dd004a8ab954c791b7ce73bc5cb4e7f3
+
+	* libibmad: lid print format changed to unsigned
+
+Thu Feb 5 10:03:31 2009 -0800 Ira Weiny
+b03e734e616364bb8bb85a6508936a75ca820465
+
+	* libibmad: Use enum types for function parameters
+
+Wed Feb 4 10:00:05 2009 +0200 Eli Dorfman (Voltaire)
+762581db31c63078d81dde400fbc7f8e012cfed9
+
+	* libibmad/src/dump.c fix dump functions for big endian machines
+
+Mon Feb 2 11:58:35 2009 -0700 Hal Rosenstock
+3c2d2f299bb3ff2ef6cf6cdb1feb099178785b98
+
+	* libibmad/(mad.h fields.c): Add support for PerfMgt ClassPortInfo
+
+Thu Jan 22 03:07:47 2009 +0200 Sasha Khapyorsky
+5f63e30d3607434245268cf0d6eadaf1c440fa1c
+
+	* libibmad: use mad_set_field64() for mkey encoding
+
+Thu Jan 22 11:11:13 2009 +0200 Sasha Khapyorsky
+9b5519e07b0f99e658a2e75b3d1d4e5d281234be
+
+	* libibmad/fields.c: fix MAD MKey offset
+
+Thu Jan 22 03:04:00 2009 +0200 Sasha Khapyorsky
+f32e99c4d5e63e9d1df3160cf691620a8b7276a3
+
+	* libibmad: indentation fixes
+
+Sat Jan 17 08:34:34 2009 -0800 Arlin Davis
+d121617dc1acbee4d9dee776febc0605c0cee3c4
+
+	* libibmad: minor changes to source to allow portability to WinOF.
+
+Sat Jan 17 08:32:41 2009 -0800 Arlin Davis
+2dbb8b95d9dc27423a6fdb85d88ef385ecee0005
+
+	* libibmad: remove c99 definitions within the ib_mad_f structure
+
+Fri Jan 16 09:15:04 2009 -0800 Arlin Davis
+72ea3e9da4a0e87f3d29b3a3a64d0df0d8c2c4e1
+
+	* libibmad: add os dependent definitions.
+
+Tue Jan 20 20:24:49 2009 +0200 Sasha Khapyorsky
+30a978b24cf64d52a8b2fb279184da8f7ff21c1d
+
+	* libibmad: cleanup mad.h include path
+
+Tue Jan 13 16:56:57 2009 +0200 Eli Dorfman (Voltaire)
+d3d073e2ff76dc7b757b6d73839bd65cbc712986
+
+	* infiniband-diags support PortXmitWait get and set
+
+Tue Jan 13 16:31:42 2009 +0200 Eli Dorfman (Voltaire)
+1fceea326630d8880d42470f7a26419ec67afff3
+
+	* libibmad add PortXmitWait and CounterSelect2 to fields.
+
+Fri Dec 26 16:47:06 2008 +0200 Sasha Khapyorsky
+51d25384626a7b4ba386c414ed56c647a7bf64df
+
+	* libibmad: remove functions which use pthread
+
+Thu Dec 25 21:43:17 2008 +0200 Sasha Khapyorsky
+64abbe376ffccfbfc85094722ef16ac08400da11
+
+	* libibmad: remove not needed header files inclusion
+
+Mon Dec 22 02:26:31 2008 +0200 Sasha Khapyorsky
+45a941d1943538d82408ee36cf329477a075f77e
+
+	* management: remove libibcommon dependencies
+
+Mon Dec 22 00:24:30 2008 +0200 Sasha Khapyorsky
+9b2d20096b75a5dcee4e305ff0dcb4f3adf4df0f
+
+	* management: move sysfs()_* function to libibumad
+
+Sun Dec 21 23:48:00 2008 +0200 Sasha Khapyorsky
+0614677474645cc8263fcdacce67a1a9e01e646f
+
+	* libibmad: remove hidden _set/_get_field*() API
+
+** Version: libibmad-1.3.0
+
+Sat Dec 13 19:46:15 2008 +0200 Sasha Khapyorsky
+67ef3251a49fca0b0b97a1ec1ec5af4e8ba0edf0
+
+	* management: bump all package versions
+
+** Version: libibmad-1.2.3
+
+Tue Nov 18 06:20:46 2008 +0200 Sasha Khapyorsky
+dd5aa2cebc760f239b965c87388ffe9b0401c5d2
+
+	* management: update versions
+
+Fri Oct 24 22:12:58 2008 +0200 Sasha Khapyorsky
+c906a9686db531cd94f27d13ccc8cc8bcb4c2586
+
+	* libibmad/dump: print more PortInfo:CapabilityMask bits
+
+Fri Oct 24 21:14:15 2008 +0200 Sasha Khapyorsky
+51963ceb86bf37048427d5f313917471edfcf14a
+
+	* libibmad/src/mad.c: indentation fix
+
+** Version: libibmad-1.2.2
+
+Sun Oct 19 20:53:23 2008 +0200 Sasha Khapyorsky
+6556babd612d54e0cb2a7428099cc7d18d58ae16
+
+	* management/*/configure.in: bump all versions
+
+Wed Oct 8 12:28:44 2008 +0200 Sasha Khapyorsky
+307665fd72c00e1f404d8d921b47c2ec7fe04214
+
+	* management: update Voltaire copyright
+
+Wed Oct 8 12:27:12 2008 +0200 Sasha Khapyorsky
+40d3a48f646e1c52d37f72ba396016f18964da1d
+
+	* management/*/COPYING: update Voltaire copyright years
+
+Wed Sep 24 16:59:19 2008 +0300 Jack Morgenstein
+9fbb434b662b0c07e8733644be96423d3af356a6
+
+	* libibmad: eliminate compiler warnings on x86_64
+
+Fri Jul 25 09:27:47 2008 -0400 Hal Rosenstock
+51e18eca519e15a57e74f16dbdc299abfe49b14f
+
+	* libibmad/ChangeLog: Fix typo
+
+Tue Jul 8 22:09:55 2008 +0300 Sasha Khapyorsky
+b2e84c479aa9b80a6cf232a4c1a952775dd0d092
+
+	* libibmad: Bump a library version
+
+** Version: libibmad-1.2.1
+
+Tue Jul 8 07:22:02 2008 +0300 Sasha Khapyorsky
+2f3df5655164d7cca3b8fefdaca40da6c1b47d9e
+
+	* management: bump management versions
+
+Mon Jul 7 14:10:25 2008 -0700 Hal Rosenstock
+0e5e5b41cb4295967eed2e6a4ded0e1a69d751b5
+
+	* libibmad: Initial changes for congestion management class
+
+Mon Jul 7 14:07:31 2008 -0700 Hal Rosenstock
+5705f21e2eecadb959b936e8f64ed022635d63b6
+
+	* libibmad/src/rpc.c: Eliminate compiler warning
+
+Sun Jul 6 23:07:38 2008 +0300 Sasha Khapyorsky
+54de7d74303519cf2bca3089cbeca366ccbfc542
+
+	* management: revert configure.in update configure.in on 'make dist'
+
+Sun Jun 29 19:05:01 2008 +0300 Sasha Khapyorsky
+340dbba4759651c6475a912cf157e412a5d2eff7
+
+	* libibmad: fix snprintf() usage
+
+Fri Jun 27 18:08:26 2008 +0300 Sasha Khapyorsky
+80fdc793e727bfdedf88561fa83ffc689db7ad2e
+
+	* libibmad: remove intermediate buffer in portid2str()
+
+Wed Jun 25 15:08:13 2008 -0700 Ira K. Weiny
+006f85346c17f5d23bd22a9301ce30db47d8419b
+
+	* libibmad: update portid2str to use inet_ntop and drpath2str functions for gid
+
+Tue Jun 24 14:43:24 2008 -0700 Ira K. Weiny
+41460115969f1baebad2941a90f8674a609b0c45
+
+	* libibmad: print warning containing destination port when _do_madrpc fails
+
+Tue Jun 24 16:45:57 2008 -0700 Ira Weiny
+45c94c9a5147a16b92fed9f032be386a4e63d09c
+
+	* libibmad: add a drpath2str function for easier printing of DR Paths.
+
+Tue Jun 24 22:16:08 2008 +1000 Max Matveev
+2f654d9c314b43be21d040d044c6522d9b104c57
+
+	* libibmad: allow explicit HCA selection by functions from libibmad
+
+Thu Jun 19 11:04:29 2008 -0700 Hal Rosenstock
+35f9a3d9d7fe59495677629b155b2888de0ac677
+
+	* libibmad/rpc.c: Better error message in madrpc_init
+
+Thu Jun 5 11:14:38 2008 -0700 Hal Rosenstock
+59cc134e1fdd88b7eda92f463f0c0ca147a3fc89
+
+	* libibmad/fields.c: _set_field64 sets field in network rather than host order
+
+Sun Jun 1 18:54:35 2008 +0000 Ron Livne
+608cddb34fda942b37d0f2bb2e7889e22ac046f8
+
+	* libibmad: fix for umad unaligned access of ia64.
+
+** Version: libibmad-1.2.0
+
+Thu Apr 3 20:07:55 2008 +0300 Sasha Khapyorsky
+6fe887c1561bea3d62d54ec7b13259de07bf3e8a
+
+	* management: bump all versions
+
+Sat Mar 29 14:47:27 2008 +0300 Sasha Khapyorsky
+a3e40ca16296eeae743ea2b6f2f4494f9228b530
+
+	* libibmad/dump: support VLArb table size, fix printing
+
+Tue Mar 25 13:54:48 2008 +0200 Dotan Barak
+b78f726d9a91bcfad80841e94c2f1e8214a54afe
+
+	* management: Remove extraneous semicolon from several files
+
+Thu Mar 6 18:30:37 2008 -0800 Ira Weiny
+05829e73b4cb34ffee22a93123fe7cba102a18a9
+
+	* Rename ib_gid_t in mad.h to mad_gid_t to prevent name collision with ib_types.h
+
+Mon Feb 11 20:17:54 2008 +0200 Sasha Khapyorsky
+124ab2fefb1dcdfc009ce89634a8f4f489c3a791
+
+	* management: bump versions in master branch
+
+Sun Jan 27 08:01:40 2008 -0800 Hal Rosenstock
+976fb99a31b97aee5cea16ecce6b1bafba137950
+
+	* management: Update License: field in management spec files
+
+Sat Jan 26 22:37:43 2008 +0200 Sasha Khapyorsky
+bcbe8abc9032637089c7ab1080999ec28c9c21e0
+
+	* management/libib*: remove trailing whitespaces
+
+Mon Jan 7 01:40:19 2008 +0200 Sasha Khapyorsky
+c374d319d67bbc77eb885131f5136446dcc51865
+
+	* management/*/Makefile.am: update configure.in version on 'make dist'
+
+Sun Jan 6 21:33:44 2008 +0200 Sasha Khapyorsky
+5a03b648b03235ff3ab311d61e93766d8d6bd924
+
+	* management/*/Makefile.am: fix ChangeLog generation rule
+
+** Version: libibmad-1.1.5
+
+Thu Jan 3 09:44:46 2008 +0200 Sasha Khapyorsky
+97d199fc80d87dcc57865cbc06755baf9c8265a4
+
+	* management: bump versions
+
+Fri Dec 21 18:32:28 2007 +0200 Sasha Khapyorsky
+0e72223889cf34ad6808792e95d4e660b472a86f
+
+	* manangement: kill __WORDSIZE macro checks
+
+Fri Dec 21 18:59:44 2007 +0200 Sasha Khapyorsky
+fc55f55b9e77fab4f74abb92ec273c8a7384035a
+
+	* libibmad: initialize sm portid in ib_resolve_smlid()
+
+Sun Dec 2 04:48:41 2007 -0800 Hal Rosenstock
+daf7e42293470466c4ff0da682a146a449324afc
+
+	* libibmad/dump.c: Use bit mask approach to decoding LinkWidth/Speed Enabled/Supported
+
+** Version: libibmad-1.1.4
+
+Tue Nov 20 00:02:05 2007 +0200 Sasha Khapyorsky
+d4e3b332ec2e58fbb1a5a2ffac20623a4599cfd0
+
+	* libbmad: version 1.1.4
+
+Tue Nov 13 07:38:43 2007 -0800 Hal Rosenstock
+d22a193f25767d97596ac9a2e590ea0349e20b54
+
+	* libibmad/dump.c: Support link speed and width vendor extensions
+
+** Version: libibmad-1.1.3
+
+Tue Nov 6 19:07:58 2007 +0200 Sasha Khapyorsky
+47c419b0cf2073112dfac550daceabff3671b0de
+
+	* libibmad: version 1.1.3
+
+Mon Oct 15 20:41:33 2007 +0200 Sasha Khapyorsky
+66d2372924098a67c201ba56b8ed555dd8b6d580
+
+	* management: changed method_mask type in user_mad interface
+
+Mon Oct 1 22:01:37 2007 +0200 Sasha Khapyorsky
+0e884de6004763169a1fef9bf0257855e85f573f
+
+	* management/Makefile: remove obsolete .orig Makefile stuff
+
+** Version: libibmad-1.1.2
+
+Thu Sep 20 19:39:21 2007 +0200 Sasha Khapyorsky
+8536b6310af12dd672cbc1bb124d1c44747367a0
+
+	* libibmad: update vesrion to 1.1.2
+
+Thu Sep 20 18:04:12 2007 +0200 Sasha Khapyorsky
+eda4ed05438c494e4e529441458b46e1c87dbcd3
+
+	* management/*/*.spec.in: change Source field to OFA paths
+
+Thu Sep 20 17:48:55 2007 +0200 Jeff Becker
+4ba6a49c9c2b95ef35e795f4ce660de63e6b3a94
+
+	* libibmad: add support for IB_DEVICE_MGMT_CLASS
+
+Wed Sep 19 03:37:03 2007 +0200 Sasha Khapyorsky
+a0364d5bf62bcda019ef3c1c74cd51583fda632d
+
+	* management/*/configure: RELEASE and TARBALL for spec files
+
+Wed Sep 19 03:42:52 2007 +0200 Sasha Khapyorsky
+5abefe48a7553251238b1f8cb123a2a200b4d147
+
+	* management/*/Makefile.am: generate ChangeLog files when distributed
+
+Wed Sep 19 03:28:43 2007 +0200 Sasha Khapyorsky
+08b7f02ea643b45e42534c61f58fae5b3348bb06
+
+	* management/*/Makefile.am: clean dist-hook target
+
+Wed Sep 19 02:00:08 2007 +0200 Sasha Khapyorsky
+07b65d1277d2d4a6ac6240ba5c7c3c691292001c
+
+	* management/*/*.spec.in: don't run autogen.sh
+
+Wed Sep 19 12:39:44 2007 +0200 Sasha Khapyorsky
+61db22fe367266955af97c3cdb402a5ce3fc4c55
+
+	* management/*/Makefile.am: fix include paths
+
+Wed Sep 19 06:36:00 2007 +0200 Sasha Khapyorsky
+ce8ff1a1b269be80bba9badd7b2cdd9dc51e78ab
+
+	* libibmad,infiniband-diags: fix include paths
+
+Wed Sep 19 02:05:57 2007 +0200 Sasha Khapyorsky
+063ff2ecb12fe0c94e472fad27b8c40371904113
+
+	* management/*/Makefile.am: add autogen.sh script to 'make dist'
+
+Mon Sep 17 20:53:30 2007 +0200 Sasha Khapyorsky
+5a307143f9e6c0a6170d4be76e6d0513fe9d3622
+
+	* opensm and all: fix Source field in spec.in files.
+
+Thu Aug 2 16:10:19 2007 +0300 Yevgeny Kliteynik
+6d9161ec35df7b517b511322a2827e680f9f5187
+
+	* osm: cosmetics - removing trailing blanks
+
+Tue Jul 24 14:32:14 2007 +0300 Dotan Barak
+70aa3802d83c43b95ddf4a7580709e9d28806935
+
+	* libibmad: Fixed a name of a field in SwitchInfo to the right name
+
+** Version: libibmad-1.1.1
+
+Tue Jul 10 17:10:37 2007 -0400 Hal Rosenstock
+25f96f83bbaad958a3d9a3f328b399b4392d6a27
+
+	* libibmad: Updated to version 1.1.1
+
+Tue Jun 26 17:35:35 2007 -0400 Hal Rosenstock
+d9812ebfb0ec3143daec75acdf71b0fefb22c56d
+
+	* libibmad/src/rpc.c: Change uint to unsigned for strict ANSI
+
+Tue Jun 26 16:58:08 2007 -0400 Hal Rosenstock
+6c0bdc2e4308fb16d80c7d4318cc124479eb1035
+
+	* libibmad/src: Change uint to unsigned for strict ANSI
+
+Tue Jun 26 16:12:13 2007 -0400 Hal Rosenstock
+c4e646af4a5927a49de4fd6f0dbe5e40dd5f7a7e
+
+	* management libraries/ChangeLog: Add log entry for MST change for replacing uint with unsigned for strict ANSI
+
+Tue Jun 26 16:06:46 2007 -0400 Michael S. Tsirkin
+bdc562d54e9ef3c58e3d31e23f0279089a218b1b
+
+	* management libs: uint -> unsigned replacement
+
+Mon Jun 18 10:02:09 2007 -0400 Hal Rosenstock
+16b57584cb4bfef21654ee5be81d9099f0863733
+
+	* libibmad: Change IB_PORT_MTRU_CAP_F to IB_PORT_MTU_CAP_F
+
+Tue Jun 5 20:24:42 2007 -0400 Hal Rosenstock
+d44eceda75226eca1cf812379db15ecb1673f772
+
+	* libibmad/ChangeLog: Add log entries for Sasha's change to add some Notice DataDetails fields for DataDetails and trap 144 LID and CapabilityMask
+
+Tue Jun 5 20:21:47 2007 -0400 Sasha Khapyorsky
+22a96eefdc996b590fa957c50869390e5cb50388
+
+	* libibmad: Add some Notice DataDetails fields
+
+Mon Jun 4 08:08:03 2007 -0400 Hal Rosenstock
+2ad2af9f61ef08332b99b6359d98b5b9bf138cad
+
+	* libibmad/src: Cosmetic formatting changes
+
+Thu May 31 12:33:39 2007 -0400 Hal Rosenstock
+7e1de26737a976d8caed4cc8a777cb8912281e89
+
+	* management/*.spec: Remove *.spec files from management git repo as committed files. They are generated files.
+
+Thu May 31 11:41:16 2007 -0400 Hal Rosenstock
+f95d24b405eb9da8d9c32b088107aec1fd94acf7
+
+	* management/*.spec: Latest daily versions of .spec files (prior to removing these due to build changes)
+
+Wed May 30 08:29:58 2007 -0400 Hal Rosenstock
+dc282ce5b5fb64de52e10e5c54e3eb8186d221f2
+
+	* libibmad/include/infiniband/mad.h: Comment change
+
+Mon May 21 19:28:25 2007 -0400 Hal Rosenstock
+895197d4356a36a4959e15e565e5df02fc5aef0b
+
+	* libibmad/src/fields.c: Changed PortMulticastPkts to PortMulticastRcvPkts
+
+Mon May 14 13:31:05 2007 -0400 Hal Rosenstock
+03e1e509d8fc8cf7667ca04b0c67a11eb35fbad3
+
+	* spec summary changes
+
+Thu Apr 12 16:52:49 2007 -0400 Hal Rosenstock
+f6fd8b0390f5cd16c04fbbeb65d1cdb5e082aa86
+
+	* Diags: Renamed openib-diags to infiniband-diags Also, some other changes based on this (openib-diags.spec.in moved to infiniband-diags.spec.in, openib-diags.spec moved to infiniband-diags.spec, and Makefile.am changed for this)
+
+Tue Apr 3 16:47:44 2007 -0400 Doug Ledford
+f0e71cefaac4951bce91878a49e76b9b9ef808ef
+
+	* Version change in spec files
+
+Tue Apr 3 15:12:07 2007 -0400 Doug Ledford
+8c07faef605bd856d3e6fff77d77b5f1069d0d22
+
+	* More mailing list updates
+
+Tue Apr 3 13:47:15 2007 -0400 Doug Ledford
+dd0453fc5bb2c60edb4282bcb959a8452bcd1261
+
+	* Automatic check-in of target spec files after version processing
+
+Mon Apr 2 18:43:08 2007 -0400 Doug Ledford
+71387fce8d7cfbac9b0dc16ee372601cadc2dcdd
+
+	* Update all the various spec files Make spec files work with new make.dist script Add make dist script to ease the process of releasing tarballs
+
+Thu Mar 29 12:41:02 2007 -0500 Hal Rosenstock
+0b9a6460f3391640d46509d6764e80bbc3d2529b
+
+	* libibmad/ChangeLog: Cosmetic change
+
+Thu Mar 29 12:31:09 2007 -0500 Hal Rosenstock
+d053357827c98a2420b7f24a67b10708919cfc1f
+
+	* libibmad/fields.c: Changed Xmt/RcvBytes to Xmt/RcvData
+
+Thu Mar 29 09:32:43 2007 -0500 Hal Rosenstock
+12d5498501046d5460f0d76f595c142ea366b244
+
+	* libibmad: Updated to version 1.1.0
+
+Fri Mar 23 09:14:36 2007 -0500 Hal Rosenstock
+2d5dcd4f35e9aee4ce1c43e62ba5591338824927
+
+	* libibmad/mad.c: Implement GRH support in mad_build_pkt
+
+Fri Mar 23 07:29:09 2007 -0500 Hal Rosenstock
+cd1f692f609d5281ab8972d5eafafc2d3d693329
+
+	* libibmad: In ib_portid_t, change grh to grh_present
+
+Fri Mar 23 07:01:52 2007 -0500 Hal Rosenstock
+b3f8668e7d91b3d6fd808fd26662a51950c6f9ab
+
+	* libibmad/include/infiniband/mad.h: In ib_portid_set, ensure grh is 0
+
+Fri Mar 23 06:59:34 2007 -0500 Hal Rosenstock
+70513d3660e43b9f0444d02ba77480116a4f6dda
+
+	* libibmad: portid.c: In portid2str, fix endian of dispay of GID
+
+Fri Mar 23 06:55:21 2007 -0500 Hal Rosenstock
+f621e2c534e648c85182ec01028bffd5522c579a
+
+	* libibmad/fields.c: Cosmetic changes
+
+Wed Mar 14 14:10:51 2007 -0500 Hal Rosenstock
+a46ed61786f991232bf535d40fee1f3a69e97ee4
+
+	* libibmad: Add encode/decode support for GUID0 in SM GUIDInfo attribute
+
+Wed Mar 14 09:14:18 2007 -0500 Hal Rosenstock
+a2a9b53ebf15a270eafd1153c898b6fbb27b49da
+
+	* libibmad/ChangeLog: Add log entry for adding GUIDInfo as SM attribute ID
+
+Wed Mar 14 09:12:56 2007 -0500 Dotan Barak
+cf292acb4fc485e934f45e1ed592864f47611cff
+
+	* libibmad/include/infiniband/mad.h: Add GUIDInfo attribute ID to SM attributes
+
+Thu Feb 8 07:12:02 2007 -0500 Hal Rosenstock
+9858758af061fc72f2d26c29b835d6f35ab18fab
+
+	* libibmad/ChangeLog: Updated for previous portid.c change for DR path output
+
+Thu Feb 8 07:08:41 2007 -0500 Ira Weiny
+2c1572244e5bdbfc0ad9e544d8a19520d5ab046e
+
+	* libibmad/src/portid.c: Change DR path output to be comma separated decimal values
+
+Mon Jan 29 10:06:23 2007 -0500 Hal Rosenstock
+1f5e506bf0552b628267a1710418644e34d419e6
+
+	* management/libibmad: Release 1.0.2
+
+Wed Jan 24 09:36:37 2007 -0500 Hal Rosenstock
+cdb712476d99b3d41abcb5746f436499a1bef34d
+
+	* libibmad/libibmad.spec.in: Add doc files
+
+Wed Jan 24 09:19:30 2007 -0500 Hal Rosenstock
+1f08a74b5eda592b137b394c62dc96a435068d09
+
+	* Management libraries: Added AUTHORS and COPYING to libibcommon, libibumad, and libibmad
+
+Fri Dec 15 16:36:22 2006 -0500 Hal Rosenstock
+c5400e062c251dcb6c7116ed830a383a7fdd2085
+
+	* libibmad/mad.h: Commentary change for consistency
+
+Tue Dec 12 09:07:04 2006 -0500 Hal Rosenstock
+cd3af162dd329f3c694ecad33f88ca73f3ccc4e0
+
+	* Diags/libibmad: Change some debug/warning messages to use hex rather than decimal
+
+Mon Dec 4 11:55:20 2006 -0500 Hal Rosenstock
+34c6f23a0b2eba00bba445a11eb7b23bc804ef0c
+
+	* Remove unneeded $Id$ from the rest of management
+
+Mon Nov 20 12:07:25 2006 +0000 Sasha Khapyorsky
+66ce88e6eed1bdb49c63dbbcb6657c4873bbb3c9
+
+	* r10124: libibumad/libibmad/diags: fix printf style uses
+
+Thu Nov 2 22:26:03 2006 +0000 Sasha Khapyorsky
+66438eb26becfdf433021addd198d82248470506
+
+	* r10050: management/libib*: Strip trailing whitespace
+
+Mon Oct 23 09:35:50 2006 +0000 Hal Rosenstock
+ba598a46c5a147dbf90ab633327358ec9c728d68
+
+	* r9943: Diags/libibmad: Support optional PortExtendedCounters
+
+Fri Oct 20 12:46:02 2006 +0000 Hal Rosenstock
+ee206bacccaa371c36e4e6729a4fc57989b2d3fd
+
+	* r9933: libibmad/ChangeLog: Cosmetic change
+
+Fri Oct 20 11:16:37 2006 +0000 Hal Rosenstock
+080d6d76867f5d173cd45798e013904ac2e40e9c
+
+	* r9925: libibmad/ChangeLog: Add another change which was previously omitted
+
+Fri Oct 20 10:49:18 2006 +0000 Hal Rosenstock
+7cf408f740bccb8ceaf167627464743adb508d57
+
+	* r9921: libibmad: Add support for DrSLID
+
+Mon Oct 16 13:49:19 2006 +0000 Hal Rosenstock
+19c4ee2418bfbc2c54a80cf40459fc6297f4a6ca
+
+	* r9827: management libraries: Added library versioning support (similar to OpenSM and it's libraries)
+
+Mon Oct 9 09:50:43 2006 +0000 Hal Rosenstock
+7484fe2fb6e234dee8c6b514e0138be0c85d83f0
+
+	* r9741: libibmad/src/resolve.c: In ib_resolve_portid_str, use strtoull rather than strtoll for IB_DEST_GUID
+
+Tue Oct 3 16:40:28 2006 +0000 Hal Rosenstock
+74b8561bd05287762e9ff3c823704acec5f79302
+
+	* r9689: libibmad/include/infiniband/mad.h: Commentary change
+
+Wed Sep 13 11:55:13 2006 +0000 Hal Rosenstock
+cadb81e024a5a9df3c5b5fd4e430f1a5ab0a7010
+
+	* r9448: libibmad: Add sa_rpc_call API
+
+Fri Sep 1 14:28:30 2006 +0000 Hal Rosenstock
+3aadd6d3844de800c841dd475d3f8699ff1c2079
+
+	* r9214: libibmad/portid.c: Change display of Lid from hex to decimal for consistency with other OpenIB diags
+
+Wed Aug 30 23:26:56 2006 +0000 Hal Rosenstock
+8bf35a1cc078fe4793f4478601d75199cf5fc416
+
+	* r9196: libibmad/src/rpc.c: Validate num_classes
+
+Wed Aug 30 16:20:41 2006 +0000 Sasha Khapyorsky
+59b20eac9acee479f587d029f157cb2dcdd3a95c
+
+	* r9192: libibmad: rpc API which supports more than one port
+
+Mon Aug 14 19:45:14 2006 +0000 Hal Rosenstock
+e27ec16e55f7330f8b205f4ea5175f14a537b969
+
+	* r8935: libibmad/mad.h: Cosmetic change
+
+Thu Aug 10 15:52:37 2006 +0000 Hal Rosenstock
+7a5bd7d69183f3e4c29c9773118b36e42ac40ba0
+
+	* r8868: libibmad/rpc.c: Cosmetic change
+
+Sat Jul 22 10:41:25 2006 +0000 Hal Rosenstock
+f7edf0276a756530da47a2e21ce96f341358737e
+
+	* r8630: libibmad: Remove recently added TRAP_NUM_ID enum
+
+Tue Jul 11 10:17:32 2006 +0000 Hal Rosenstock
+733fd8b9bbc683b33a3a8d5759465e1ee0365eaf
+
+	* r8488: Cosmetic change to libibmad/include/infiniband/mad.h
+
+Mon Jul 10 23:13:53 2006 +0000 Hal Rosenstock
+5b4663546d3e05ad4f1dd9a19170db658f0186b5
+
+	* r8484: libibmad: Cosmetic changes to src/(fields dump).c
+
+Mon Jul 10 21:40:07 2006 +0000 Sasha Khapyorsky
+c62c7b4a90b5fefa9e07c290da4f9bb9a792c707
+
+	* r8482: libibmad: Support MFT and Notice/Trap fields
+
+Wed Jul 5 10:14:28 2006 +0000 Hal Rosenstock
+27cbe31837c53c7f794c4b124801e095f5529ac8
+
+	* r8361: diags/libibmad: Decode support for PortInfo:OperVLs
+
+Mon Jun 26 18:03:01 2006 +0000 Sasha Khapyorsky
+239eb5e97c6a868be4b0530b39a33eaca37a7cd3
+
+	* r8208: libibmad/rpc.c: Match MAD TransactionID
+
+Mon Jun 19 20:25:27 2006 +0000 Sasha Khapyorsky
+2c74f3b1002d4468fa92ff3fe11725418667bc38
+
+	* r8114: libibmad/rpc.c: In _do_madrpc, fix umad retry counter display
+
+Fri May 19 12:40:35 2006 +0000 Hal Rosenstock
+c76d4a1933d41734cf63c3f72cad8661f46ba96b
+
+	* r7350: Change to libibmad and diags/ibstat.c to support iWARP RNIC node type
+
+Wed May 3 21:38:17 2006 +0000 Ralph Campbell
+dd75f7c7c7d389334b2ed9126a633304872615ce
+
+	* r6893: bibmad/src/rpc.c: Fix madrpc_init() to use correct rmpp version
+
+Wed Apr 26 10:53:04 2006 +0000 Jan Daley 
+451c67ca4752a6742292548333bb38871633506b
+
+	* r6644: libibmad/fields.c: Fix bit field access of RMPP header
+
+Mon Mar 20 16:21:20 2006 +0000 Hal Rosenstock
+fb9ec02e633e8ec32083c923ead04bc3f2f21a75
+
+	* r5904: libibmad/fields.c: Cosmetic change to VLCap display
+
+Mon Mar 20 16:06:03 2006 +0000 Sasha Khapyorsky
+240a8561d052c69b233f4201d5145e6f310b500d
+
+	* r5899: libibmad: mad_dump_sltovl() output simplification
+
+Wed Mar 8 14:10:56 2006 +0000 Hal Rosenstock
+edbde601ec0e501fc5779a76a057c1d66fa7c379
+
+	* r5683: Merge management packaging changes from 1.0 back to trunk
+
+Mon Feb 27 13:31:21 2006 +0000 Hal Rosenstock
+f20d5213a399c484dc14829293d5b1af3a1b66c1
+
+	* r5508: Updated version identifiers for release candidate
+
+Fri Feb 10 15:58:06 2006 +0000 Sasha Khapyorsky
+26eabf1736b65caa3a231cb7a854315500c88eff
+
+	* r5358: management/*/autogen.sh: config dir test and creation
+
+Fri Feb 10 14:15:56 2006 +0000 Hal Rosenstock
+5c7ced08c212beafc7ad74e7508734d064b6c80f
+
+	* r5357: In libibmad, in rpc.c, cosmetic change to format of a couple of error messages
+
+Mon Jan 30 14:56:23 2006 +0000 Hal Rosenstock
+42bcb53fe408baabcb98f8431deb4d59bed1d9e5
+
+	* r5208: Cosmetic change to libibmad and diags to change HCA to CA
+
+Thu Jan 26 14:35:47 2006 +0000 Hal Rosenstock
+14ce30e8b138fd23cd029061d7faea7c6e17c731
+
+	* r5188: In diags, use enum for node types rather than hard coded constants
+
+Fri Jan 20 19:34:36 2006 +0000 Hal Rosenstock
+bcd436b33164534f303abc6811f4c0411a0e00e7
+
+	* r5114: Added perf_classportinfo_query and port_samples_result_query routines to libibmad
+
+Mon Jan 9 22:40:05 2006 +0000 Hal Rosenstock
+033f0c110f136c0634eae548e929459a70aec263
+
+	* r4863: Fix some typos in mad.h and fields.c in libibmad
+
+Wed Dec 21 15:55:57 2005 +0000 Hal Rosenstock
+444d688abbe3b1dbda0b5412ab6db6110f2b38fb
+
+	* r4577: Created common pma_query routine
+
+Wed Dec 21 15:43:00 2005 +0000 Hal Rosenstock
+c52b749220af4c16314ebc0101c5e183d6827644
+
+	* r4576: Start adding support for PortSamplesControl and PortSamplesResults PMA attributes. Add port_samples_control_query API.
+
+Fri Dec 16 18:31:58 2005 +0000 Hal Rosenstock
+936c911f53c62cd01fc6a70f9afc74fbc377b066
+
+	* r4507: In libibmad and libibumad, eliminate compile warnings with gcc version4.0.0 20050519 (Red Hat 4.0.0-8)
+
+Mon Dec 12 20:58:18 2005 +0000 Hal Rosenstock
+71d83efe6b79fabec86c296e505e21de2d23ca68
+
+	* r4412: In libibmad (fields.c), change Type to NodeType when displaying
+
+Mon Dec 12 19:58:28 2005 +0000 Hal Rosenstock
+6cd9b903f839ee1ce2977cf3b71e70c02ec7632e
+
+	* r4406: Add mad_dump_portstates (for PortState and PortPhysicalState)
+
+Fri Dec 9 18:30:41 2005 +0000 Hal Rosenstock
+b2b4c2df213e7ff6c040a7fcef8927c3f70ed6ce
+
+	* r4361: In libibmad (fields.c), change Vl to VL
+
+Tue Dec 6 21:03:52 2005 +0000 Hal Rosenstock
+276121583676dacdd9f54f3e4401697e4232f4e3
+
+	* r4334: Move struct ib_user_mad into umad.h (from umad.c)i (libibumad) Save and restore ib_user_mad header in rpc.c::_do_madrpc (libibmad) so retries sent to proper DLID and DQPN
+
+Tue Dec 6 20:59:09 2005 +0000 Hal Rosenstock
+01e6526ae737065fb234e446e24df6987a635f4f
+
+	* r4333: Cosmetic changes
+
+Tue Dec 6 16:18:38 2005 +0000 Hal Rosenstock
+7b53ecf36ae7cd06403deaf7ee2a694e5e76cba3
+
+	* r4331: Cosmetic change to a couple of error messages
+
+Sun Dec 4 23:10:08 2005 +0000 Hal Rosenstock
+d2160b32779236cab6138356f59c641ee886660f
+
+	* r4292: Fix previous checkin for make dist change for libibmad & libibumad
+
+Sun Dec 4 23:04:47 2005 +0000 Hal Rosenstock
+63fb6478bace9aa74ea48ace5aaae270e0dc1e68
+
+	* r4291: fixed make dist for libibmad & libibumad
+
+Mon Nov 28 19:08:07 2005 +0000 Hal Rosenstock
+472c485772c7d48145ab65181e2023e122efc487
+
+	* r4179: Cosmetic changes
+
+Mon Nov 28 17:46:41 2005 +0000 Hal Rosenstock
+2b95ab888e5e3cd0bf0d6e52fb927091583a481a
+
+	* r4178: Add define for IB_GSI_PORT_COUNTERS_EXT
+
+Wed Nov 2 19:53:09 2005 +0000 Hal Rosenstock
+64d693777900c3974729e4a50b8ce787ae9c07a9
+
+	* r3950: In rpc.c::_do_madrpc, also use timeout on umad_recv just in case packet sent is lost somewhere
+
+Sat Oct 22 11:52:26 2005 +0000 Hal Rosenstock
+c86084ae533419ddf6f8c753bea2291961b08213
+
+	* r3834: Fix PortInfo CapabilityMask dumping (used by smpquery)
+
+Mon Oct 10 13:13:03 2005 +0000 Hal Rosenstock
+5f1f5baa3d4038af996c287e9b05a1b20e86d415
+
+	* r3705: Change NodeInfo component name display from PortsNum to NumPorts
+
+Mon Sep 26 13:03:50 2005 +0000 Hal Rosenstock
+35c556ed02f7079e18d6151ab72c5e0e43fa8fef
+
+	* r3540: Minor changes to diags and management libraries to eliminate possible naming conflicts warn becomes ibwarn, panic becomes ibpanic (also associated macros changed)
+
+Wed Sep 14 14:21:10 2005 +0000 Michael S. Tsirkin
+25d0cb61208c93e0a2084156c64796d23973d989
+
+	* r3426: mad.h pulls in common.h which it does not actually depend on. The user should include it if he wants to. This approach reduces global namespace pollution.
+
+Mon Aug 15 18:27:40 2005 +0000 Hal Rosenstock
+0b0426ab005df3eec9b541cee20cc9a938608fec
+
+	* r3097: Remove a couple more instances of /usr/local/ib
+
+Mon Aug 15 17:16:13 2005 +0000 Hal Rosenstock
+82493518d7dfcc1859e65477658d2584f4a6abd1
+
+	* r3091: Remove special libdir to be in sync with OpenSM build change
+
+Mon Aug 8 18:03:31 2005 +0000 Hal Rosenstock
+fd72a800f383545d6269edee4fdd45f77e592d59
+
+	* r3020: Fix typo pointed out by Bernhard Fischer <rep.nop@aon.at>
+
+Mon Aug 8 15:44:05 2005 +0000 Michael S. Tsirkin
+a5cd524c6c16db603ccc6c0f3f209d47c6f4781f
+
+	* r3017: Add option to skip library test
+
+Mon Aug 8 13:46:42 2005 +0000 Michael S. Tsirkin
+e70dc1b3446b62c64ee23a99deb1ac6631b7e0d1
+
+	* r3014: libibmad: dont assume that all headers are in the same directory.
+
+Wed Jul 6 19:15:24 2005 +0000 Hal Rosenstock
+eed72a56fc2c9bde4a93c2af6ea6f18f9b70d62d
+
+	* r2815: Initial changes for receive side RMPP Also, some minor bug fixes and changed a couple of messages
+
+Wed Jul 6 19:05:13 2005 +0000 Hal Rosenstock
+118831d14161c0fc1e66fca2e6ea78fa313cee98
+
+	* r2813: Add in a few more SA attributes
+
+Tue Jul 5 12:45:47 2005 +0000 Bernhard Fischer
+0609af13f1c0b257db2404bee574ffadf8c55ac3
+
+	* r2792: Commentary typos
+
+Wed Jun 29 13:41:16 2005 +0000 Hal Rosenstock
+962f398f49bfdc5a49f3cc4a2e2da11e63e2aebd
+
+	* r2748: Make length output as well as input parameter to umad_recv in order to get ready for receive side RMPP
+
+Tue Jun 28 15:28:47 2005 +0000 Hal Rosenstock
+5882957f31c33eab26921017e330624055d5fed9
+
+	* r2727: Add length parameter to umad_recv in preparation for receive side RMPP support
+
+Thu Jun 9 20:45:32 2005 +0000 Hal Rosenstock
+1357c5f8e09533cce2ea9fb907b6fac52550a29d
+
+	* r2579: Cosmetic changes
+
+Tue Jun 7 11:21:44 2005 +0000 Hal Rosenstock
+ea99d74e3f9dcbc5d085afd78e24263de11ea71a
+
+	* r2566: Add retries to umad_send ABI_VERSION is now 4
+
+Fri Jun 3 20:25:17 2005 +0000 Hal Rosenstock
+d070dbccc1e315ed10fa1b88c89a5510e5db304f
+
+	* r2542: Changed RcvBytes to RcvPkts for PortCounters component which was mislabeled. Pointed out by Troy Benjegerdes <hozer@hozed.org>
+
+Thu Jun 2 18:49:59 2005 +0000 Hal Rosenstock
+2f2efcb385bc28fdb7aef94a325cad6cf15e37a6
+
+	* r2528: Add umad_get_fd routine to libibumad
+
+Thu May 26 15:31:22 2005 +0000 Hal Rosenstock
+9ada9f1fb71639c8471442fa0acc86931423f8db
+
+	* r2494: Change another C++ style comment to C style
+
+Thu May 26 14:17:31 2005 +0000 Hal Rosenstock
+b27074af93787830343d4ed056450a8fbd56533d
+
+	* r2492: Minor formatting changes
+
+Wed May 25 12:41:39 2005 +0000 Hal Rosenstock
+d38693813e862cd38f0c8b90c882bbaf545eaf08
+
+	* r2478: Added preference component mask bit for path record
+
+Tue May 24 12:59:47 2005 +0000 Hal Rosenstock
+49c65172c578ad71a8cec5dd50c95dd61924317e
+
+	* r2466: Remove config.h.in files which should be generated but not part of tree
+
+Mon May 23 16:33:46 2005 +0000 Hal Rosenstock
+8e4b18f8017727cc837d0e75f2415eed5eb679a7
+
+	* r2456: Changes to support send side RMPP (needs change to linux-kernel/infiniband/core/user_mad.c) ABI_VERSION is now 3 RMPP is enabled in build SA GetTable is now supported properly (within current RMPP limitations)
+
+Sun May 22 15:41:36 2005 +0000 Hal Rosenstock
+98e070741d99b3e18ec4da925c955368bde96a68
+
+	* r2440: Another conversion to use standard type Also, minor formatting changes
+
+Fri May 20 16:22:19 2005 +0000 Hal Rosenstock
+74aef684710968bf9509478531dbaf8d42591ac7
+
+	* r2424: Completing conversion to standard types
+
+Thu May 19 20:32:07 2005 +0000 Hal Rosenstock
+029d201d28e59c73eeee61ad44c45c8f2b974c4b
+
+	* r2418: Modified VL15Dropped counter name
+
+Wed May 18 21:09:26 2005 +0000 Hal Rosenstock
+504eae2fd5c7d74b350e7d521be960f4f00de489
+
+	* r2396: Start converting to standard types
+
+Wed May 18 20:13:37 2005 +0000 Hal Rosenstock
+0d80c5dc235dd9a3f7d306e61932b06bce988f85
+
+	* r2395: Eliminate already included include file
+
+Wed May 18 19:26:47 2005 +0000 Hal Rosenstock
+8677acc720e2e56ba6417da581358fdadc147b98
+
+	* r2388: Add some SA methods and attributes
+
+Wed May 18 18:30:20 2005 +0000 Hal Rosenstock
+f500df5dc132b33c3acf29eabc655f037350b651
+
+	* r2386: Minor formatting change
+
+Wed May 18 18:26:48 2005 +0000 Hal Rosenstock
+19d31c1e79f72d06d467d3260c5d540ef9431036
+
+	* r2385: Cosmetic changes to some field names
+
+Wed May 18 18:14:44 2005 +0000 Hal Rosenstock
+1db0c4ba3240cb1ad9369ab3e74246048bde1c40
+
+	* r2384: Fix typo in #define
+
+Fri May 13 15:19:15 2005 +0000 Hal Rosenstock
+a9b5ffa07295b254778422b4cb6172731655fda3
+
+	* r2334: Change C++ to C style comment
+
+Thu Apr 28 17:07:47 2005 +0000 Hal Rosenstock
+30d7d3f2839a67c5044bc664b638fa72466a6ad7
+
+	* r2225: Cosmetic changes
+
+Mon Mar 28 08:57:49 2005 +0000 Shahar Frank
+819c4281148fa688abe99e1d2ab89992cb0323f4
+
+	* r2051: cleanup
+
+Tue Mar 22 17:12:42 2005 +0000 Shahar Frank
+e8b6590af7844c1e56dad3ec3a24ae2c4811dbf6
+
+	* r2034: change umad_recv and mad_receive semantics - timeout 0 mean do not block
+
+Thu Mar 17 14:03:15 2005 +0000 Hal Rosenstock
+6d41cef9573c306a6c55717d7a8da6a677975e36
+
+	* r2015: Change IB_OPENIB_OUI to official IEEE assignment
+
+Thu Mar 3 16:00:58 2005 +0000 Shahar Frank
+4bda3b54f5e16b72f5e8b9e9279f34eaa12f8ebc
+
+	* r1950: add vendor classes
+
+Thu Mar 3 15:42:23 2005 +0000 Shahar Frank
+2a5cd860cc90ae9066b818d6167b9e4e9caea3ae
+
+	* r1948: update
+
+Thu Mar 3 11:27:26 2005 +0000 Hal Rosenstock
+624ec7b0fe6a2bb207e2d7014a8e3afb71c27f6a
+
+	* r1945: Add include to eliminate some implicit function declaration compile warnings
+
+Thu Mar 3 10:07:32 2005 +0000 Shahar Frank
+082003a7aa7f6ab393a19322f2d60cadd7f07624
+
+	* r1944: add vendor and server side support
+
+Sun Feb 20 15:55:52 2005 +0000 Hal Rosenstock
+4b3c0999d61648e7092f66f267e096ef103682ec
+
+	* r1843: Cosmetic changes
+
+Sun Feb 20 12:52:04 2005 +0000 Shahar Frank
+bbe99e6275db09135b9294c62d585a4220eaa962
+
+	* r1840: use _get|set_array in mad_set|get_array
+
+Sun Feb 20 12:50:55 2005 +0000 Shahar Frank
+6c682d98d8663a943e04497a4c51b912ff0a38c5
+
+	* r1839: minor cleanup
+
+Sun Feb 20 12:49:45 2005 +0000 Shahar Frank
+21d5b96feb58ecbd391bcf1b4f31c0e7a194d3c3
+
+	* r1838: buf fixes and temporary debug instrumentations
+
+Sun Feb 20 12:48:10 2005 +0000 Shahar Frank
+1d36d6802ee479fbc0f4f9fd46a029fb67a809c1
+
+	* r1837: fix set|get array bug handling non word aligned sizes/off
+
+Mon Feb 14 17:46:01 2005 +0000 Shahar Frank
+535dced0f21393265a9f9a35d28a0e9a7c01a20d
+
+	* r1786: add vendor mads support
+
+Thu Feb 10 14:12:25 2005 +0000 Shahar Frank
+ae62502c139176aa9fd250991d893f3c960720b5
+
+	* r1764: rename encode_MAD to mad_encode, oui
+
+Thu Feb 10 11:41:23 2005 +0000 Shahar Frank
+3d1da4dfeb8515261bac406d833c2e8f11a2d0bf
+
+	* r1760: bug fixes: tr order, buffer memset
+
+Mon Feb 7 17:17:56 2005 +0000 Shahar Frank
+e3bec2b52d8f15b0d4891ef35998b528e146e8ef
+
+	* r1756: add mad_dump_rhex - no 0x prefix
+
+Mon Feb 7 15:17:16 2005 +0000 Shahar Frank
+9145f0071aeeec05f0bc6b885456151da0ff64ee
+
+	* r1752: add gs.c symbols
+
+Mon Feb 7 14:15:49 2005 +0000 Shahar Frank
+e9baa88fbbecc0e950f53aa05c785a322e7b7778
+
+	* r1749: add gs.c: port counters support
+
+Thu Feb 3 17:17:17 2005 +0000 Shahar Frank
+b30ba9362a5de86c8ed968143c56b02ccbdc6ae6
+
+	* r1727: fix bug in ib_resolve_self
+
+Wed Feb 2 18:19:39 2005 +0000 Hal Rosenstock
+7124633a11e258fb59a2c70e7b6bd930d6f45643
+
+	* r1719: Changes so ibroute will build when libraries are using autotools
+
+Wed Feb 2 17:41:28 2005 +0000 Shahar Frank
+4998c9ad08114ebee72a6473c588f0757ba44517
+
+	* r1718: resolve changes
+
+Sat Jan 29 18:36:29 2005 +0000 Hal Rosenstock
+576dee77724ca4944f472185585ac422a211fc78
+
+	* r1699: Initial cutover to autotools for diags including update of README directions
+
+Sat Jan 29 18:01:07 2005 +0000 Hal Rosenstock
+b359ec8f10dcf32736f60d72fd68e6f191023283
+
+	* r1698: Add IB header and library dependencies in for autotools
+
+Fri Jan 28 20:49:06 2005 +0000 Hal Rosenstock
+083597947096f25b912da93a0b9c7bd308afd132
+
+	* r1693: Final preparations for autotools switchover for management libraries and diagnostics (but not OpenSM and its libraries as yet)
+
+Thu Jan 27 19:16:47 2005 +0000 Hal Rosenstock
+6a062c334e72613a4ca9293225b086d9dcf61466
+
+	* r1681: Fix typos in names of new linkspeed routines
+
+Thu Jan 27 16:31:46 2005 +0000 Hal Rosenstock
+36bba3730ca2b83b2185d2a6db05eaa25d04c6de
+
+	* r1677: More IBA 1.2 changes for smpquery
+
+Thu Jan 27 14:02:42 2005 +0000 Hal Rosenstock
+ba9991a9cb3c8cbdb23b0d57a36d01651f9024f3
+
+	* r1675: Added support for new IBA 1.2 link widths
+
+Thu Jan 27 13:52:02 2005 +0000 Hal Rosenstock
+9d6b679bbd0be53dcff32deab23bf20af051e9f2
+
+	* r1674: Decode PortInfo:LinkDownDefaultState and add PhyTest to decoded values of PortInfo:PortPhysicalState
+
+Wed Jan 26 15:41:41 2005 +0000 Hal Rosenstock
+ae04d826780e606f1992f23e47cea0aa3f6de6af
+
+	* r1655: Cosmetic changes to catch up with latest changes
+
+Tue Jan 25 23:31:32 2005 +0000 Hal Rosenstock
+aa2365cfde0d1a058bddb106ad24426abe8d04f3
+
+	* r1652: Cleanup undeleted files which were previously moved to src subdirectories
+
+Tue Jan 25 23:17:25 2005 +0000 Hal Rosenstock
+98493c5d16d7a6ecae7e816732d0042cf5dc2b1d
+
+	* r1651: Install public headers in /usr/local/include/infiniband
+
+Tue Jan 25 22:19:06 2005 +0000 Hal Rosenstock
+67598bec2595d4e4e6d57cff5be88980c856bf19
+
+	* r1649: More changes to ready management directory for autotools switchover
