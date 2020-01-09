@@ -1,13 +1,13 @@
 Summary: OpenFabrics Alliance InfiniBand MAD library
 Name: libibmad
-Version: 1.3.7
+Version: 1.3.8
 Release: 1%{?dist}
 License: GPLv2 or BSD
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source: http://www.openfabrics.org/downloads/management/%{name}-%{version}.tar.gz
 Url: http://openfabrics.org/
-BuildRequires: libibumad-devel = %{version}, libtool, glibc-static
+BuildRequires: libibumad-devel = 1.3.7, libtool, glibc-static
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 ExcludeArch: s390 s390x
@@ -67,6 +67,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libibmad.a
 
 %changelog
+* Mon Jan 23 2012 Doug Ledford <dledford@redhat.com> - 1.3.8-1
+- Update to latest upstream version (for FDR link speed support)
+- Related: bz750609
+
 * Fri Jul 22 2011 Doug Ledford <dledford@redhat.com> - 1.3.7-1
 - Update to latest upstream version (1.3.4 -> 1.3.7)
 - Related: bz725016

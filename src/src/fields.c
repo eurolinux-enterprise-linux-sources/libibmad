@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2004-2009 Voltaire Inc.  All rights reserved.
  * Copyright (c) 2009 HNR Consulting.  All rights reserved.
- * Copyright (c) 2009 Mellanox Technologies LTD.  All rights reserved.
+ * Copyright (c) 2009-2011 Mellanox Technologies LTD.  All rights reserved.
  *
  * This software is available to you under a choice of one of two
  * licenses.  You may choose to be licensed under the terms of the GNU
@@ -452,21 +452,21 @@ static const ib_field_t ib_mad_f[] = {
 	/*
 	 * PortXmitDiscardDetails fields
 	 */
-	{32, 16, "PortInactiveDiscards", mad_dump_uint},
-	{48, 16, "PortNeighborMTUDiscards", mad_dump_uint},
-	{64, 16, "PortSwLifetimeLimitDiscards", mad_dump_uint},
-	{80, 16, "PortSwHOQLifetimeLimitDiscards", mad_dump_uint},
+	{BITSOFFS(32, 16), "PortInactiveDiscards", mad_dump_uint},
+	{BITSOFFS(48, 16), "PortNeighborMTUDiscards", mad_dump_uint},
+	{BITSOFFS(64, 16), "PortSwLifetimeLimitDiscards", mad_dump_uint},
+	{BITSOFFS(80, 16), "PortSwHOQLifetimeLimitDiscards", mad_dump_uint},
 	{0, 0},			/* IB_PC_XMT_DISC_LAST_F */
 
 	/*
 	 * PortRcvErrorDetails fields
 	 */
-	{32, 16, "PortLocalPhysicalErrors", mad_dump_uint},
-	{48, 16, "PortMalformedPktErrors", mad_dump_uint},
-	{64, 16, "PortBufferOverrunErrors", mad_dump_uint},
-	{80, 16, "PortDLIDMappingErrors", mad_dump_uint},
-	{96, 16, "PortVLMappingErrors", mad_dump_uint},
-	{112, 16, "PortLoopingErrors", mad_dump_uint},
+	{BITSOFFS(32, 16), "PortLocalPhysicalErrors", mad_dump_uint},
+	{BITSOFFS(48, 16), "PortMalformedPktErrors", mad_dump_uint},
+	{BITSOFFS(64, 16), "PortBufferOverrunErrors", mad_dump_uint},
+	{BITSOFFS(80, 16), "PortDLIDMappingErrors", mad_dump_uint},
+	{BITSOFFS(96, 16), "PortVLMappingErrors", mad_dump_uint},
+	{BITSOFFS(112, 16), "PortLoopingErrors", mad_dump_uint},
 	{0, 0},                 /* IB_PC_RCV_ERR_LAST_F */
 
 	/*
@@ -485,24 +485,303 @@ static const ib_field_t ib_mad_f[] = {
 	{160, 64, "VendorMask", mad_dump_hex},
 	{224, 32, "SampleStart", mad_dump_uint},
 	{256, 32, "SampleInterval", mad_dump_uint},
-	{288, 16, "Tag", mad_dump_hex},
-	{304, 16, "CounterSelect0", mad_dump_hex},
-	{320, 16, "CounterSelect1", mad_dump_hex},
-	{336, 16, "CounterSelect2", mad_dump_hex},
-	{352, 16, "CounterSelect3", mad_dump_hex},
-	{368, 16, "CounterSelect4", mad_dump_hex},
-	{384, 16, "CounterSelect5", mad_dump_hex},
-	{400, 16, "CounterSelect6", mad_dump_hex},
-	{416, 16, "CounterSelect7", mad_dump_hex},
-	{432, 16, "CounterSelect8", mad_dump_hex},
-	{448, 16, "CounterSelect9", mad_dump_hex},
-	{464, 16, "CounterSelect10", mad_dump_hex},
-	{480, 16, "CounterSelect11", mad_dump_hex},
-	{496, 16, "CounterSelect12", mad_dump_hex},
-	{512, 16, "CounterSelect13", mad_dump_hex},
-	{528, 16, "CounterSelect14", mad_dump_hex},
+	{BITSOFFS(288, 16), "Tag", mad_dump_hex},
+	{BITSOFFS(304, 16), "CounterSelect0", mad_dump_hex},
+	{BITSOFFS(320, 16), "CounterSelect1", mad_dump_hex},
+	{BITSOFFS(336, 16), "CounterSelect2", mad_dump_hex},
+	{BITSOFFS(352, 16), "CounterSelect3", mad_dump_hex},
+	{BITSOFFS(368, 16), "CounterSelect4", mad_dump_hex},
+	{BITSOFFS(384, 16), "CounterSelect5", mad_dump_hex},
+	{BITSOFFS(400, 16), "CounterSelect6", mad_dump_hex},
+	{BITSOFFS(416, 16), "CounterSelect7", mad_dump_hex},
+	{BITSOFFS(432, 16), "CounterSelect8", mad_dump_hex},
+	{BITSOFFS(448, 16), "CounterSelect9", mad_dump_hex},
+	{BITSOFFS(464, 16), "CounterSelect10", mad_dump_hex},
+	{BITSOFFS(480, 16), "CounterSelect11", mad_dump_hex},
+	{BITSOFFS(496, 16), "CounterSelect12", mad_dump_hex},
+	{BITSOFFS(512, 16), "CounterSelect13", mad_dump_hex},
+	{BITSOFFS(528, 16), "CounterSelect14", mad_dump_hex},
 	{576, 64, "SamplesOnlyOptionMask", mad_dump_hex},
 	{0, 0},			/* IB_PSC_LAST_F */
+
+	/* GUIDInfo fields */
+	{0, 64, "GUID0", mad_dump_hex},
+	{64, 64, "GUID1", mad_dump_hex},
+	{128, 64, "GUID2", mad_dump_hex},
+	{192, 64, "GUID3", mad_dump_hex},
+	{256, 64, "GUID4", mad_dump_hex},
+	{320, 64, "GUID5", mad_dump_hex},
+	{384, 64, "GUID6", mad_dump_hex},
+	{448, 64, "GUID7", mad_dump_hex},
+
+	/* GUID Info Record */
+	{BITSOFFS(0, 16), "Lid", mad_dump_uint},
+	{BITSOFFS(16, 8), "BlockNum", mad_dump_uint},
+	{64, 64, "Guid0", mad_dump_hex},
+	{128, 64, "Guid1", mad_dump_hex},
+	{192, 64, "Guid2", mad_dump_hex},
+	{256, 64, "Guid3", mad_dump_hex},
+	{320, 64, "Guid4", mad_dump_hex},
+	{384, 64, "Guid5", mad_dump_hex},
+	{448, 64, "Guid6", mad_dump_hex},
+	{512, 64, "Guid7", mad_dump_hex},
+
+	/*
+	 * More PortInfo fields
+	 */
+	{BITSOFFS(480, 16), "CapabilityMask2", mad_dump_hex},
+	{BITSOFFS(496, 4), "LinkSpeedExtActive", mad_dump_linkspeedext},
+	{BITSOFFS(500, 4), "LinkSpeedExtSupported", mad_dump_linkspeedextsup},
+	{BITSOFFS(507, 5), "LinkSpeedExtEnabled", mad_dump_linkspeedexten},
+	{0, 0},			/* IB_PORT_LINK_SPEED_EXT_LAST_F */
+
+	/*
+	 * PortExtendedSpeedsCounters fields
+	 */
+	{BITSOFFS(8, 8), "PortSelect", mad_dump_uint},
+	{64, 64, "CounterSelect", mad_dump_hex},
+	{BITSOFFS(128, 8), "SyncHeaderErrorCounter", mad_dump_uint},
+	{BITSOFFS(136, 8), "UnknownBlockCounter", mad_dump_uint},
+	{BITSOFFS(144, 8), "ErrorDetectionCounterLane0", mad_dump_uint},
+	{BITSOFFS(152, 8), "ErrorDetectionCounterLane1", mad_dump_uint},
+	{BITSOFFS(160, 8), "ErrorDetectionCounterLane2", mad_dump_uint},
+	{BITSOFFS(168, 8), "ErrorDetectionCounterLane3", mad_dump_uint},
+	{BITSOFFS(176, 8), "ErrorDetectionCounterLane4", mad_dump_uint},
+	{BITSOFFS(184, 8), "ErrorDetectionCounterLane5", mad_dump_uint},
+	{BITSOFFS(192, 8), "ErrorDetectionCounterLane6", mad_dump_uint},
+	{BITSOFFS(200, 8), "ErrorDetectionCounterLane7", mad_dump_uint},
+	{BITSOFFS(208, 8), "ErrorDetectionCounterLane8", mad_dump_uint},
+	{BITSOFFS(216, 8), "ErrorDetectionCounterLane9", mad_dump_uint},
+	{BITSOFFS(224, 8), "ErrorDetectionCounterLane10", mad_dump_uint},
+	{BITSOFFS(232, 8), "ErrorDetectionCounterLane11", mad_dump_uint},
+	{256, 32, "FECCorrectableBlockCtrLane0", mad_dump_uint},
+	{288, 32, "FECCorrectableBlockCtrLane1", mad_dump_uint},
+	{320, 32, "FECCorrectableBlockCtrLane2", mad_dump_uint},
+	{352, 32, "FECCorrectableBlockCtrLane3", mad_dump_uint},
+	{384, 32, "FECCorrectableBlockCtrLane4", mad_dump_uint},
+	{416, 32, "FECCorrectableBlockCtrLane5", mad_dump_uint},
+	{448, 32, "FECCorrectableBlockCtrLane6", mad_dump_uint},
+	{480, 32, "FECCorrectableBlockCtrLane7", mad_dump_uint},
+	{512, 32, "FECCorrectableBlockCtrLane8", mad_dump_uint},
+	{544, 32, "FECCorrectableBlockCtrLane9", mad_dump_uint},
+	{580, 32, "FECCorrectableBlockCtrLane10", mad_dump_uint},
+	{608, 32, "FECCorrectableBlockCtrLane11", mad_dump_uint},
+	{640, 32, "FECUncorrectableBlockCtrLane0", mad_dump_uint},
+	{672, 32, "FECUncorrectableBlockCtrLane1", mad_dump_uint},
+	{704, 32, "FECUncorrectableBlockCtrLane2", mad_dump_uint},
+	{736, 32, "FECUncorrectableBlockCtrLane3", mad_dump_uint},
+	{768, 32, "FECUncorrectableBlockCtrLane4", mad_dump_uint},
+	{800, 32, "FECUncorrectableBlockCtrLane5", mad_dump_uint},
+	{832, 32, "FECUncorrectableBlockCtrLane6", mad_dump_uint},
+	{864, 32, "FECUncorrectableBlockCtrLane7", mad_dump_uint},
+	{896, 32, "FECUncorrectableBlockCtrLane8", mad_dump_uint},
+	{928, 32, "FECUncorrectableBlockCtrLane9", mad_dump_uint},
+	{960, 32, "FECUncorrectableBlockCtrLane10", mad_dump_uint},
+	{992, 32, "FECUncorrectableBlockCtrLane11", mad_dump_uint},
+	{0, 0},			/* IB_PESC_LAST_F */
+
+	/*
+	 * PortOpRcvCounters fields
+	 */
+	{32, 32, "PortOpRcvPkts", mad_dump_uint},
+	{64, 32, "PortOpRcvData", mad_dump_uint},
+	{0, 0},			/* IB_PC_PORT_OP_RCV_COUNTERS_LAST_F */
+
+	/*
+	 * PortFlowCtlCounters fields
+	 */
+	{32, 32, "PortXmitFlowPkts", mad_dump_uint},
+	{64, 32, "PortRcvFlowPkts", mad_dump_uint},
+	{0, 0},			/* IB_PC_PORT_FLOW_CTL_COUNTERS_LAST_F */
+
+	/*
+	 * PortVLOpPackets fields
+	 */
+	{BITSOFFS(32, 16), "PortVLOpPackets0", mad_dump_uint},
+	{BITSOFFS(48, 16), "PortVLOpPackets1", mad_dump_uint},
+	{BITSOFFS(64, 16), "PortVLOpPackets2", mad_dump_uint},
+	{BITSOFFS(80, 16), "PortVLOpPackets3", mad_dump_uint},
+	{BITSOFFS(96, 16), "PortVLOpPackets4", mad_dump_uint},
+	{BITSOFFS(112, 16), "PortVLOpPackets5", mad_dump_uint},
+	{BITSOFFS(128, 16), "PortVLOpPackets6", mad_dump_uint},
+	{BITSOFFS(144, 16), "PortVLOpPackets7", mad_dump_uint},
+	{BITSOFFS(160, 16), "PortVLOpPackets8", mad_dump_uint},
+	{BITSOFFS(176, 16), "PortVLOpPackets9", mad_dump_uint},
+	{BITSOFFS(192, 16), "PortVLOpPackets10", mad_dump_uint},
+	{BITSOFFS(208, 16), "PortVLOpPackets11", mad_dump_uint},
+	{BITSOFFS(224, 16), "PortVLOpPackets12", mad_dump_uint},
+	{BITSOFFS(240, 16), "PortVLOpPackets13", mad_dump_uint},
+	{BITSOFFS(256, 16), "PortVLOpPackets14", mad_dump_uint},
+	{BITSOFFS(272, 16), "PortVLOpPackets15", mad_dump_uint},
+	{0, 0},			/* IB_PC_PORT_VL_OP_PACKETS_LAST_F */
+
+	/*
+	 * PortVLOpData fields
+	 */
+	{32, 32, "PortVLOpData0", mad_dump_uint},
+	{64, 32, "PortVLOpData1", mad_dump_uint},
+	{96, 32, "PortVLOpData2", mad_dump_uint},
+	{128, 32, "PortVLOpData3", mad_dump_uint},
+	{160, 32, "PortVLOpData4", mad_dump_uint},
+	{192, 32, "PortVLOpData5", mad_dump_uint},
+	{224, 32, "PortVLOpData6", mad_dump_uint},
+	{256, 32, "PortVLOpData7", mad_dump_uint},
+	{288, 32, "PortVLOpData8", mad_dump_uint},
+	{320, 32, "PortVLOpData9", mad_dump_uint},
+	{352, 32, "PortVLOpData10", mad_dump_uint},
+	{384, 32, "PortVLOpData11", mad_dump_uint},
+	{416, 32, "PortVLOpData12", mad_dump_uint},
+	{448, 32, "PortVLOpData13", mad_dump_uint},
+	{480, 32, "PortVLOpData14", mad_dump_uint},
+	{512, 32, "PortVLOpData15", mad_dump_uint},
+	{0, 0},			/* IB_PC_PORT_VL_OP_DATA_LAST_F */
+
+	/*
+	 * PortVLXmitFlowCtlUpdateErrors fields
+	 */
+	{BITSOFFS(32, 2), "PortVLXmitFlowCtlUpdateErrors0", mad_dump_uint},
+	{BITSOFFS(34, 2), "PortVLXmitFlowCtlUpdateErrors1", mad_dump_uint},
+	{BITSOFFS(36, 2), "PortVLXmitFlowCtlUpdateErrors2", mad_dump_uint},
+	{BITSOFFS(38, 2), "PortVLXmitFlowCtlUpdateErrors3", mad_dump_uint},
+	{BITSOFFS(40, 2), "PortVLXmitFlowCtlUpdateErrors4", mad_dump_uint},
+	{BITSOFFS(42, 2), "PortVLXmitFlowCtlUpdateErrors5", mad_dump_uint},
+	{BITSOFFS(44, 2), "PortVLXmitFlowCtlUpdateErrors6", mad_dump_uint},
+	{BITSOFFS(46, 2), "PortVLXmitFlowCtlUpdateErrors7", mad_dump_uint},
+	{BITSOFFS(48, 2), "PortVLXmitFlowCtlUpdateErrors8", mad_dump_uint},
+	{BITSOFFS(50, 2), "PortVLXmitFlowCtlUpdateErrors9", mad_dump_uint},
+	{BITSOFFS(52, 2), "PortVLXmitFlowCtlUpdateErrors10", mad_dump_uint},
+	{BITSOFFS(54, 2), "PortVLXmitFlowCtlUpdateErrors11", mad_dump_uint},
+	{BITSOFFS(56, 2), "PortVLXmitFlowCtlUpdateErrors12", mad_dump_uint},
+	{BITSOFFS(58, 2), "PortVLXmitFlowCtlUpdateErrors13", mad_dump_uint},
+	{BITSOFFS(60, 2), "PortVLXmitFlowCtlUpdateErrors14", mad_dump_uint},
+	{BITSOFFS(62, 2), "PortVLXmitFlowCtlUpdateErrors15", mad_dump_uint},
+	{0, 0},			/* IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS_LAST_F */
+
+	/*
+	 * PortVLXmitWaitCounters fields
+	 */
+	{BITSOFFS(32, 16), "PortVLXmitWait0", mad_dump_uint},
+	{BITSOFFS(48, 16), "PortVLXmitWait1", mad_dump_uint},
+	{BITSOFFS(64, 16), "PortVLXmitWait2", mad_dump_uint},
+	{BITSOFFS(80, 16), "PortVLXmitWait3", mad_dump_uint},
+	{BITSOFFS(96, 16), "PortVLXmitWait4", mad_dump_uint},
+	{BITSOFFS(112, 16), "PortVLXmitWait5", mad_dump_uint},
+	{BITSOFFS(128, 16), "PortVLXmitWait6", mad_dump_uint},
+	{BITSOFFS(144, 16), "PortVLXmitWait7", mad_dump_uint},
+	{BITSOFFS(160, 16), "PortVLXmitWait8", mad_dump_uint},
+	{BITSOFFS(176, 16), "PortVLXmitWait9", mad_dump_uint},
+	{BITSOFFS(192, 16), "PortVLXmitWait10", mad_dump_uint},
+	{BITSOFFS(208, 16), "PortVLXmitWait11", mad_dump_uint},
+	{BITSOFFS(224, 16), "PortVLXmitWait12", mad_dump_uint},
+	{BITSOFFS(240, 16), "PortVLXmitWait13", mad_dump_uint},
+	{BITSOFFS(256, 16), "PortVLXmitWait14", mad_dump_uint},
+	{BITSOFFS(272, 16), "PortVLXmitWait15", mad_dump_uint},
+	{0, 0},			/* IB_PC_PORT_VL_XMIT_WAIT_COUNTERS_LAST_F */
+
+	/*
+	 * SwPortVLCongestion fields
+	 */
+	{BITSOFFS(32, 16), "SWPortVLCongestion0", mad_dump_uint},
+	{BITSOFFS(48, 16), "SWPortVLCongestion1", mad_dump_uint},
+	{BITSOFFS(64, 16), "SWPortVLCongestion2", mad_dump_uint},
+	{BITSOFFS(80, 16), "SWPortVLCongestion3", mad_dump_uint},
+	{BITSOFFS(96, 16), "SWPortVLCongestion4", mad_dump_uint},
+	{BITSOFFS(112, 16), "SWPortVLCongestion5", mad_dump_uint},
+	{BITSOFFS(128, 16), "SWPortVLCongestion6", mad_dump_uint},
+	{BITSOFFS(144, 16), "SWPortVLCongestion7", mad_dump_uint},
+	{BITSOFFS(160, 16), "SWPortVLCongestion8", mad_dump_uint},
+	{BITSOFFS(176, 16), "SWPortVLCongestion9", mad_dump_uint},
+	{BITSOFFS(192, 16), "SWPortVLCongestion10", mad_dump_uint},
+	{BITSOFFS(208, 16), "SWPortVLCongestion11", mad_dump_uint},
+	{BITSOFFS(224, 16), "SWPortVLCongestion12", mad_dump_uint},
+	{BITSOFFS(240, 16), "SWPortVLCongestion13", mad_dump_uint},
+	{BITSOFFS(256, 16), "SWPortVLCongestion14", mad_dump_uint},
+	{BITSOFFS(272, 16), "SWPortVLCongestion15", mad_dump_uint},
+	{0, 0},			/* IB_PC_SW_PORT_VL_CONGESTION_LAST_F */
+
+	/*
+	 * PortRcvConCtrl fields
+	 */
+	{32, 32, "PortPktRcvFECN", mad_dump_uint},
+	{64, 32, "PortPktRcvBECN", mad_dump_uint},
+	{0, 0},			/* IB_PC_RCV_CON_CTRL_LAST_F */
+
+	/*
+	 * PortSLRcvFECN fields
+	 */
+	{32, 32, "PortSLRcvFECN0", mad_dump_uint},
+	{64, 32, "PortSLRcvFECN1", mad_dump_uint},
+	{96, 32, "PortSLRcvFECN2", mad_dump_uint},
+	{128, 32, "PortSLRcvFECN3", mad_dump_uint},
+	{160, 32, "PortSLRcvFECN4", mad_dump_uint},
+	{192, 32, "PortSLRcvFECN5", mad_dump_uint},
+	{224, 32, "PortSLRcvFECN6", mad_dump_uint},
+	{256, 32, "PortSLRcvFECN7", mad_dump_uint},
+	{288, 32, "PortSLRcvFECN8", mad_dump_uint},
+	{320, 32, "PortSLRcvFECN9", mad_dump_uint},
+	{352, 32, "PortSLRcvFECN10", mad_dump_uint},
+	{384, 32, "PortSLRcvFECN11", mad_dump_uint},
+	{416, 32, "PortSLRcvFECN12", mad_dump_uint},
+	{448, 32, "PortSLRcvFECN13", mad_dump_uint},
+	{480, 32, "PortSLRcvFECN14", mad_dump_uint},
+	{512, 32, "PortSLRcvFECN15", mad_dump_uint},
+	{0, 0},			/* IB_PC_SL_RCV_FECN_LAST_F */
+
+	/*
+	 * PortSLRcvBECN fields
+	 */
+	{32, 32, "PortSLRcvBECN0", mad_dump_uint},
+	{64, 32, "PortSLRcvBECN1", mad_dump_uint},
+	{96, 32, "PortSLRcvBECN2", mad_dump_uint},
+	{128, 32, "PortSLRcvBECN3", mad_dump_uint},
+	{160, 32, "PortSLRcvBECN4", mad_dump_uint},
+	{192, 32, "PortSLRcvBECN5", mad_dump_uint},
+	{224, 32, "PortSLRcvBECN6", mad_dump_uint},
+	{256, 32, "PortSLRcvBECN7", mad_dump_uint},
+	{288, 32, "PortSLRcvBECN8", mad_dump_uint},
+	{320, 32, "PortSLRcvBECN9", mad_dump_uint},
+	{352, 32, "PortSLRcvBECN10", mad_dump_uint},
+	{384, 32, "PortSLRcvBECN11", mad_dump_uint},
+	{416, 32, "PortSLRcvBECN12", mad_dump_uint},
+	{448, 32, "PortSLRcvBECN13", mad_dump_uint},
+	{480, 32, "PortSLRcvBECN14", mad_dump_uint},
+	{512, 32, "PortSLRcvBECN15", mad_dump_uint},
+	{0, 0},			/* IB_PC_SL_RCV_BECN_LAST_F */
+
+	/*
+	 * PortXmitConCtrl fields
+	 */
+	{32, 32, "PortXmitTimeCong", mad_dump_uint},
+	{0, 0},			/* IB_PC_XMIT_CON_CTRL_LAST_F */
+
+	/*
+	 * PortVLXmitTimeCong fields
+	 */
+	{32, 32, "PortVLXmitTimeCong0", mad_dump_uint},
+	{64, 32, "PortVLXmitTimeCong1", mad_dump_uint},
+	{96, 32, "PortVLXmitTimeCong2", mad_dump_uint},
+	{128, 32, "PortVLXmitTimeCong3", mad_dump_uint},
+	{160, 32, "PortVLXmitTimeCong4", mad_dump_uint},
+	{192, 32, "PortVLXmitTimeCong5", mad_dump_uint},
+	{224, 32, "PortVLXmitTimeCong6", mad_dump_uint},
+	{256, 32, "PortVLXmitTimeCong7", mad_dump_uint},
+	{288, 32, "PortVLXmitTimeCong8", mad_dump_uint},
+	{320, 32, "PortVLXmitTimeCong9", mad_dump_uint},
+	{352, 32, "PortVLXmitTimeCong10", mad_dump_uint},
+	{384, 32, "PortVLXmitTimeCong11", mad_dump_uint},
+	{416, 32, "PortVLXmitTimeCong12", mad_dump_uint},
+	{448, 32, "PortVLXmitTimeCong13", mad_dump_uint},
+	{480, 32, "PortVLXmitTimeCong14", mad_dump_uint},
+	{0, 0},			/* IB_PC_VL_XMIT_TIME_CONG_LAST_F */
+
+	/*
+	 * Mellanox ExtendedPortInfo fields
+	 */
+	{BITSOFFS(24, 8), "StateChangeEnable", mad_dump_hex},
+	{BITSOFFS(56, 8), "LinkSpeedSupported", mad_dump_hex},
+	{BITSOFFS(88, 8), "LinkSpeedEnabled", mad_dump_hex},
+	{BITSOFFS(120, 8), "LinkSpeedActive", mad_dump_hex},
+	{0, 0},			/* IB_MLNX_EXT_PORT_LAST_F */
 
 	{0, 0}			/* IB_FIELD_LAST_ */
 

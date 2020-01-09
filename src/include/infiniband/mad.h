@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2004-2009 Voltaire Inc.  All rights reserved.
  * Copyright (c) 2009 HNR Consulting.  All rights reserved.
- * Copyright (c) 2009 Mellanox Technologies LTD.  All rights reserved.
+ * Copyright (c) 2009-2011 Mellanox Technologies LTD.  All rights reserved.
  *
  * This software is available to you under a choice of one of two
  * licenses.  You may choose to be licensed under the terms of the GNU
@@ -46,6 +46,9 @@
 #endif				/* __cplusplus */
 
 BEGIN_C_DECLS
+#define IB_MAD_RPC_VERSION_MASK	0x0f00
+#define IB_MAD_RPC_VERSION1	(1<<8)
+
 #define IB_SUBNET_PATH_HOPS_MAX	64
 #define IB_DEFAULT_SUBN_PREFIX	0xfe80000000000000ULL
 #define IB_DEFAULT_QP1_QKEY	0x80010000
@@ -62,6 +65,7 @@ BEGIN_C_DECLS
 #define IB_PC_DATA_SZ		(IB_MAD_SIZE - IB_PC_DATA_OFFS)
 #define IB_SA_MCM_RECSZ		53
 #define IB_SA_PR_RECSZ		64
+#define IB_SA_GIR_RECSZ		72
 #define IB_BM_DATA_OFFS		64
 #define IB_BM_DATA_SZ		(IB_MAD_SIZE - IB_BM_DATA_OFFS)
 #define IB_BM_BKEY_OFFS		24
@@ -137,7 +141,9 @@ enum SMI_ATTR_ID {
 	IB_ATTR_VENDORMADSTBL = 0x1d,
 	IB_ATTR_SMINFO = 0x20,
 
-	IB_ATTR_LAST
+	IB_ATTR_LAST,
+
+	IB_ATTR_MLNX_EXT_PORT_INFO = 0xff90,
 };
 
 enum SA_ATTR_ID {
@@ -170,7 +176,20 @@ enum GSI_ATTR_ID {
 	IB_GSI_PORT_COUNTERS = 0x12,
 	IB_GSI_PORT_RCV_ERROR_DETAILS = 0x15,
 	IB_GSI_PORT_XMIT_DISCARD_DETAILS = 0x16,
+	IB_GSI_PORT_PORT_OP_RCV_COUNTERS = 0x17,
+	IB_GSI_PORT_PORT_FLOW_CTL_COUNTERS = 0x18,
+	IB_GSI_PORT_PORT_VL_OP_PACKETS = 0x19,
+	IB_GSI_PORT_PORT_VL_OP_DATA = 0x1A,
+	IB_GSI_PORT_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS = 0x1B,
+	IB_GSI_PORT_PORT_VL_XMIT_WAIT_COUNTERS = 0x1C,
 	IB_GSI_PORT_COUNTERS_EXT = 0x1D,
+	IB_GSI_PORT_EXT_SPEEDS_COUNTERS = 0x1F,
+	IB_GSI_SW_PORT_VL_CONGESTION = 0x30,
+	IB_GSI_PORT_RCV_CON_CTRL = 0x31,
+	IB_GSI_PORT_SL_RCV_FECN = 0x32,
+	IB_GSI_PORT_SL_RCV_BECN = 0x33,
+	IB_GSI_PORT_XMIT_CON_CTRL = 0x34,
+	IB_GSI_PORT_VL_XMIT_TIME_CONG = 0x35,
 	IB_GSI_PORT_XMIT_DATA_SL = 0x36,
 	IB_GSI_PORT_RCV_DATA_SL = 0x37,
 	IB_GSI_ATTR_LAST
@@ -233,6 +252,22 @@ typedef struct {
 	int timeout;
 	uint32_t oui;		/* for vendor range 2 mads */
 } ib_rpc_t;
+
+typedef struct {
+	int mgtclass;
+	int method;
+	ib_attr_t attr;
+	uint32_t rstatus;	/* return status */
+	int dataoffs;
+	int datasz;
+	uint64_t mkey;
+	uint64_t trid;		/* used for out mad if nonzero, return real val */
+	uint64_t mask;		/* for sa mads */
+	unsigned recsz;		/* for sa mads (attribute offset) */
+	int timeout;
+	uint32_t oui;		/* for vendor range 2 mads */
+	int error;		/* errno */
+} ib_rpc_v1_t;
 
 typedef struct portid {
 	int lid;		/* lid or 0 if directed route */
@@ -579,7 +614,8 @@ enum MAD_FIELDS {
 	/*
 	 * GUIDInfo fields
 	 */
-	IB_GUID_GUID0_F,
+	IB_GUID_GUID0_F, /* Obsolete, kept for compatibility
+			    Use IB_GI_GUID0_F going forward */
 
 	/*
 	 * ClassPortInfo fields
@@ -705,6 +741,302 @@ enum MAD_FIELDS {
 	IB_PSC_COUNTER_SEL14_F,
 	IB_PSC_SAMPLES_ONLY_OPT_MASK_F,
 	IB_PSC_LAST_F,
+
+	/*
+	 * GUIDInfo fields
+	 */
+	IB_GI_GUID0_F, /* a duplicate of IB_GUID_GUID0_F for backwards
+			  compatibility */
+	IB_GI_GUID1_F,
+	IB_GI_GUID2_F,
+	IB_GI_GUID3_F,
+	IB_GI_GUID4_F,
+	IB_GI_GUID5_F,
+	IB_GI_GUID6_F,
+	IB_GI_GUID7_F,
+
+	/*
+	 * GUID Info Record
+	 */
+	IB_SA_GIR_LID_F,
+	IB_SA_GIR_BLOCKNUM_F,
+	IB_SA_GIR_GUID0_F,
+	IB_SA_GIR_GUID1_F,
+	IB_SA_GIR_GUID2_F,
+	IB_SA_GIR_GUID3_F,
+	IB_SA_GIR_GUID4_F,
+	IB_SA_GIR_GUID5_F,
+	IB_SA_GIR_GUID6_F,
+	IB_SA_GIR_GUID7_F,
+
+	/*
+	 * More PortInfo fields
+	 */
+	IB_PORT_CAPMASK2_F,
+	IB_PORT_LINK_SPEED_EXT_ACTIVE_F,
+	IB_PORT_LINK_SPEED_EXT_SUPPORTED_F,
+	IB_PORT_LINK_SPEED_EXT_ENABLED_F,
+	IB_PORT_LINK_SPEED_EXT_LAST_F,
+
+	/*
+	 * PortExtendedSpeedsCounters fields
+	 */
+	IB_PESC_PORT_SELECT_F,
+	IB_PESC_COUNTER_SELECT_F,
+	IB_PESC_SYNC_HDR_ERR_CTR_F,
+	IB_PESC_UNK_BLOCK_CTR_F,
+	IB_PESC_ERR_DET_CTR_LANE0_F,
+	IB_PESC_ERR_DET_CTR_LANE1_F,
+	IB_PESC_ERR_DET_CTR_LANE2_F,
+	IB_PESC_ERR_DET_CTR_LANE3_F,
+	IB_PESC_ERR_DET_CTR_LANE4_F,
+	IB_PESC_ERR_DET_CTR_LANE5_F,
+	IB_PESC_ERR_DET_CTR_LANE6_F,
+	IB_PESC_ERR_DET_CTR_LANE7_F,
+	IB_PESC_ERR_DET_CTR_LANE8_F,
+	IB_PESC_ERR_DET_CTR_LANE9_F,
+	IB_PESC_ERR_DET_CTR_LANE10_F,
+	IB_PESC_ERR_DET_CTR_LANE11_F,
+	IB_PESC_FEC_CORR_BLOCK_CTR_LANE0_F,
+	IB_PESC_FEC_CORR_BLOCK_CTR_LANE1_F,
+	IB_PESC_FEC_CORR_BLOCK_CTR_LANE2_F,
+	IB_PESC_FEC_CORR_BLOCK_CTR_LANE3_F,
+	IB_PESC_FEC_CORR_BLOCK_CTR_LANE4_F,
+	IB_PESC_FEC_CORR_BLOCK_CTR_LANE5_F,
+	IB_PESC_FEC_CORR_BLOCK_CTR_LANE6_F,
+	IB_PESC_FEC_CORR_BLOCK_CTR_LANE7_F,
+	IB_PESC_FEC_CORR_BLOCK_CTR_LANE8_F,
+	IB_PESC_FEC_CORR_BLOCK_CTR_LANE9_F,
+	IB_PESC_FEC_CORR_BLOCK_CTR_LANE10_F,
+	IB_PESC_FEC_CORR_BLOCK_CTR_LANE11_F,
+	IB_PESC_FEC_UNCORR_BLOCK_CTR_LANE0_F,
+	IB_PESC_FEC_UNCORR_BLOCK_CTR_LANE1_F,
+	IB_PESC_FEC_UNCORR_BLOCK_CTR_LANE2_F,
+	IB_PESC_FEC_UNCORR_BLOCK_CTR_LANE3_F,
+	IB_PESC_FEC_UNCORR_BLOCK_CTR_LANE4_F,
+	IB_PESC_FEC_UNCORR_BLOCK_CTR_LANE5_F,
+	IB_PESC_FEC_UNCORR_BLOCK_CTR_LANE6_F,
+	IB_PESC_FEC_UNCORR_BLOCK_CTR_LANE7_F,
+	IB_PESC_FEC_UNCORR_BLOCK_CTR_LANE8_F,
+	IB_PESC_FEC_UNCORR_BLOCK_CTR_LANE9_F,
+	IB_PESC_FEC_UNCORR_BLOCK_CTR_LANE10_F,
+	IB_PESC_FEC_UNCORR_BLOCK_CTR_LANE11_F,
+	IB_PESC_LAST_F,
+
+	/*
+	 * PortOpRcvCounters fields
+	 */
+	IB_PC_PORT_OP_RCV_COUNTERS_FIRST_F,
+	IB_PC_PORT_OP_RCV_PKTS_F = IB_PC_PORT_OP_RCV_COUNTERS_FIRST_F,
+	IB_PC_PORT_OP_RCV_DATA_F,
+	IB_PC_PORT_OP_RCV_COUNTERS_LAST_F,
+
+	/*
+	 * PortFlowCtlCounters fields
+	 */
+	IB_PC_PORT_FLOW_CTL_COUNTERS_FIRST_F,
+	IB_PC_PORT_XMIT_FLOW_PKTS_F = IB_PC_PORT_FLOW_CTL_COUNTERS_FIRST_F,
+	IB_PC_PORT_RCV_FLOW_PKTS_F,
+	IB_PC_PORT_FLOW_CTL_COUNTERS_LAST_F,
+
+	/*
+	 * PortVLOpPackets fields
+	 */
+	IB_PC_PORT_VL_OP_PACKETS_FIRST_F,
+	IB_PC_PORT_VL_OP_PACKETS0_F = IB_PC_PORT_VL_OP_PACKETS_FIRST_F,
+	IB_PC_PORT_VL_OP_PACKETS1_F,
+	IB_PC_PORT_VL_OP_PACKETS2_F,
+	IB_PC_PORT_VL_OP_PACKETS3_F,
+	IB_PC_PORT_VL_OP_PACKETS4_F,
+	IB_PC_PORT_VL_OP_PACKETS5_F,
+	IB_PC_PORT_VL_OP_PACKETS6_F,
+	IB_PC_PORT_VL_OP_PACKETS7_F,
+	IB_PC_PORT_VL_OP_PACKETS8_F,
+	IB_PC_PORT_VL_OP_PACKETS9_F,
+	IB_PC_PORT_VL_OP_PACKETS10_F,
+	IB_PC_PORT_VL_OP_PACKETS11_F,
+	IB_PC_PORT_VL_OP_PACKETS12_F,
+	IB_PC_PORT_VL_OP_PACKETS13_F,
+	IB_PC_PORT_VL_OP_PACKETS14_F,
+	IB_PC_PORT_VL_OP_PACKETS15_F,
+	IB_PC_PORT_VL_OP_PACKETS_LAST_F,
+
+	/*
+	 * PortVLOpData fields
+	 */
+	IB_PC_PORT_VL_OP_DATA_FIRST_F,
+	IB_PC_PORT_VL_OP_DATA0_F = IB_PC_PORT_VL_OP_DATA_FIRST_F,
+	IB_PC_PORT_VL_OP_DATA1_F,
+	IB_PC_PORT_VL_OP_DATA2_F,
+	IB_PC_PORT_VL_OP_DATA3_F,
+	IB_PC_PORT_VL_OP_DATA4_F,
+	IB_PC_PORT_VL_OP_DATA5_F,
+	IB_PC_PORT_VL_OP_DATA6_F,
+	IB_PC_PORT_VL_OP_DATA7_F,
+	IB_PC_PORT_VL_OP_DATA8_F,
+	IB_PC_PORT_VL_OP_DATA9_F,
+	IB_PC_PORT_VL_OP_DATA10_F,
+	IB_PC_PORT_VL_OP_DATA11_F,
+	IB_PC_PORT_VL_OP_DATA12_F,
+	IB_PC_PORT_VL_OP_DATA13_F,
+	IB_PC_PORT_VL_OP_DATA14_F,
+	IB_PC_PORT_VL_OP_DATA15_F,
+	IB_PC_PORT_VL_OP_DATA_LAST_F,
+
+	/*
+	 * PortVLXmitFlowCtlUpdateErrors fields
+	 */
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS_FIRST_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS0_F = IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS_FIRST_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS1_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS2_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS3_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS4_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS5_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS6_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS7_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS8_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS9_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS10_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS11_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS12_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS13_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS14_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS15_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS_LAST_F,
+
+	/*
+	 * PortVLXmitWaitCounters fields
+	 */
+	IB_PC_PORT_VL_XMIT_WAIT_COUNTERS_FIRST_F,
+	IB_PC_PORT_VL_XMIT_WAIT0_F = IB_PC_PORT_VL_XMIT_WAIT_COUNTERS_FIRST_F,
+	IB_PC_PORT_VL_XMIT_WAIT1_F,
+	IB_PC_PORT_VL_XMIT_WAIT2_F,
+	IB_PC_PORT_VL_XMIT_WAIT3_F,
+	IB_PC_PORT_VL_XMIT_WAIT4_F,
+	IB_PC_PORT_VL_XMIT_WAIT5_F,
+	IB_PC_PORT_VL_XMIT_WAIT6_F,
+	IB_PC_PORT_VL_XMIT_WAIT7_F,
+	IB_PC_PORT_VL_XMIT_WAIT8_F,
+	IB_PC_PORT_VL_XMIT_WAIT9_F,
+	IB_PC_PORT_VL_XMIT_WAIT10_F,
+	IB_PC_PORT_VL_XMIT_WAIT11_F,
+	IB_PC_PORT_VL_XMIT_WAIT12_F,
+	IB_PC_PORT_VL_XMIT_WAIT13_F,
+	IB_PC_PORT_VL_XMIT_WAIT14_F,
+	IB_PC_PORT_VL_XMIT_WAIT15_F,
+	IB_PC_PORT_VL_XMIT_WAIT_COUNTERS_LAST_F,
+
+	/*
+	 * SwPortVLCongestion fields
+	 */
+	IB_PC_SW_PORT_VL_CONGESTION_FIRST_F,
+	IB_PC_SW_PORT_VL_CONGESTION0_F = IB_PC_SW_PORT_VL_CONGESTION_FIRST_F,
+	IB_PC_SW_PORT_VL_CONGESTION1_F,
+	IB_PC_SW_PORT_VL_CONGESTION2_F,
+	IB_PC_SW_PORT_VL_CONGESTION3_F,
+	IB_PC_SW_PORT_VL_CONGESTION4_F,
+	IB_PC_SW_PORT_VL_CONGESTION5_F,
+	IB_PC_SW_PORT_VL_CONGESTION6_F,
+	IB_PC_SW_PORT_VL_CONGESTION7_F,
+	IB_PC_SW_PORT_VL_CONGESTION8_F,
+	IB_PC_SW_PORT_VL_CONGESTION9_F,
+	IB_PC_SW_PORT_VL_CONGESTION10_F,
+	IB_PC_SW_PORT_VL_CONGESTION11_F,
+	IB_PC_SW_PORT_VL_CONGESTION12_F,
+	IB_PC_SW_PORT_VL_CONGESTION13_F,
+	IB_PC_SW_PORT_VL_CONGESTION14_F,
+	IB_PC_SW_PORT_VL_CONGESTION15_F,
+	IB_PC_SW_PORT_VL_CONGESTION_LAST_F,
+
+	/*
+	 * PortRcvConCtrl fields
+	 */
+	IB_PC_RCV_CON_CTRL_FIRST_F,
+	IB_PC_RCV_CON_CTRL_PKT_RCV_FECN_F = IB_PC_RCV_CON_CTRL_FIRST_F,
+	IB_PC_RCV_CON_CTRL_PKT_RCV_BECN_F,
+	IB_PC_RCV_CON_CTRL_LAST_F,
+
+	/*
+	 * PortSLRcvFECN fields
+	 */
+	IB_PC_SL_RCV_FECN_FIRST_F,
+	IB_PC_SL_RCV_FECN0_F = IB_PC_SL_RCV_FECN_FIRST_F,
+	IB_PC_SL_RCV_FECN1_F,
+	IB_PC_SL_RCV_FECN2_F,
+	IB_PC_SL_RCV_FECN3_F,
+	IB_PC_SL_RCV_FECN4_F,
+	IB_PC_SL_RCV_FECN5_F,
+	IB_PC_SL_RCV_FECN6_F,
+	IB_PC_SL_RCV_FECN7_F,
+	IB_PC_SL_RCV_FECN8_F,
+	IB_PC_SL_RCV_FECN9_F,
+	IB_PC_SL_RCV_FECN10_F,
+	IB_PC_SL_RCV_FECN11_F,
+	IB_PC_SL_RCV_FECN12_F,
+	IB_PC_SL_RCV_FECN13_F,
+	IB_PC_SL_RCV_FECN14_F,
+	IB_PC_SL_RCV_FECN15_F,
+	IB_PC_SL_RCV_FECN_LAST_F,
+
+	/*
+	 * PortSLRcvBECN fields
+	 */
+	IB_PC_SL_RCV_BECN_FIRST_F,
+	IB_PC_SL_RCV_BECN0_F = IB_PC_SL_RCV_BECN_FIRST_F,
+	IB_PC_SL_RCV_BECN1_F,
+	IB_PC_SL_RCV_BECN2_F,
+	IB_PC_SL_RCV_BECN3_F,
+	IB_PC_SL_RCV_BECN4_F,
+	IB_PC_SL_RCV_BECN5_F,
+	IB_PC_SL_RCV_BECN6_F,
+	IB_PC_SL_RCV_BECN7_F,
+	IB_PC_SL_RCV_BECN8_F,
+	IB_PC_SL_RCV_BECN9_F,
+	IB_PC_SL_RCV_BECN10_F,
+	IB_PC_SL_RCV_BECN11_F,
+	IB_PC_SL_RCV_BECN12_F,
+	IB_PC_SL_RCV_BECN13_F,
+	IB_PC_SL_RCV_BECN14_F,
+	IB_PC_SL_RCV_BECN15_F,
+	IB_PC_SL_RCV_BECN_LAST_F,
+
+	/*
+	 * PortXmitConCtrl fields
+	 */
+	IB_PC_XMIT_CON_CTRL_FIRST_F,
+	IB_PC_XMIT_CON_CTRL_TIME_CONG_F = IB_PC_XMIT_CON_CTRL_FIRST_F,
+	IB_PC_XMIT_CON_CTRL_LAST_F,
+
+	/*
+	 * PortVLXmitTimeCong fields
+	 */
+	IB_PC_VL_XMIT_TIME_CONG_FIRST_F,
+	IB_PC_VL_XMIT_TIME_CONG0_F = IB_PC_VL_XMIT_TIME_CONG_FIRST_F,
+	IB_PC_VL_XMIT_TIME_CONG1_F,
+	IB_PC_VL_XMIT_TIME_CONG2_F,
+	IB_PC_VL_XMIT_TIME_CONG3_F,
+	IB_PC_VL_XMIT_TIME_CONG4_F,
+	IB_PC_VL_XMIT_TIME_CONG5_F,
+	IB_PC_VL_XMIT_TIME_CONG6_F,
+	IB_PC_VL_XMIT_TIME_CONG7_F,
+	IB_PC_VL_XMIT_TIME_CONG8_F,
+	IB_PC_VL_XMIT_TIME_CONG9_F,
+	IB_PC_VL_XMIT_TIME_CONG10_F,
+	IB_PC_VL_XMIT_TIME_CONG11_F,
+	IB_PC_VL_XMIT_TIME_CONG12_F,
+	IB_PC_VL_XMIT_TIME_CONG13_F,
+	IB_PC_VL_XMIT_TIME_CONG14_F,
+	IB_PC_VL_XMIT_TIME_CONG_LAST_F,
+
+	/*
+	 * Mellanox ExtendedPortInfo fields
+	 */
+	IB_MLNX_EXT_PORT_STATE_CHG_ENABLE_F,
+	IB_MLNX_EXT_PORT_LINK_SPEED_SUPPORTED_F,
+	IB_MLNX_EXT_PORT_LINK_SPEED_ENABLED_F,
+	IB_MLNX_EXT_PORT_LINK_SPEED_ACTIVE_F,
+	IB_MLNX_EXT_PORT_LAST_F,
 
 	IB_FIELD_LAST_		/* must be last */
 };
@@ -959,6 +1291,14 @@ MAD_EXPORT uint8_t *smp_query_via(void *buf, ib_portid_t * id, unsigned attrid,
 MAD_EXPORT uint8_t *smp_set_via(void *buf, ib_portid_t * id, unsigned attrid,
 				unsigned mod, unsigned timeout,
 				const struct ibmad_port *srcport);
+MAD_EXPORT uint8_t *smp_query_status_via(void *rcvbuf, ib_portid_t * portid,
+					 unsigned attrid, unsigned mod,
+					 unsigned timeout, int *rstatus,
+					 const struct ibmad_port *srcport);
+MAD_EXPORT uint8_t *smp_set_status_via(void *data, ib_portid_t * portid,
+				       unsigned attrid, unsigned mod,
+				       unsigned timeout, int *rstatus,
+				       const struct ibmad_port *srcport);
 
 /* sa.c */
 uint8_t *sa_call(void *rcvbuf, ib_portid_t * portid, ib_sa_call_t * sa,
@@ -1021,6 +1361,7 @@ MAD_EXPORT ib_mad_dump_fn
     mad_dump_linkwidth, mad_dump_linkwidthsup, mad_dump_linkwidthen,
     mad_dump_linkdowndefstate,
     mad_dump_linkspeed, mad_dump_linkspeedsup, mad_dump_linkspeeden,
+    mad_dump_linkspeedext, mad_dump_linkspeedextsup, mad_dump_linkspeedexten,
     mad_dump_portstate, mad_dump_portstates,
     mad_dump_physportstate, mad_dump_portcapmask,
     mad_dump_mtu, mad_dump_vlcap, mad_dump_opervls,
@@ -1029,7 +1370,14 @@ MAD_EXPORT ib_mad_dump_fn
     mad_dump_switchinfo, mad_dump_perfcounters, mad_dump_perfcounters_ext,
     mad_dump_perfcounters_xmt_sl, mad_dump_perfcounters_rcv_sl,
     mad_dump_perfcounters_xmt_disc, mad_dump_perfcounters_rcv_err,
-    mad_dump_portsamples_control;
+    mad_dump_portsamples_control, mad_dump_port_ext_speeds_counters,
+    mad_dump_perfcounters_port_op_rcv_counters, mad_dump_perfcounters_port_flow_ctl_counters,
+    mad_dump_perfcounters_port_vl_op_packet, mad_dump_perfcounters_port_vl_op_data,
+    mad_dump_perfcounters_port_vl_xmit_flow_ctl_update_errors, mad_dump_perfcounters_port_vl_xmit_wait_counters,
+    mad_dump_perfcounters_sw_port_vl_congestion, mad_dump_perfcounters_rcv_con_ctrl,
+    mad_dump_perfcounters_sl_rcv_fecn, mad_dump_perfcounters_sl_rcv_becn,
+    mad_dump_perfcounters_xmit_con_ctrl, mad_dump_perfcounters_vl_xmit_time_cong,
+    mad_dump_mlnx_ext_port_info;
 
 MAD_EXPORT void mad_dump_fields(char *buf, int bufsz, void *val, int valsz,
 				int start, int end);

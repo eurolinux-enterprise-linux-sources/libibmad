@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2004-2009 Voltaire Inc.  All rights reserved.
  * Copyright (c) 2007 Xsigo Systems Inc.  All rights reserved.
- * Copyright (c) 2009 Mellanox Technologies LTD.  All rights reserved.
+ * Copyright (c) 2009-2011 Mellanox Technologies LTD.  All rights reserved.
  * Copyright (c) 2009 HNR Consulting.  All rights reserved.
  *
  * This software is available to you under a choice of one of two
@@ -244,6 +244,9 @@ void mad_dump_linkspeed(char *buf, int bufsz, void *val, int valsz)
 	int speed = *(int *)val;
 
 	switch (speed) {
+	case 0:
+		snprintf(buf, bufsz, "Extended speed");
+		break;
 	case 1:
 		snprintf(buf, bufsz, "2.5 Gbps");
 		break;
@@ -306,6 +309,70 @@ void mad_dump_linkspeeden(char *buf, int bufsz, void *val, int valsz)
 	int speed = *(int *)val;
 
 	dump_linkspeed(buf, bufsz, speed);
+}
+
+void mad_dump_linkspeedext(char *buf, int bufsz, void *val, int valsz)
+{
+	int speed = *(int *)val;
+
+	switch (speed) {
+	case 0:
+		snprintf(buf, bufsz, "No Extended Speed");
+		break;
+	case 1:
+		snprintf(buf, bufsz, "14.0625 Gbps");
+		break;
+	case 2:
+		snprintf(buf, bufsz, "25.78125 Gbps");
+		break;
+	default:
+		snprintf(buf, bufsz, "undefined (%d)", speed);
+		break;
+	}
+}
+
+static void dump_linkspeedext(char *buf, int bufsz, int speed)
+{
+	int n = 0;
+
+	if (speed == 0) {
+		sprintf(buf, "%d", speed);
+		return;
+	}
+
+	if (speed & 0x1)
+		n += snprintf(buf + n, bufsz - n, "14.0625 Gbps or ");
+	if (n < bufsz && speed & 0x2)
+		n += snprintf(buf + n, bufsz - n, "25.78125 Gbps or ");
+	if (n >= bufsz) {
+		if (bufsz > 3)
+			buf[n - 4] = '\0';
+		return;
+	}
+
+	if (speed >> 2) {
+		n += snprintf(buf + n, bufsz - n, "undefined (%d)", speed);
+		return;
+	} else if (bufsz > 3)
+		buf[n - 4] = '\0';
+}
+
+void mad_dump_linkspeedextsup(char *buf, int bufsz, void *val, int valsz)
+{
+	int speed = *(int *)val;
+
+	dump_linkspeedext(buf, bufsz, speed);
+}
+
+void mad_dump_linkspeedexten(char *buf, int bufsz, void *val, int valsz)
+{
+	int speed = *(int *)val;
+
+	if (speed == 30) {
+		sprintf(buf, "%s", "Extended link speeds disabled");
+		return;
+	}
+	dump_linkspeedext(buf, bufsz, speed);
 }
 
 void mad_dump_portstate(char *buf, int bufsz, void *val, int valsz)
@@ -478,6 +545,8 @@ void mad_dump_portcapmask(char *buf, int bufsz, void *val, int valsz)
 		s += sprintf(s, "\t\t\t\tIsNoticeSupported\n");
 	if (mask & (1 << 3))
 		s += sprintf(s, "\t\t\t\tIsTrapSupported\n");
+	if (mask & (1 << 4))
+		s += sprintf(s, "\t\t\t\tIsOptionalIPDSupported\n");
 	if (mask & (1 << 5))
 		s += sprintf(s, "\t\t\t\tIsAutomaticMigrationSupported\n");
 	if (mask & (1 << 6))
@@ -495,6 +564,10 @@ void mad_dump_portcapmask(char *buf, int bufsz, void *val, int valsz)
 	if (mask & (1 << 12))
 		s += sprintf(s,
 			     "\t\t\t\tIsPkeySwitchExternalPortTrapSupported\n");
+	if (mask & (1 << 14))
+		s += sprintf(s, "\t\t\t\tIsExtendedSpeedsSupported\n");
+	if (mask & (1 << 15))
+		s += sprintf(s, "\t\t\t\tIsCapabilityMask2Supported\n");
 	if (mask & (1 << 16))
 		s += sprintf(s, "\t\t\t\tIsCommunicatonManagementSupported\n");
 	if (mask & (1 << 17))
@@ -692,7 +765,11 @@ void mad_dump_nodeinfo(char *buf, int bufsz, void *val, int valsz)
 
 void mad_dump_portinfo(char *buf, int bufsz, void *val, int valsz)
 {
-	_dump_fields(buf, bufsz, val, IB_PORT_FIRST_F, IB_PORT_LAST_F);
+	int cnt;
+
+	cnt = _dump_fields(buf, bufsz, val, IB_PORT_FIRST_F, IB_PORT_LAST_F);
+	_dump_fields(buf + cnt, bufsz - cnt, val,
+		     IB_PORT_CAPMASK2_F, IB_PORT_LINK_SPEED_EXT_LAST_F);
 }
 
 void mad_dump_portstates(char *buf, int bufsz, void *val, int valsz)
@@ -758,6 +835,138 @@ void mad_dump_perfcounters_rcv_err(char *buf, int bufsz, void *val, int valsz)
 void mad_dump_portsamples_control(char *buf, int bufsz, void *val, int valsz)
 {
 	_dump_fields(buf, bufsz, val, IB_PSC_OPCODE_F, IB_PSC_LAST_F);
+}
+
+void mad_dump_port_ext_speeds_counters(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_PESC_PORT_SELECT_F, IB_PESC_LAST_F);
+}
+
+void mad_dump_perfcounters_port_op_rcv_counters(char *buf, int bufsz, void *val, int valsz)
+{
+	int cnt;
+
+	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
+			   IB_PC_EXT_XMT_BYTES_F);
+	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_PORT_OP_RCV_COUNTERS_FIRST_F,
+		     IB_PC_PORT_OP_RCV_COUNTERS_LAST_F);
+}
+
+void mad_dump_perfcounters_port_flow_ctl_counters(char *buf, int bufsz, void *val, int valsz)
+{
+	int cnt;
+
+	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
+			   IB_PC_EXT_XMT_BYTES_F);
+	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_PORT_FLOW_CTL_COUNTERS_FIRST_F,
+		     IB_PC_PORT_FLOW_CTL_COUNTERS_LAST_F);
+}
+
+void mad_dump_perfcounters_port_vl_op_packet(char *buf, int bufsz, void *val, int valsz)
+{
+	int cnt;
+
+	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
+			   IB_PC_EXT_XMT_BYTES_F);
+	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_PORT_VL_OP_PACKETS_FIRST_F,
+		     IB_PC_PORT_VL_OP_PACKETS_LAST_F);
+}
+
+void mad_dump_perfcounters_port_vl_op_data(char *buf, int bufsz, void *val, int valsz)
+{
+	int cnt;
+
+	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
+			   IB_PC_EXT_XMT_BYTES_F);
+	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_PORT_VL_OP_DATA_FIRST_F,
+		     IB_PC_PORT_VL_OP_DATA_LAST_F);
+}
+
+void mad_dump_perfcounters_port_vl_xmit_flow_ctl_update_errors(char *buf, int bufsz, void *val, int valsz)
+{
+	int cnt;
+
+	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
+			   IB_PC_EXT_XMT_BYTES_F);
+	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS_FIRST_F,
+		     IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS_LAST_F);
+}
+
+void mad_dump_perfcounters_port_vl_xmit_wait_counters(char *buf, int bufsz, void *val, int valsz)
+{
+	int cnt;
+
+	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
+			   IB_PC_EXT_XMT_BYTES_F);
+	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_PORT_VL_XMIT_WAIT_COUNTERS_FIRST_F,
+		     IB_PC_PORT_VL_XMIT_WAIT_COUNTERS_LAST_F);
+}
+
+void mad_dump_perfcounters_sw_port_vl_congestion(char *buf, int bufsz, void *val, int valsz)
+{
+	int cnt;
+
+	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
+			   IB_PC_EXT_XMT_BYTES_F);
+	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_SW_PORT_VL_CONGESTION_FIRST_F,
+		     IB_PC_SW_PORT_VL_CONGESTION_LAST_F);
+}
+
+void mad_dump_perfcounters_rcv_con_ctrl(char *buf, int bufsz, void *val, int valsz)
+{
+	int cnt;
+
+	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
+			   IB_PC_EXT_XMT_BYTES_F);
+	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_RCV_CON_CTRL_FIRST_F,
+		     IB_PC_RCV_CON_CTRL_LAST_F);
+}
+
+
+void mad_dump_perfcounters_sl_rcv_fecn(char *buf, int bufsz, void *val, int valsz)
+{
+	int cnt;
+
+	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
+			   IB_PC_EXT_XMT_BYTES_F);
+	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_SL_RCV_FECN_FIRST_F,
+		     IB_PC_SL_RCV_FECN_LAST_F);
+}
+
+void mad_dump_perfcounters_sl_rcv_becn(char *buf, int bufsz, void *val, int valsz)
+{
+	int cnt;
+
+	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
+			   IB_PC_EXT_XMT_BYTES_F);
+	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_SL_RCV_BECN_FIRST_F,
+		     IB_PC_SL_RCV_BECN_LAST_F);
+}
+
+void mad_dump_perfcounters_xmit_con_ctrl(char *buf, int bufsz, void *val, int valsz)
+{
+	int cnt;
+
+	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
+			   IB_PC_EXT_XMT_BYTES_F);
+	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_XMIT_CON_CTRL_FIRST_F,
+		     IB_PC_XMIT_CON_CTRL_LAST_F);
+}
+
+void mad_dump_perfcounters_vl_xmit_time_cong(char *buf, int bufsz, void *val, int valsz)
+{
+	int cnt;
+
+	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
+			   IB_PC_EXT_XMT_BYTES_F);
+	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_VL_XMIT_TIME_CONG_FIRST_F,
+		     IB_PC_VL_XMIT_TIME_CONG_LAST_F);
+}
+
+void mad_dump_mlnx_ext_port_info(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_MLNX_EXT_PORT_STATE_CHG_ENABLE_F,
+		     IB_MLNX_EXT_PORT_LAST_F);
 }
 
 void xdump(FILE * file, char *msg, void *p, int size)
