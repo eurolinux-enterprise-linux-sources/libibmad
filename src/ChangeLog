@@ -1,6 +1,61 @@
 
 ** Version: HEAD
 
+Thu May 31 16:14:32 2012 -0700 Ira Weiny
+0736b2857fd1f81d1ae23293610a425726f6ceee
+
+	* Update README for 1.3.9 release
+
+Fri May 25 15:33:01 2012 -0700 Jim Foraker
+27925f14149158062bd15fff0d943d1899020398
+
+	* libibmad/dump.c: clean up boundary conditions in dump routines
+
+Mon Apr 30 13:26:12 2012 -0400 Hal Rosenstock
+0b0ab0ee64f52d708ff8b23b3eb6e379aeb1465b
+
+	* libibmad/fields.c: Update counter offsets for PortExtendedSpeedsCounters
+
+Wed Apr 25 14:06:25 2012 -0700 Albert Chu
+95d4955e36e8737210ee2e4d36e85602d8704c74
+
+	* libibmad: fix misspelling
+
+Tue Mar 6 14:12:29 2012 -0800 Jim Foraker
+1506d7ac6401f154c377e4255fbcab957ff0c66e
+
+	* libibmad: Add MKey support to SMP requests via smp_mkey_get/set()
+
+Thu Dec 8 14:09:34 2011 -0800 Albert Chu
+115679cb548f1024cebb82ab2fbe8615b9b95a4c
+
+	* libibmad: Add support for congestion control config mads.
+
+Mon Nov 28 06:01:28 2011 -0800 Hal Rosenstock
+033143348b62bcdd6f2c4da02ee8794c9a3ffc24
+
+	* libibmad: Add support for SA NodeRecord
+
+Thu Nov 10 05:48:46 2011 -0800 Hal Rosenstock
+9fcdf151f722b3a0cd6eba69736201c0975461ca
+
+	* libibmad/rpc.c: On receive, add debug info for dumping incoming MAD address
+
+Thu Sep 29 11:26:48 2011 -0700 Ira Weiny
+ec98cd1bda422f04ca7b4fdf3ba0bafdf0d12fea
+
+	* Update version for next release
+
+Wed Sep 7 11:02:52 2011 -0700 Albert Chu
+9fd2087f6fedd8ceeb1949c2394bd89a243c6a8f
+
+	* Support classportinfo dump function
+
+Tue Aug 2 11:16:54 2011 -0700 Albert Chu
+ce716fc1644ecb7fbabb0e166219b49e0315fe32
+
+	* Add support for congestion control mads
+
 Mon Aug 15 10:32:40 2011 -0700 Ira Weiny
 fa8f6015537b55dfc14b1d93ee494f0dd8b12cce
 
@@ -772,6 +827,100 @@ Sun Jun 1 18:54:35 2008 +0000 Ron Livne
 1107325cfc41cabafd9f9d28212f6f33c3ea5ec5
 
 	* libibmad: fix for umad unaligned access of ia64.
+
+** Version: 1.3.9
+
+Thu May 31 16:14:32 2012 -0700 Ira Weiny
+0736b2857fd1f81d1ae23293610a425726f6ceee
+
+	* Update README for 1.3.9 release
+
+Fri May 25 15:33:01 2012 -0700 Jim Foraker
+27925f14149158062bd15fff0d943d1899020398
+
+	* libibmad/dump.c: clean up boundary conditions in dump routines
+
+Mon Apr 30 13:26:12 2012 -0400 Hal Rosenstock
+0b0ab0ee64f52d708ff8b23b3eb6e379aeb1465b
+
+	* libibmad/fields.c: Update counter offsets for PortExtendedSpeedsCounters
+
+Wed Apr 25 14:06:25 2012 -0700 Albert Chu
+95d4955e36e8737210ee2e4d36e85602d8704c74
+
+	* libibmad: fix misspelling
+
+Tue Mar 6 14:12:29 2012 -0800 Jim Foraker
+1506d7ac6401f154c377e4255fbcab957ff0c66e
+
+	* libibmad: Add MKey support to SMP requests via smp_mkey_get/set()
+
+Thu Dec 8 14:09:34 2011 -0800 Albert Chu
+115679cb548f1024cebb82ab2fbe8615b9b95a4c
+
+	* libibmad: Add support for congestion control config mads.
+
+Mon Nov 28 06:01:28 2011 -0800 Hal Rosenstock
+033143348b62bcdd6f2c4da02ee8794c9a3ffc24
+
+	* libibmad: Add support for SA NodeRecord
+
+Thu Nov 10 05:48:46 2011 -0800 Hal Rosenstock
+9fcdf151f722b3a0cd6eba69736201c0975461ca
+
+	* libibmad/rpc.c: On receive, add debug info for dumping incoming MAD address
+
+Thu Sep 29 11:26:48 2011 -0700 Ira Weiny
+ec98cd1bda422f04ca7b4fdf3ba0bafdf0d12fea
+
+	* Update version for next release
+
+Wed Sep 7 11:02:52 2011 -0700 Albert Chu
+9fd2087f6fedd8ceeb1949c2394bd89a243c6a8f
+
+	* Support classportinfo dump function
+
+Tue Aug 2 11:16:54 2011 -0700 Albert Chu
+ce716fc1644ecb7fbabb0e166219b49e0315fe32
+
+	* Add support for congestion control mads
+
+Mon Aug 15 10:32:40 2011 -0700 Ira Weiny
+fa8f6015537b55dfc14b1d93ee494f0dd8b12cce
+
+	* Update AUTHORS and add README with release notes
+
+** Version: 1.3.8-1chaos
+
+Thu Sep 22 14:26:27 2011 -0700 Ira Weiny
+037c5fde64efd51b321b001b7613424185ec5e3f
+
+	* Tag it
+
+Wed Sep 7 11:02:52 2011 -0700 Albert Chu
+2a6b41dd96a19464cbbc1176116a943e8391452d
+
+	* Support classportinfo dump function
+
+Tue Aug 2 11:16:54 2011 -0700 Albert Chu
+071c8055f37b67f73fcf7624f8d1497aa1a341d2
+
+	* Add support for congestion control mads
+
+Mon Aug 15 10:32:40 2011 -0700 Ira Weiny
+ff30ed1eeeefb70e393971f29fc0730449504d75
+
+	* Update AUTHORS and add README with release notes
+
+Tue Aug 23 16:49:49 2011 -0700 Ira Weiny
+d3f60dba2094f47f817ca1b42dbb12b412126c39
+
+	* tag: 1.3.7-2chaos
+
+Thu Feb 24 14:57:25 2011 -0800 Ira Weiny
+0f1ffe6d7318389fa0d2c432e9b55300b73a8abd
+
+	* Add this file for Chaos build bot
 
 ** Version: 1.3.8
 

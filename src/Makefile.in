@@ -40,8 +40,9 @@ DIST_COMMON = README $(am__configure_deps) $(libibmadinclude_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/config.h.in $(srcdir)/libibmad.spec.in \
 	$(top_srcdir)/configure AUTHORS COPYING ChangeLog \
-	config/config.guess config/config.sub config/depcomp \
-	config/install-sh config/ltmain.sh config/missing
+	config/compile config/config.guess config/config.sub \
+	config/depcomp config/install-sh config/ltmain.sh \
+	config/missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/config/libtool.m4 \
 	$(top_srcdir)/config/ltoptions.m4 \
@@ -86,7 +87,7 @@ am_libibmad_la_OBJECTS = libibmad_la-dump.lo libibmad_la-fields.lo \
 	libibmad_la-resolve.lo libibmad_la-rpc.lo libibmad_la-sa.lo \
 	libibmad_la-smp.lo libibmad_la-gs.lo libibmad_la-serv.lo \
 	libibmad_la-register.lo libibmad_la-vendor.lo \
-	libibmad_la-bm.lo
+	libibmad_la-bm.lo libibmad_la-cc.lo
 libibmad_la_OBJECTS = $(am_libibmad_la_OBJECTS)
 libibmad_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libibmad_la_CFLAGS) \
@@ -281,7 +282,7 @@ libibmad_la_CFLAGS = -Wall
 libibmad_la_SOURCES = src/dump.c src/fields.c src/mad.c src/portid.c \
 		      src/resolve.c src/rpc.c src/sa.c src/smp.c src/gs.c \
 		      src/serv.c src/register.c src/vendor.c src/bm.c \
-		      src/mad_internal.h
+		      src/mad_internal.h src/cc.c
 
 libibmad_la_LDFLAGS = -version-info $(ibmad_api_version) \
     -export-dynamic $(libibmad_version_script)
@@ -391,6 +392,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-bm.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-cc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-dump.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-fields.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-gs.Plo@am__quote@
@@ -515,6 +517,13 @@ libibmad_la-bm.lo: src/bm.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/bm.c' object='libibmad_la-bm.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o libibmad_la-bm.lo `test -f 'src/bm.c' || echo '$(srcdir)/'`src/bm.c
+
+libibmad_la-cc.lo: src/cc.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT libibmad_la-cc.lo -MD -MP -MF $(DEPDIR)/libibmad_la-cc.Tpo -c -o libibmad_la-cc.lo `test -f 'src/cc.c' || echo '$(srcdir)/'`src/cc.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libibmad_la-cc.Tpo $(DEPDIR)/libibmad_la-cc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/cc.c' object='libibmad_la-cc.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o libibmad_la-cc.lo `test -f 'src/cc.c' || echo '$(srcdir)/'`src/cc.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

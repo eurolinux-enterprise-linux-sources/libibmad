@@ -731,7 +731,7 @@ static int _dump_fields(char *buf, int bufsz, void *data, int start, int end)
 
 	for (field = start; field < end && bufsz > 0; field++) {
 		mad_decode_field(data, field, val);
-		if (!mad_dump_field(field, s, bufsz, val))
+		if (!mad_dump_field(field, s, bufsz-1, val))
 			return -1;
 		n = strlen(s);
 		s += n;
@@ -768,6 +768,9 @@ void mad_dump_portinfo(char *buf, int bufsz, void *val, int valsz)
 	int cnt;
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PORT_FIRST_F, IB_PORT_LAST_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val,
 		     IB_PORT_CAPMASK2_F, IB_PORT_LINK_SPEED_EXT_LAST_F);
 }
@@ -798,6 +801,9 @@ void mad_dump_perfcounters_xmt_sl(char *buf, int bufsz, void *val, int valsz)
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
 			   IB_PC_EXT_XMT_BYTES_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_XMT_DATA_SL_FIRST_F,
 		     IB_PC_XMT_DATA_SL_LAST_F);
 }
@@ -808,6 +814,9 @@ void mad_dump_perfcounters_rcv_sl(char *buf, int bufsz, void *val, int valsz)
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
 			   IB_PC_EXT_XMT_BYTES_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_RCV_DATA_SL_FIRST_F,
 		     IB_PC_RCV_DATA_SL_LAST_F);
 }
@@ -818,6 +827,9 @@ void mad_dump_perfcounters_xmt_disc(char *buf, int bufsz, void *val, int valsz)
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
 			   IB_PC_EXT_XMT_BYTES_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_XMT_INACT_DISC_F,
 		     IB_PC_XMT_DISC_LAST_F);
 }
@@ -828,6 +840,9 @@ void mad_dump_perfcounters_rcv_err(char *buf, int bufsz, void *val, int valsz)
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
 			   IB_PC_EXT_XMT_BYTES_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_RCV_LOCAL_PHY_ERR_F,
 		     IB_PC_RCV_ERR_LAST_F);
 }
@@ -848,6 +863,9 @@ void mad_dump_perfcounters_port_op_rcv_counters(char *buf, int bufsz, void *val,
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
 			   IB_PC_EXT_XMT_BYTES_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_PORT_OP_RCV_COUNTERS_FIRST_F,
 		     IB_PC_PORT_OP_RCV_COUNTERS_LAST_F);
 }
@@ -858,6 +876,9 @@ void mad_dump_perfcounters_port_flow_ctl_counters(char *buf, int bufsz, void *va
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
 			   IB_PC_EXT_XMT_BYTES_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_PORT_FLOW_CTL_COUNTERS_FIRST_F,
 		     IB_PC_PORT_FLOW_CTL_COUNTERS_LAST_F);
 }
@@ -868,6 +889,9 @@ void mad_dump_perfcounters_port_vl_op_packet(char *buf, int bufsz, void *val, in
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
 			   IB_PC_EXT_XMT_BYTES_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_PORT_VL_OP_PACKETS_FIRST_F,
 		     IB_PC_PORT_VL_OP_PACKETS_LAST_F);
 }
@@ -878,6 +902,9 @@ void mad_dump_perfcounters_port_vl_op_data(char *buf, int bufsz, void *val, int 
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
 			   IB_PC_EXT_XMT_BYTES_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_PORT_VL_OP_DATA_FIRST_F,
 		     IB_PC_PORT_VL_OP_DATA_LAST_F);
 }
@@ -888,6 +915,9 @@ void mad_dump_perfcounters_port_vl_xmit_flow_ctl_update_errors(char *buf, int bu
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
 			   IB_PC_EXT_XMT_BYTES_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS_FIRST_F,
 		     IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS_LAST_F);
 }
@@ -898,6 +928,9 @@ void mad_dump_perfcounters_port_vl_xmit_wait_counters(char *buf, int bufsz, void
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
 			   IB_PC_EXT_XMT_BYTES_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_PORT_VL_XMIT_WAIT_COUNTERS_FIRST_F,
 		     IB_PC_PORT_VL_XMIT_WAIT_COUNTERS_LAST_F);
 }
@@ -908,6 +941,9 @@ void mad_dump_perfcounters_sw_port_vl_congestion(char *buf, int bufsz, void *val
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
 			   IB_PC_EXT_XMT_BYTES_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_SW_PORT_VL_CONGESTION_FIRST_F,
 		     IB_PC_SW_PORT_VL_CONGESTION_LAST_F);
 }
@@ -918,6 +954,9 @@ void mad_dump_perfcounters_rcv_con_ctrl(char *buf, int bufsz, void *val, int val
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
 			   IB_PC_EXT_XMT_BYTES_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_RCV_CON_CTRL_FIRST_F,
 		     IB_PC_RCV_CON_CTRL_LAST_F);
 }
@@ -929,6 +968,9 @@ void mad_dump_perfcounters_sl_rcv_fecn(char *buf, int bufsz, void *val, int vals
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
 			   IB_PC_EXT_XMT_BYTES_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_SL_RCV_FECN_FIRST_F,
 		     IB_PC_SL_RCV_FECN_LAST_F);
 }
@@ -939,6 +981,9 @@ void mad_dump_perfcounters_sl_rcv_becn(char *buf, int bufsz, void *val, int vals
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
 			   IB_PC_EXT_XMT_BYTES_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_SL_RCV_BECN_FIRST_F,
 		     IB_PC_SL_RCV_BECN_LAST_F);
 }
@@ -949,6 +994,9 @@ void mad_dump_perfcounters_xmit_con_ctrl(char *buf, int bufsz, void *val, int va
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
 			   IB_PC_EXT_XMT_BYTES_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_XMIT_CON_CTRL_FIRST_F,
 		     IB_PC_XMIT_CON_CTRL_LAST_F);
 }
@@ -959,6 +1007,9 @@ void mad_dump_perfcounters_vl_xmit_time_cong(char *buf, int bufsz, void *val, in
 
 	cnt = _dump_fields(buf, bufsz, val, IB_PC_EXT_PORT_SELECT_F,
 			   IB_PC_EXT_XMT_BYTES_F);
+	if (cnt < 0)
+		return;
+
 	_dump_fields(buf + cnt, bufsz - cnt, val, IB_PC_VL_XMIT_TIME_CONG_FIRST_F,
 		     IB_PC_VL_XMIT_TIME_CONG_LAST_F);
 }
@@ -967,6 +1018,96 @@ void mad_dump_mlnx_ext_port_info(char *buf, int bufsz, void *val, int valsz)
 {
 	_dump_fields(buf, bufsz, val, IB_MLNX_EXT_PORT_STATE_CHG_ENABLE_F,
 		     IB_MLNX_EXT_PORT_LAST_F);
+}
+
+void mad_dump_cc_congestioninfo(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_CC_CONGESTION_INFO_FIRST_F,
+		     IB_CC_CONGESTION_INFO_LAST_F);
+}
+
+void mad_dump_cc_congestionkeyinfo(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_CC_CONGESTION_KEY_INFO_FIRST_F,
+		     IB_CC_CONGESTION_KEY_INFO_LAST_F);
+}
+
+void mad_dump_cc_congestionlog(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_CC_CONGESTION_LOG_FIRST_F,
+		     IB_CC_CONGESTION_LOG_LAST_F);
+}
+
+void mad_dump_cc_congestionlogswitch(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_CC_CONGESTION_LOG_SWITCH_FIRST_F,
+		     IB_CC_CONGESTION_LOG_SWITCH_LAST_F);
+}
+
+void mad_dump_cc_congestionlogentryswitch(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_CC_CONGESTION_LOG_ENTRY_SWITCH_FIRST_F,
+		     IB_CC_CONGESTION_LOG_ENTRY_SWITCH_LAST_F);
+}
+
+void mad_dump_cc_congestionlogca(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_CC_CONGESTION_LOG_CA_FIRST_F,
+		     IB_CC_CONGESTION_LOG_CA_LAST_F);
+}
+
+void mad_dump_cc_congestionlogentryca(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_CC_CONGESTION_LOG_ENTRY_CA_FIRST_F,
+		     IB_CC_CONGESTION_LOG_ENTRY_CA_LAST_F);
+}
+
+void mad_dump_cc_switchcongestionsetting(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_CC_SWITCH_CONGESTION_SETTING_FIRST_F,
+		     IB_CC_SWITCH_CONGESTION_SETTING_LAST_F);
+}
+
+void mad_dump_cc_switchportcongestionsettingelement(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_CC_SWITCH_PORT_CONGESTION_SETTING_ELEMENT_FIRST_F,
+		     IB_CC_SWITCH_PORT_CONGESTION_SETTING_ELEMENT_LAST_F);
+}
+
+void mad_dump_cc_cacongestionsetting(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_CC_CA_CONGESTION_SETTING_FIRST_F,
+		     IB_CC_CA_CONGESTION_SETTING_LAST_F);
+}
+
+void mad_dump_cc_cacongestionentry(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_CC_CA_CONGESTION_ENTRY_FIRST_F,
+		     IB_CC_CA_CONGESTION_ENTRY_LAST_F);
+}
+
+void mad_dump_cc_congestioncontroltable(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_CC_CONGESTION_CONTROL_TABLE_FIRST_F,
+		     IB_CC_CONGESTION_CONTROL_TABLE_LAST_F);
+}
+
+void mad_dump_cc_congestioncontroltableentry(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_CC_CONGESTION_CONTROL_TABLE_ENTRY_FIRST_F,
+		     IB_CC_CONGESTION_CONTROL_TABLE_ENTRY_LAST_F);
+}
+
+void mad_dump_cc_timestamp(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_CC_TIMESTAMP_FIRST_F,
+		     IB_CC_TIMESTAMP_LAST_F);
+}
+
+void mad_dump_classportinfo(char *buf, int bufsz, void *val, int valsz)
+{
+	/* no FIRST_F and LAST_F for CPI field enums, must do a hack */
+	_dump_fields(buf, bufsz, val, IB_CPI_BASEVER_F, IB_CPI_TRAP_QKEY_F + 1);
 }
 
 void xdump(FILE * file, char *msg, void *p, int size)

@@ -540,44 +540,44 @@ static const ib_field_t ib_mad_f[] = {
 	 */
 	{BITSOFFS(8, 8), "PortSelect", mad_dump_uint},
 	{64, 64, "CounterSelect", mad_dump_hex},
-	{BITSOFFS(128, 8), "SyncHeaderErrorCounter", mad_dump_uint},
-	{BITSOFFS(136, 8), "UnknownBlockCounter", mad_dump_uint},
-	{BITSOFFS(144, 8), "ErrorDetectionCounterLane0", mad_dump_uint},
-	{BITSOFFS(152, 8), "ErrorDetectionCounterLane1", mad_dump_uint},
-	{BITSOFFS(160, 8), "ErrorDetectionCounterLane2", mad_dump_uint},
-	{BITSOFFS(168, 8), "ErrorDetectionCounterLane3", mad_dump_uint},
-	{BITSOFFS(176, 8), "ErrorDetectionCounterLane4", mad_dump_uint},
-	{BITSOFFS(184, 8), "ErrorDetectionCounterLane5", mad_dump_uint},
-	{BITSOFFS(192, 8), "ErrorDetectionCounterLane6", mad_dump_uint},
-	{BITSOFFS(200, 8), "ErrorDetectionCounterLane7", mad_dump_uint},
-	{BITSOFFS(208, 8), "ErrorDetectionCounterLane8", mad_dump_uint},
-	{BITSOFFS(216, 8), "ErrorDetectionCounterLane9", mad_dump_uint},
-	{BITSOFFS(224, 8), "ErrorDetectionCounterLane10", mad_dump_uint},
-	{BITSOFFS(232, 8), "ErrorDetectionCounterLane11", mad_dump_uint},
-	{256, 32, "FECCorrectableBlockCtrLane0", mad_dump_uint},
-	{288, 32, "FECCorrectableBlockCtrLane1", mad_dump_uint},
-	{320, 32, "FECCorrectableBlockCtrLane2", mad_dump_uint},
-	{352, 32, "FECCorrectableBlockCtrLane3", mad_dump_uint},
-	{384, 32, "FECCorrectableBlockCtrLane4", mad_dump_uint},
-	{416, 32, "FECCorrectableBlockCtrLane5", mad_dump_uint},
-	{448, 32, "FECCorrectableBlockCtrLane6", mad_dump_uint},
-	{480, 32, "FECCorrectableBlockCtrLane7", mad_dump_uint},
-	{512, 32, "FECCorrectableBlockCtrLane8", mad_dump_uint},
-	{544, 32, "FECCorrectableBlockCtrLane9", mad_dump_uint},
-	{580, 32, "FECCorrectableBlockCtrLane10", mad_dump_uint},
-	{608, 32, "FECCorrectableBlockCtrLane11", mad_dump_uint},
-	{640, 32, "FECUncorrectableBlockCtrLane0", mad_dump_uint},
-	{672, 32, "FECUncorrectableBlockCtrLane1", mad_dump_uint},
-	{704, 32, "FECUncorrectableBlockCtrLane2", mad_dump_uint},
-	{736, 32, "FECUncorrectableBlockCtrLane3", mad_dump_uint},
-	{768, 32, "FECUncorrectableBlockCtrLane4", mad_dump_uint},
-	{800, 32, "FECUncorrectableBlockCtrLane5", mad_dump_uint},
-	{832, 32, "FECUncorrectableBlockCtrLane6", mad_dump_uint},
-	{864, 32, "FECUncorrectableBlockCtrLane7", mad_dump_uint},
-	{896, 32, "FECUncorrectableBlockCtrLane8", mad_dump_uint},
-	{928, 32, "FECUncorrectableBlockCtrLane9", mad_dump_uint},
-	{960, 32, "FECUncorrectableBlockCtrLane10", mad_dump_uint},
-	{992, 32, "FECUncorrectableBlockCtrLane11", mad_dump_uint},
+	{BITSOFFS(128, 16), "SyncHeaderErrorCounter", mad_dump_uint},
+	{BITSOFFS(144, 16), "UnknownBlockCounter", mad_dump_uint},
+	{BITSOFFS(160, 16), "ErrorDetectionCounterLane0", mad_dump_uint},
+	{BITSOFFS(176, 16), "ErrorDetectionCounterLane1", mad_dump_uint},
+	{BITSOFFS(192, 16), "ErrorDetectionCounterLane2", mad_dump_uint},
+	{BITSOFFS(208, 16), "ErrorDetectionCounterLane3", mad_dump_uint},
+	{BITSOFFS(224, 16), "ErrorDetectionCounterLane4", mad_dump_uint},
+	{BITSOFFS(240, 16), "ErrorDetectionCounterLane5", mad_dump_uint},
+	{BITSOFFS(256, 16), "ErrorDetectionCounterLane6", mad_dump_uint},
+	{BITSOFFS(272, 16), "ErrorDetectionCounterLane7", mad_dump_uint},
+	{BITSOFFS(288, 16), "ErrorDetectionCounterLane8", mad_dump_uint},
+	{BITSOFFS(304, 16), "ErrorDetectionCounterLane9", mad_dump_uint},
+	{BITSOFFS(320, 16), "ErrorDetectionCounterLane10", mad_dump_uint},
+	{BITSOFFS(336, 16), "ErrorDetectionCounterLane11", mad_dump_uint},
+	{352, 32, "FECCorrectableBlockCtrLane0", mad_dump_uint},
+	{384, 32, "FECCorrectableBlockCtrLane1", mad_dump_uint},
+	{416, 32, "FECCorrectableBlockCtrLane2", mad_dump_uint},
+	{448, 32, "FECCorrectableBlockCtrLane3", mad_dump_uint},
+	{480, 32, "FECCorrectableBlockCtrLane4", mad_dump_uint},
+	{512, 32, "FECCorrectableBlockCtrLane5", mad_dump_uint},
+	{544, 32, "FECCorrectableBlockCtrLane6", mad_dump_uint},
+	{576, 32, "FECCorrectableBlockCtrLane7", mad_dump_uint},
+	{608, 32, "FECCorrectableBlockCtrLane8", mad_dump_uint},
+	{640, 32, "FECCorrectableBlockCtrLane9", mad_dump_uint},
+	{672, 32, "FECCorrectableBlockCtrLane10", mad_dump_uint},
+	{704, 32, "FECCorrectableBlockCtrLane11", mad_dump_uint},
+	{736, 32, "FECUncorrectableBlockCtrLane0", mad_dump_uint},
+	{768, 32, "FECUncorrectableBlockCtrLane1", mad_dump_uint},
+	{800, 32, "FECUncorrectableBlockCtrLane2", mad_dump_uint},
+	{832, 32, "FECUncorrectableBlockCtrLane3", mad_dump_uint},
+	{864, 32, "FECUncorrectableBlockCtrLane4", mad_dump_uint},
+	{896, 32, "FECUncorrectableBlockCtrLane5", mad_dump_uint},
+	{928, 32, "FECUncorrectableBlockCtrLane6", mad_dump_uint},
+	{960, 32, "FECUncorrectableBlockCtrLane7", mad_dump_uint},
+	{992, 32, "FECUncorrectableBlockCtrLane8", mad_dump_uint},
+	{1024, 32, "FECUncorrectableBlockCtrLane9", mad_dump_uint},
+	{1056, 32, "FECUncorrectableBlockCtrLane10", mad_dump_uint},
+	{1088, 32, "FECUncorrectableBlockCtrLane11", mad_dump_uint},
 	{0, 0},			/* IB_PESC_LAST_F */
 
 	/*
@@ -782,6 +782,150 @@ static const ib_field_t ib_mad_f[] = {
 	{BITSOFFS(88, 8), "LinkSpeedEnabled", mad_dump_hex},
 	{BITSOFFS(120, 8), "LinkSpeedActive", mad_dump_hex},
 	{0, 0},			/* IB_MLNX_EXT_PORT_LAST_F */
+
+	/*
+	 * Congestion Control Mad fields
+	 * bytes 24-31 of congestion control mad
+	 */
+	{192, 64, "CC_Key", mad_dump_hex},	/* IB_CC_CCKEY_F */
+
+	/*
+	 * CongestionInfo fields
+	 */
+	{BITSOFFS(0, 16), "CongestionInfo", mad_dump_hex},
+	{BITSOFFS(16, 8), "ControlTableCap", mad_dump_uint},
+	{0, 0},			/* IB_CC_CONGESTION_INFO_LAST_F */
+
+	/*
+	 * CongestionKeyInfo fields
+	 */
+	{0, 64, "CC_Key", mad_dump_hex},
+	{BITSOFFS(64, 1), "CC_KeyProtectBit", mad_dump_uint},
+	{BITSOFFS(80, 16), "CC_KeyLeasePeriod", mad_dump_uint},
+	{BITSOFFS(96, 16), "CC_KeyViolations", mad_dump_uint},
+	{0, 0},			/* IB_CC_CONGESTION_KEY_INFO_LAST_F */
+
+	/*
+	 * CongestionLog (common) fields
+	 */
+	{BITSOFFS(0, 8), "LogType", mad_dump_uint},
+	{BITSOFFS(8, 8), "CongestionFlags", mad_dump_hex},
+	{0, 0},			/* IB_CC_CONGESTION_LOG_LAST_F */
+
+	/*
+	 * CongestionLog (Switch) fields
+	 */
+	{BITSOFFS(16, 16), "LogEventsCounter", mad_dump_uint},
+	{32, 32, "CurrentTimeStamp", mad_dump_uint},
+	{64, 256, "PortMap", mad_dump_array},
+	{0, 0},			/* IB_CC_CONGESTION_LOG_SWITCH_LAST_F */
+
+	/*
+	 * CongestionLogEvent (Switch) fields
+	 */
+	{BITSOFFS(0, 16), "SLID", mad_dump_uint},
+	{BITSOFFS(16, 16), "DLID", mad_dump_uint},
+	{BITSOFFS(32, 4), "SL", mad_dump_uint},
+	{64, 32, "Timestamp", mad_dump_uint},
+	{0, 0},			/* IB_CC_CONGESTION_LOG_ENTRY_SWITCH_LAST_F */
+
+	/*
+	 * CongestionLog (CA) fields
+	 */
+	{BITSOFFS(16, 16), "ThresholdEventCounter", mad_dump_uint},
+	{BITSOFFS(32, 16), "ThresholdCongestionEventMap", mad_dump_hex},
+	/* XXX: Q3/2010 errata lists offset 48, but that means field is not
+	 * world aligned.  Assume will be aligned to offset 64 later.
+	 */
+	{BITSOFFS(64, 32), "CurrentTimeStamp", mad_dump_uint},
+	{0, 0},			/* IB_CC_CONGESTION_LOG_CA_LAST_F */
+
+	/*
+	 * CongestionLogEvent (CA) fields
+	 */
+	{BITSOFFS(0, 24), "Local_QP_CN_Entry", mad_dump_uint},
+	{BITSOFFS(24, 4), "SL_CN_Entry", mad_dump_uint},
+	{BITSOFFS(28, 4), "Service_Type_CN_Entry", mad_dump_hex},
+	{BITSOFFS(32, 24), "Remote_QP_Number_CN_Entry", mad_dump_uint},
+	{BITSOFFS(64, 16), "Local_LID_CN", mad_dump_uint},
+	{BITSOFFS(80, 16), "Remote_LID_CN_Entry", mad_dump_uint},
+	{BITSOFFS(96, 32), "Timestamp_CN_Entry", mad_dump_uint},
+	{0, 0},			/* IB_CC_CONGESTION_LOG_ENTRY_CA_LAST_F */
+
+	/*
+	 * SwitchCongestionSetting fields
+	 */
+	{0, 32, "Control_Map", mad_dump_hex},
+	{32, 256, "Victim_Mask", mad_dump_array},
+	{288, 256, "Credit_Mask", mad_dump_array},
+	{BITSOFFS(544, 4), "Threshold", mad_dump_uint},
+	{BITSOFFS(552, 8), "Packet_Size", mad_dump_uint},
+	{BITSOFFS(560, 4), "CS_Threshold", mad_dump_uint},
+	{BITSOFFS(576, 16), "CS_ReturnDelay", mad_dump_hex}, /* TODO: CCT dump */
+	{BITSOFFS(592, 16), "Marking_Rate", mad_dump_uint},
+	{0, 0},			/* IB_CC_SWITCH_CONGESTION_SETTING_LAST_F */
+
+	/*
+	 * SwitchPortCongestionSettingElement fields
+	 */
+	{BITSOFFS(0, 1), "Valid", mad_dump_uint},
+	{BITSOFFS(1, 1), "Control_Type", mad_dump_uint},
+	{BITSOFFS(4, 4), "Threshold", mad_dump_hex},
+	{BITSOFFS(8, 8), "Packet_Size", mad_dump_uint},
+	{BITSOFFS(16, 16), "Cong_Parm_Marking_Rate", mad_dump_uint},
+	{0, 0},			/* IB_CC_SWITCH_PORT_CONGESTION_SETTING_ELEMENT_LAST_F */
+
+	/*
+	 * CACongestionSetting fields
+	 */
+	{BITSOFFS(0, 16), "Port_Control", mad_dump_hex},
+	{BITSOFFS(16, 16), "Control_Map", mad_dump_hex},
+	{0, 0},			/* IB_CC_CA_CONGESTION_SETTING_LAST_F */
+
+	/*
+	 * CACongestionEntry fields
+	 */
+	{BITSOFFS(0, 16), "CCTI_Timer", mad_dump_uint},
+	{BITSOFFS(16, 8), "CCTI_Increase", mad_dump_uint},
+	{BITSOFFS(24, 8), "Trigger_Threshold", mad_dump_uint},
+	{BITSOFFS(32, 8), "CCTI_Min", mad_dump_uint},
+	{0, 0},			/* IB_CC_CA_CONGESTION_SETTING_ENTRY_LAST_F */
+
+	/*
+	 * CongestionControlTable fields
+	 */
+	{BITSOFFS(0, 16), "CCTI_Limit", mad_dump_uint},
+	{0, 0},			/* IB_CC_CONGESTION_CONTROL_TABLE_LAST_F */
+
+	/*
+	 * CongestionControlTableEntry fields
+	 */
+	{BITSOFFS(0, 2), "CCT_Shift", mad_dump_uint},
+	{BITSOFFS(2, 14), "CCT_Multiplier", mad_dump_uint},
+	{0, 0},			/* IB_CC_CONGESTION_CONTROL_TABLE_ENTRY_LAST_F */
+
+	/*
+	 * Timestamp fields
+	 */
+	{0, 32, "Timestamp", mad_dump_uint},
+	{0, 0}, /* IB_CC_TIMESTAMP_LAST_F */
+
+	/* Node Record */
+	{BITSOFFS(0, 16), "Lid", mad_dump_uint},
+	{BITSOFFS(32, 8), "BaseVers", mad_dump_uint},
+	{BITSOFFS(40, 8), "ClassVers", mad_dump_uint},
+	{BITSOFFS(48, 8), "NodeType", mad_dump_node_type},
+	{BITSOFFS(56, 8), "NumPorts", mad_dump_uint},
+	{64, 64, "SystemGuid", mad_dump_hex},
+	{128, 64, "Guid", mad_dump_hex},
+	{192, 64, "PortGuid", mad_dump_hex},
+	{BITSOFFS(256, 16), "PartCap", mad_dump_uint},
+	{BITSOFFS(272, 16), "DevId", mad_dump_hex},
+	{288, 32, "Revision", mad_dump_hex},
+	{BITSOFFS(320, 8), "LocalPort", mad_dump_uint},
+	{BITSOFFS(328, 24), "VendorId", mad_dump_hex},
+	{352, 64 * 8, "NodeDesc", mad_dump_string},
+	{0, 0}, /* IB_SA_NR_LAST_F */
 
 	{0, 0}			/* IB_FIELD_LAST_ */
 
