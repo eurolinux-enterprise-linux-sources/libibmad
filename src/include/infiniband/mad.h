@@ -65,6 +65,7 @@ BEGIN_C_DECLS
 #define IB_PC_DATA_SZ		(IB_MAD_SIZE - IB_PC_DATA_OFFS)
 #define IB_SA_MCM_RECSZ		53
 #define IB_SA_PR_RECSZ		64
+#define IB_SA_NR_RECSZ		108
 #define IB_SA_GIR_RECSZ		72
 #define IB_BM_DATA_OFFS		64
 #define IB_BM_DATA_SZ		(IB_MAD_SIZE - IB_BM_DATA_OFFS)
@@ -678,7 +679,7 @@ enum MAD_FIELDS {
 	/*
 	 * PortXmitDataSL fields
 	 */
-	IB_PC_XMT_DATA_SL_FIRST_F,
+	IB_PC_XMT_DATA_SL_FIRST_F, /* for PortSelect and CounterSelect, use IB_PC_PORT_SELECT_F and IB_PC_COUNTER_SELECT_F */
 	IB_PC_XMT_DATA_SL0_F = IB_PC_XMT_DATA_SL_FIRST_F,
 	IB_PC_XMT_DATA_SL1_F,
 	IB_PC_XMT_DATA_SL2_F,
@@ -700,7 +701,7 @@ enum MAD_FIELDS {
 	/*
 	 * PortRcvDataSL fields
 	 */
-	IB_PC_RCV_DATA_SL_FIRST_F,
+	IB_PC_RCV_DATA_SL_FIRST_F, /* for PortSelect and CounterSelect, use IB_PC_PORT_SELECT_F and IB_PC_COUNTER_SELECT_F */
 	IB_PC_RCV_DATA_SL0_F = IB_PC_RCV_DATA_SL_FIRST_F,
 	IB_PC_RCV_DATA_SL1_F,
 	IB_PC_RCV_DATA_SL2_F,
@@ -722,6 +723,7 @@ enum MAD_FIELDS {
 	/*
 	 * PortXmitDiscardDetails fields
 	 */
+	/* for PortSelect and CounterSelect, use IB_PC_PORT_SELECT_F and IB_PC_COUNTER_SELECT_F */
 	IB_PC_XMT_INACT_DISC_F,
 	IB_PC_XMT_NEIGH_MTU_DISC_F,
 	IB_PC_XMT_SW_LIFE_DISC_F,
@@ -731,6 +733,7 @@ enum MAD_FIELDS {
 	/*
 	 * PortRcvErrorDetails fields
 	 */
+	/* for PortSelect and CounterSelect, use IB_PC_PORT_SELECT_F and IB_PC_COUNTER_SELECT_F */
 	IB_PC_RCV_LOCAL_PHY_ERR_F,
 	IB_PC_RCV_MALFORMED_PKT_ERR_F,
 	IB_PC_RCV_BUF_OVR_ERR_F,
@@ -858,7 +861,7 @@ enum MAD_FIELDS {
 	/*
 	 * PortOpRcvCounters fields
 	 */
-	IB_PC_PORT_OP_RCV_COUNTERS_FIRST_F,
+	IB_PC_PORT_OP_RCV_COUNTERS_FIRST_F, /* for PortSelect and CounterSelect, use IB_PC_PORT_SELECT_F and IB_PC_COUNTER_SELECT_F */
 	IB_PC_PORT_OP_RCV_PKTS_F = IB_PC_PORT_OP_RCV_COUNTERS_FIRST_F,
 	IB_PC_PORT_OP_RCV_DATA_F,
 	IB_PC_PORT_OP_RCV_COUNTERS_LAST_F,
@@ -866,7 +869,7 @@ enum MAD_FIELDS {
 	/*
 	 * PortFlowCtlCounters fields
 	 */
-	IB_PC_PORT_FLOW_CTL_COUNTERS_FIRST_F,
+	IB_PC_PORT_FLOW_CTL_COUNTERS_FIRST_F, /* for PortSelect and CounterSelect, use IB_PC_PORT_SELECT_F and IB_PC_COUNTER_SELECT_F */
 	IB_PC_PORT_XMIT_FLOW_PKTS_F = IB_PC_PORT_FLOW_CTL_COUNTERS_FIRST_F,
 	IB_PC_PORT_RCV_FLOW_PKTS_F,
 	IB_PC_PORT_FLOW_CTL_COUNTERS_LAST_F,
@@ -874,7 +877,7 @@ enum MAD_FIELDS {
 	/*
 	 * PortVLOpPackets fields
 	 */
-	IB_PC_PORT_VL_OP_PACKETS_FIRST_F,
+	IB_PC_PORT_VL_OP_PACKETS_FIRST_F, /* for PortSelect and CounterSelect, use IB_PC_PORT_SELECT_F and IB_PC_COUNTER_SELECT_F */
 	IB_PC_PORT_VL_OP_PACKETS0_F = IB_PC_PORT_VL_OP_PACKETS_FIRST_F,
 	IB_PC_PORT_VL_OP_PACKETS1_F,
 	IB_PC_PORT_VL_OP_PACKETS2_F,
@@ -896,7 +899,7 @@ enum MAD_FIELDS {
 	/*
 	 * PortVLOpData fields
 	 */
-	IB_PC_PORT_VL_OP_DATA_FIRST_F,
+	IB_PC_PORT_VL_OP_DATA_FIRST_F, /* for PortSelect and CounterSelect, use IB_PC_PORT_SELECT_F and IB_PC_COUNTER_SELECT_F */
 	IB_PC_PORT_VL_OP_DATA0_F = IB_PC_PORT_VL_OP_DATA_FIRST_F,
 	IB_PC_PORT_VL_OP_DATA1_F,
 	IB_PC_PORT_VL_OP_DATA2_F,
@@ -918,7 +921,7 @@ enum MAD_FIELDS {
 	/*
 	 * PortVLXmitFlowCtlUpdateErrors fields
 	 */
-	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS_FIRST_F,
+	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS_FIRST_F, /* for PortSelect and CounterSelect, use IB_PC_PORT_SELECT_F and IB_PC_COUNTER_SELECT_F */
 	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS0_F = IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS_FIRST_F,
 	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS1_F,
 	IB_PC_PORT_VL_XMIT_FLOW_CTL_UPDATE_ERRORS2_F,
@@ -940,7 +943,7 @@ enum MAD_FIELDS {
 	/*
 	 * PortVLXmitWaitCounters fields
 	 */
-	IB_PC_PORT_VL_XMIT_WAIT_COUNTERS_FIRST_F,
+	IB_PC_PORT_VL_XMIT_WAIT_COUNTERS_FIRST_F, /* for PortSelect and CounterSelect, use IB_PC_PORT_SELECT_F and IB_PC_COUNTER_SELECT_F */
 	IB_PC_PORT_VL_XMIT_WAIT0_F = IB_PC_PORT_VL_XMIT_WAIT_COUNTERS_FIRST_F,
 	IB_PC_PORT_VL_XMIT_WAIT1_F,
 	IB_PC_PORT_VL_XMIT_WAIT2_F,
@@ -962,7 +965,7 @@ enum MAD_FIELDS {
 	/*
 	 * SwPortVLCongestion fields
 	 */
-	IB_PC_SW_PORT_VL_CONGESTION_FIRST_F,
+	IB_PC_SW_PORT_VL_CONGESTION_FIRST_F, /* for PortSelect and CounterSelect, use IB_PC_PORT_SELECT_F and IB_PC_COUNTER_SELECT_F */
 	IB_PC_SW_PORT_VL_CONGESTION0_F = IB_PC_SW_PORT_VL_CONGESTION_FIRST_F,
 	IB_PC_SW_PORT_VL_CONGESTION1_F,
 	IB_PC_SW_PORT_VL_CONGESTION2_F,
@@ -984,7 +987,7 @@ enum MAD_FIELDS {
 	/*
 	 * PortRcvConCtrl fields
 	 */
-	IB_PC_RCV_CON_CTRL_FIRST_F,
+	IB_PC_RCV_CON_CTRL_FIRST_F, /* for PortSelect and CounterSelect, use IB_PC_PORT_SELECT_F and IB_PC_COUNTER_SELECT_F */
 	IB_PC_RCV_CON_CTRL_PKT_RCV_FECN_F = IB_PC_RCV_CON_CTRL_FIRST_F,
 	IB_PC_RCV_CON_CTRL_PKT_RCV_BECN_F,
 	IB_PC_RCV_CON_CTRL_LAST_F,
@@ -992,7 +995,7 @@ enum MAD_FIELDS {
 	/*
 	 * PortSLRcvFECN fields
 	 */
-	IB_PC_SL_RCV_FECN_FIRST_F,
+	IB_PC_SL_RCV_FECN_FIRST_F, /* for PortSelect and CounterSelect, use IB_PC_PORT_SELECT_F and IB_PC_COUNTER_SELECT_F */
 	IB_PC_SL_RCV_FECN0_F = IB_PC_SL_RCV_FECN_FIRST_F,
 	IB_PC_SL_RCV_FECN1_F,
 	IB_PC_SL_RCV_FECN2_F,
@@ -1014,7 +1017,7 @@ enum MAD_FIELDS {
 	/*
 	 * PortSLRcvBECN fields
 	 */
-	IB_PC_SL_RCV_BECN_FIRST_F,
+	IB_PC_SL_RCV_BECN_FIRST_F, /* for PortSelect and CounterSelect, use IB_PC_PORT_SELECT_F and IB_PC_COUNTER_SELECT_F */
 	IB_PC_SL_RCV_BECN0_F = IB_PC_SL_RCV_BECN_FIRST_F,
 	IB_PC_SL_RCV_BECN1_F,
 	IB_PC_SL_RCV_BECN2_F,
@@ -1036,14 +1039,14 @@ enum MAD_FIELDS {
 	/*
 	 * PortXmitConCtrl fields
 	 */
-	IB_PC_XMIT_CON_CTRL_FIRST_F,
+	IB_PC_XMIT_CON_CTRL_FIRST_F, /* for PortSelect and CounterSelect, use IB_PC_PORT_SELECT_F and IB_PC_COUNTER_SELECT_F */
 	IB_PC_XMIT_CON_CTRL_TIME_CONG_F = IB_PC_XMIT_CON_CTRL_FIRST_F,
 	IB_PC_XMIT_CON_CTRL_LAST_F,
 
 	/*
 	 * PortVLXmitTimeCong fields
 	 */
-	IB_PC_VL_XMIT_TIME_CONG_FIRST_F,
+	IB_PC_VL_XMIT_TIME_CONG_FIRST_F, /* for PortSelect and CounterSelect, use IB_PC_PORT_SELECT_F and IB_PC_COUNTER_SELECT_F */
 	IB_PC_VL_XMIT_TIME_CONG0_F = IB_PC_VL_XMIT_TIME_CONG_FIRST_F,
 	IB_PC_VL_XMIT_TIME_CONG1_F,
 	IB_PC_VL_XMIT_TIME_CONG2_F,
@@ -1227,6 +1230,28 @@ enum MAD_FIELDS {
 	IB_SA_NR_VENDORID_F,
 	IB_SA_NR_NODEDESC_F,
 	IB_SA_NR_LAST_F,
+
+	/*
+	 * PortSamplesResult fields
+	 */
+	IB_PSR_TAG_F,
+	IB_PSR_SAMPLE_STATUS_F,
+	IB_PSR_COUNTER0_F,
+	IB_PSR_COUNTER1_F,
+	IB_PSR_COUNTER2_F,
+	IB_PSR_COUNTER3_F,
+	IB_PSR_COUNTER4_F,
+	IB_PSR_COUNTER5_F,
+	IB_PSR_COUNTER6_F,
+	IB_PSR_COUNTER7_F,
+	IB_PSR_COUNTER8_F,
+	IB_PSR_COUNTER9_F,
+	IB_PSR_COUNTER10_F,
+	IB_PSR_COUNTER11_F,
+	IB_PSR_COUNTER12_F,
+	IB_PSR_COUNTER13_F,
+	IB_PSR_COUNTER14_F,
+	IB_PSR_LAST_F,
 
 	IB_FIELD_LAST_		/* must be last */
 };
@@ -1517,6 +1542,9 @@ MAD_EXPORT int ib_path_query_via(const struct ibmad_port *srcport,
 				 ibmad_gid_t srcgid, ibmad_gid_t destgid,
 				 ib_portid_t * sm_id, void *buf);
 	/* returns lid */
+MAD_EXPORT int ib_node_query_via(const struct ibmad_port *srcport,
+				 uint64_t guid, ib_portid_t * sm_id,
+				 void *buf);
 
 /* resolve.c */
 MAD_EXPORT int ib_resolve_smlid(ib_portid_t * sm_id, int timeout) DEPRECATED;
@@ -1587,7 +1615,7 @@ MAD_EXPORT ib_mad_dump_fn
     mad_dump_cc_switchportcongestionsettingelement, mad_dump_cc_cacongestionsetting,
     mad_dump_cc_cacongestionentry, mad_dump_cc_congestioncontroltable,
     mad_dump_cc_congestioncontroltableentry, mad_dump_cc_timestamp,
-    mad_dump_classportinfo;
+    mad_dump_classportinfo, mad_dump_portsamples_result;
 
 MAD_EXPORT void mad_dump_fields(char *buf, int bufsz, void *val, int valsz,
 				int start, int end);
@@ -1627,14 +1655,18 @@ static inline uint64_t htonll(uint64_t x)
 #define ALIGN(l, size) (((l) + ((size) - 1)) / (size) * (size))
 
 /** printf style warning MACRO, includes name of function and pid */
-#define IBWARN(fmt, ...) fprintf(stderr, "ibwarn: [%d] %s: " fmt "\n", getpid(), __func__, ## __VA_ARGS__)
+#define IBWARN(fmt, ...) fprintf(stderr, "ibwarn: [%d] %s: " fmt "\n", \
+(int)getpid(), __func__, ## __VA_ARGS__)
 
-#define IBDEBUG(fmt, ...) fprintf(stdout, "ibdebug: [%d] %s: " fmt "\n", getpid(), __func__, ## __VA_ARGS__)
+#define IBDEBUG(fmt, ...) fprintf(stdout, "ibdebug: [%d] %s: " fmt "\n", \
+(int)getpid(), __func__, ## __VA_ARGS__)
 
-#define IBVERBOSE(fmt, ...) fprintf(stdout, "[%d] %s: " fmt "\n", getpid(), __func__, ## __VA_ARGS__)
+#define IBVERBOSE(fmt, ...) fprintf(stdout, "[%d] %s: " fmt "\n", \
+(int)getpid(), __func__, ## __VA_ARGS__)
 
 #define IBPANIC(fmt, ...) do { \
-	fprintf(stderr, "ibpanic: [%d] %s: " fmt ": %m\n", getpid(), __func__, ## __VA_ARGS__); \
+	fprintf(stderr, "ibpanic: [%d] %s: " fmt ": %m\n", \
+	(int)getpid(), __func__, ## __VA_ARGS__); \
 	exit(-1); \
 } while(0)
 

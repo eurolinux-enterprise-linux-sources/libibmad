@@ -129,7 +129,7 @@ static int
 _do_madrpc(int port_id, void *sndbuf, void *rcvbuf, int agentid, int len,
 	   int timeout, int max_retries, int *p_error)
 {
-	uint32_t trid;		/* only low 32 bits */
+	uint32_t trid;		/* only low 32 bits - see mad_trid() */
 	int retries;
 	int length, status;
 
@@ -144,6 +144,13 @@ _do_madrpc(int port_id, void *sndbuf, void *rcvbuf, int agentid, int len,
 		save_mad = 0;
 	}
 
+	if (max_retries <= 0) {
+		errno = EINVAL;
+		*p_error = EINVAL;
+		ERRS("max_retries %d <= 0", max_retries);
+		return -1;
+	}
+
 	trid =
 	    (uint32_t) mad_get_field64(umad_get_mad(sndbuf), 0, IB_MAD_TRID_F);
 
@@ -153,7 +160,7 @@ _do_madrpc(int port_id, void *sndbuf, void *rcvbuf, int agentid, int len,
 
 		length = len;
 		if (umad_send(port_id, agentid, sndbuf, length, timeout, 0) < 0) {
-			IBWARN("send failed; %m");
+			IBWARN("send failed; %s", strerror(errno));
 			return -1;
 		}
 
@@ -162,7 +169,7 @@ _do_madrpc(int port_id, void *sndbuf, void *rcvbuf, int agentid, int len,
 		do {
 			length = len;
 			if (umad_recv(port_id, rcvbuf, &length, timeout) < 0) {
-				IBWARN("recv failed: %m");
+				IBWARN("recv failed: %s", strerror(errno));
 				return -1;
 			}
 
@@ -184,6 +191,7 @@ _do_madrpc(int port_id, void *sndbuf, void *rcvbuf, int agentid, int len,
 			return length;
 	}
 
+	errno = status;
 	*p_error = ETIMEDOUT;
 	ERRS("timeout after %d retries, %d ms", retries, timeout * retries);
 	return -1;
@@ -260,6 +268,7 @@ void *mad_rpc(const struct ibmad_port *port, ib_rpc_t * rpc,
 	if (status != 0) {
 		ERRS("MAD completed with error status 0x%x; dport (%s)",
 		     status, portid2str(dport));
+		errno = EIO;
 		return NULL;
 	}
 
@@ -309,6 +318,7 @@ void *mad_rpc_rmpp(const struct ibmad_port *port, ib_rpc_t * rpc,
 	if ((status = mad_get_field(mad, 0, IB_MAD_STATUS_F)) != 0) {
 		ERRS("MAD completed with error status 0x%x; dport (%s)",
 		     status, portid2str(dport));
+		errno = EIO;
 		return NULL;
 	}
 
@@ -360,7 +370,8 @@ madrpc_init(char *dev_name, int dev_port, int *mgmt_classes, int num_classes)
 		IBPANIC("can't init UMAD library");
 
 	if ((fd = umad_open_port(dev_name, dev_port)) < 0)
-		IBPANIC("can't open UMAD port (%s:%d)", dev_name, dev_port);
+		IBPANIC("can't open UMAD port (%s:%d)",
+		dev_name ? dev_name : "(nil)", dev_port);
 
 	if (num_classes >= MAX_CLASS)
 		IBPANIC("too many classes %d requested", num_classes);

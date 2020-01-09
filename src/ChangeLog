@@ -1,6 +1,71 @@
 
 ** Version: HEAD
 
+Fri Jan 24 19:16:46 2014 -0800 Ira Weiny
+e5ca2ddfc0d8f10c9de036fd5b88af51803e6a94
+
+	* update README and version 1.3.11
+
+Sun Aug 18 10:37:11 2013 +0200 Bart Van Assche
+2a8840b352a4323bfdecedaaf454c7a27f50f0e6
+
+	* mad_rpc(): Fail with EINVAL if max_retries <= 0
+
+Sat Aug 17 22:53:27 2013 -0700 Ira Weiny
+9351d998788816a12e3e55f7da182d74980fc62a
+
+	* Update README and version to 1.3.10 release
+
+Tue Mar 12 19:38:52 2013 +0000 Brendan Doyle
+12ac911e9cacc5a63fc42cb78b87cf451667c6a6
+
+	* libibmad: Add setting of errno on function failure
+
+Tue Mar 12 19:38:52 2013 +0000 Brendan Doyle
+a6c3eaca907025e073ef73d4d4aef1e67e9610b0
+
+	* libibmad: mask off the kernel transaction id bits
+
+Tue Mar 12 19:38:52 2013 +0000 Brendan Doyle
+35b6d46a6f0b7da85f8a92f65755f79ade7cb63d
+
+	* libibmad: To handle null dev_name in madrpc_init
+
+Tue Mar 12 19:38:11 2013 +0000 Brendan Doyle
+60f3e11a55417349939e0077bb565a16c9de7eb4
+
+	* libibmad: Conversion specifier; %m is not supported on Solaris
+
+Tue Mar 12 19:39:42 2013 +0000 Brendan Doyle
+4b207337d6b95b84813f368af3847fa551bd58d2
+
+	* libibmad: To fix compilation warning: need typecasts
+
+Fri Mar 8 17:59:51 2013 -0800 Ira Weiny
+025d704dd401f3c17fb67a757ac911cf82ece975
+
+	* libibmad: update emails
+
+Fri Jan 18 18:05:21 2013 -0500 Hal Rosenstock
+dc21ab00a88c8f879c486f48fbaca5a0d943d447
+
+	* libibmad: Add support for PortSamplesResult
+
+Thu Feb 14 21:42:31 2013 -0500 Hal Rosenstock
+147df625b1f2cc7ecc18ba500bf731c50f6b6e55
+
+	* libibmad: Add NodeRecord query API
+
+Wed Dec 5 12:00:26 2012 -0500 Hal Rosenstock
+c316a10abd81def4d385bcc196764ca7844af0a8
+
+	* libibmad/dump.c: In mad_dump_mtu, don't set buf[0] to 0
+
+Fri Jul 13 11:07:34 2012 -0700 Huang, Perry
+d5e9ff06cc896c843eb7ef9ab3544ed04501d8fb
+
+	* libibmad: Add comment notes for various PortSelect and CounterSelect fields.
+
 Thu May 31 16:14:32 2012 -0700 Ira Weiny
 0736b2857fd1f81d1ae23293610a425726f6ceee
 
@@ -828,6 +893,13 @@ Sun Jun 1 18:54:35 2008 +0000 Ron Livne
 
 	* libibmad: fix for umad unaligned access of ia64.
 
+** Version: 1.3.9-1chaos
+
+Thu Feb 24 14:57:25 2011 -0800 Ira Weiny
+4db4dcbc84c09062261ce8ee2a7790592597133c
+
+	* Add META for Chaos build bot
+
 ** Version: 1.3.9
 
 Thu May 31 16:14:32 2012 -0700 Ira Weiny
@@ -1057,6 +1129,135 @@ Thu Feb 24 14:57:25 2011 -0800 Ira Weiny
 0f1ffe6d7318389fa0d2c432e9b55300b73a8abd
 
 	* Add this file for Chaos build bot
+
+** Version: 1.3.11
+
+Fri Jan 24 19:16:46 2014 -0800 Ira Weiny
+e5ca2ddfc0d8f10c9de036fd5b88af51803e6a94
+
+	* update README and version 1.3.11
+
+Sun Aug 18 10:37:11 2013 +0200 Bart Van Assche
+2a8840b352a4323bfdecedaaf454c7a27f50f0e6
+
+	* mad_rpc(): Fail with EINVAL if max_retries <= 0
+
+** Version: 1.3.10
+
+Sat Aug 17 22:53:27 2013 -0700 Ira Weiny
+9351d998788816a12e3e55f7da182d74980fc62a
+
+	* Update README and version to 1.3.10 release
+
+Tue Mar 12 19:38:52 2013 +0000 Brendan Doyle
+12ac911e9cacc5a63fc42cb78b87cf451667c6a6
+
+	* libibmad: Add setting of errno on function failure
+
+Tue Mar 12 19:38:52 2013 +0000 Brendan Doyle
+a6c3eaca907025e073ef73d4d4aef1e67e9610b0
+
+	* libibmad: mask off the kernel transaction id bits
+
+Tue Mar 12 19:38:52 2013 +0000 Brendan Doyle
+35b6d46a6f0b7da85f8a92f65755f79ade7cb63d
+
+	* libibmad: To handle null dev_name in madrpc_init
+
+Tue Mar 12 19:38:11 2013 +0000 Brendan Doyle
+60f3e11a55417349939e0077bb565a16c9de7eb4
+
+	* libibmad: Conversion specifier; %m is not supported on Solaris
+
+Tue Mar 12 19:39:42 2013 +0000 Brendan Doyle
+4b207337d6b95b84813f368af3847fa551bd58d2
+
+	* libibmad: To fix compilation warning: need typecasts
+
+Fri Mar 8 17:59:51 2013 -0800 Ira Weiny
+025d704dd401f3c17fb67a757ac911cf82ece975
+
+	* libibmad: update emails
+
+Fri Jan 18 18:05:21 2013 -0500 Hal Rosenstock
+dc21ab00a88c8f879c486f48fbaca5a0d943d447
+
+	* libibmad: Add support for PortSamplesResult
+
+Thu Feb 14 21:42:31 2013 -0500 Hal Rosenstock
+147df625b1f2cc7ecc18ba500bf731c50f6b6e55
+
+	* libibmad: Add NodeRecord query API
+
+Wed Dec 5 12:00:26 2012 -0500 Hal Rosenstock
+c316a10abd81def4d385bcc196764ca7844af0a8
+
+	* libibmad/dump.c: In mad_dump_mtu, don't set buf[0] to 0
+
+Fri Jul 13 11:07:34 2012 -0700 Huang, Perry
+d5e9ff06cc896c843eb7ef9ab3544ed04501d8fb
+
+	* libibmad: Add comment notes for various PortSelect and CounterSelect fields.
+
+Thu May 31 16:14:32 2012 -0700 Ira Weiny
+0736b2857fd1f81d1ae23293610a425726f6ceee
+
+	* Update README for 1.3.9 release
+
+Fri May 25 15:33:01 2012 -0700 Jim Foraker
+27925f14149158062bd15fff0d943d1899020398
+
+	* libibmad/dump.c: clean up boundary conditions in dump routines
+
+Mon Apr 30 13:26:12 2012 -0400 Hal Rosenstock
+0b0ab0ee64f52d708ff8b23b3eb6e379aeb1465b
+
+	* libibmad/fields.c: Update counter offsets for PortExtendedSpeedsCounters
+
+Wed Apr 25 14:06:25 2012 -0700 Albert Chu
+95d4955e36e8737210ee2e4d36e85602d8704c74
+
+	* libibmad: fix misspelling
+
+Tue Mar 6 14:12:29 2012 -0800 Jim Foraker
+1506d7ac6401f154c377e4255fbcab957ff0c66e
+
+	* libibmad: Add MKey support to SMP requests via smp_mkey_get/set()
+
+Thu Dec 8 14:09:34 2011 -0800 Albert Chu
+115679cb548f1024cebb82ab2fbe8615b9b95a4c
+
+	* libibmad: Add support for congestion control config mads.
+
+Mon Nov 28 06:01:28 2011 -0800 Hal Rosenstock
+033143348b62bcdd6f2c4da02ee8794c9a3ffc24
+
+	* libibmad: Add support for SA NodeRecord
+
+Thu Nov 10 05:48:46 2011 -0800 Hal Rosenstock
+9fcdf151f722b3a0cd6eba69736201c0975461ca
+
+	* libibmad/rpc.c: On receive, add debug info for dumping incoming MAD address
+
+Thu Sep 29 11:26:48 2011 -0700 Ira Weiny
+ec98cd1bda422f04ca7b4fdf3ba0bafdf0d12fea
+
+	* Update version for next release
+
+Wed Sep 7 11:02:52 2011 -0700 Albert Chu
+9fd2087f6fedd8ceeb1949c2394bd89a243c6a8f
+
+	* Support classportinfo dump function
+
+Tue Aug 2 11:16:54 2011 -0700 Albert Chu
+ce716fc1644ecb7fbabb0e166219b49e0315fe32
+
+	* Add support for congestion control mads
+
+Mon Aug 15 10:32:40 2011 -0700 Ira Weiny
+fa8f6015537b55dfc14b1d93ee494f0dd8b12cce
+
+	* Update AUTHORS and add README with release notes
 
 Thu Aug 18 16:46:49 2011 +0000 shefty
 43eed2dba29f3998bebf09350b556253e7307f72

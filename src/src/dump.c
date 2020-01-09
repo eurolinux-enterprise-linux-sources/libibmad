@@ -476,7 +476,6 @@ void mad_dump_mtu(char *buf, int bufsz, void *val, int valsz)
 		break;
 	default:
 		snprintf(buf, bufsz, "?(%d)", mtu);
-		buf[0] = 0;
 	}
 }
 
@@ -850,6 +849,11 @@ void mad_dump_perfcounters_rcv_err(char *buf, int bufsz, void *val, int valsz)
 void mad_dump_portsamples_control(char *buf, int bufsz, void *val, int valsz)
 {
 	_dump_fields(buf, bufsz, val, IB_PSC_OPCODE_F, IB_PSC_LAST_F);
+}
+
+void mad_dump_portsamples_result(char *buf, int bufsz, void *val, int valsz)
+{
+	_dump_fields(buf, bufsz, val, IB_PSR_TAG_F, IB_PSR_LAST_F);
 }
 
 void mad_dump_port_ext_speeds_counters(char *buf, int bufsz, void *val, int valsz)
