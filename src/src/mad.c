@@ -41,7 +41,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <errno.h>
 
 #include <infiniband/umad.h>
 #include <infiniband/mad.h>
@@ -51,24 +50,18 @@
 #undef DEBUG
 #define DEBUG	if (ibdebug)	IBWARN
 
-#define GET_IB_USERLAND_TID(tid)	(tid & 0x00000000ffffffff)
-/*
- * Generate the 64 bit MAD transaction ID. The upper 32 bits are reserved for
- * use by the kernel. We clear the upper 32 bits here, but MADs received from
- * the kernel may contain kernel specific data in these bits, consequently
- * userland TID matching should only be done on the lower 32 bits.
- */
 uint64_t mad_trid(void)
 {
+	static uint64_t base;
 	static uint64_t trid;
 	uint64_t next;
 
-	if (!trid) {
+	if (!base) {
 		srandom((int)time(0) * getpid());
+		base = random();
 		trid = random();
 	}
-	next = ++trid;
-	next = GET_IB_USERLAND_TID(next);
+	next = ++trid | (base << 32);
 	return next;
 }
 
@@ -103,12 +96,10 @@ void *mad_encode(void *buf, ib_rpc_t * rpc, ib_dr_path_t * drpath, void *data)
 	if ((rpc->mgtclass & 0xff) == IB_SMI_DIRECT_CLASS) {
 		if (!drpath) {
 			IBWARN("encoding dr mad without drpath (null)");
-			errno = EINVAL;
 			return NULL;
 		}
 		if (drpath->cnt >= IB_SUBNET_PATH_HOPS_MAX) {
 			IBWARN("dr path with hop count %d", drpath->cnt);
-			errno = EINVAL;
 			return NULL;
 		}
 		mad_set_field(buf, 0, IB_DRSMP_HOPCNT_F, drpath->cnt);

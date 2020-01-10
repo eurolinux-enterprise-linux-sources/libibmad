@@ -835,7 +835,7 @@ static const ib_field_t ib_mad_f[] = {
 	{BITSOFFS(16, 16), "ThresholdEventCounter", mad_dump_uint},
 	{BITSOFFS(32, 16), "ThresholdCongestionEventMap", mad_dump_hex},
 	/* XXX: Q3/2010 errata lists offset 48, but that means field is not
-	 * word aligned.  Assume will be aligned to offset 64 later.
+	 * world aligned.  Assume will be aligned to offset 64 later.
 	 */
 	{BITSOFFS(64, 32), "CurrentTimeStamp", mad_dump_uint},
 	{0, 0},			/* IB_CC_CONGESTION_LOG_CA_LAST_F */
@@ -858,9 +858,9 @@ static const ib_field_t ib_mad_f[] = {
 	{0, 32, "Control_Map", mad_dump_hex},
 	{32, 256, "Victim_Mask", mad_dump_array},
 	{288, 256, "Credit_Mask", mad_dump_array},
-	{BITSOFFS(544, 4), "Threshold", mad_dump_hex},
+	{BITSOFFS(544, 4), "Threshold", mad_dump_uint},
 	{BITSOFFS(552, 8), "Packet_Size", mad_dump_uint},
-	{BITSOFFS(560, 4), "CS_Threshold", mad_dump_hex},
+	{BITSOFFS(560, 4), "CS_Threshold", mad_dump_uint},
 	{BITSOFFS(576, 16), "CS_ReturnDelay", mad_dump_hex}, /* TODO: CCT dump */
 	{BITSOFFS(592, 16), "Marking_Rate", mad_dump_uint},
 	{0, 0},			/* IB_CC_SWITCH_CONGESTION_SETTING_LAST_F */
@@ -927,64 +927,8 @@ static const ib_field_t ib_mad_f[] = {
 	{352, 64 * 8, "NodeDesc", mad_dump_string},
 	{0, 0}, /* IB_SA_NR_LAST_F */
 
-	/*
-	 * PortSamplesResult fields
-	 */
-	{BITSOFFS(0, 16), "Tag", mad_dump_hex},
-	{BITSOFFS(30, 2), "SampleStatus", mad_dump_hex},
-	{32, 32, "Counter0", mad_dump_uint},
-	{64, 32, "Counter1", mad_dump_uint},
-	{96, 32, "Counter2", mad_dump_uint},
-	{128, 32, "Counter3", mad_dump_uint},
-	{160, 32, "Counter4", mad_dump_uint},
-	{192, 32, "Counter5", mad_dump_uint},
-	{224, 32, "Counter6", mad_dump_uint},
-	{256, 32, "Counter7", mad_dump_uint},
-	{288, 32, "Counter8", mad_dump_uint},
-	{320, 32, "Counter9", mad_dump_uint},
-	{352, 32, "Counter10", mad_dump_uint},
-	{384, 32, "Counter11", mad_dump_uint},
-	{416, 32, "Counter12", mad_dump_uint},
-	{448, 32, "Counter13", mad_dump_uint},
-	{480, 32, "Counter14", mad_dump_uint},
-	{0, 0},			/* IB_PSR_LAST_F */
-
-	/*
-	 * PortInfoExtended fields
-	 */
-	{0, 32, "CapMask", mad_dump_hex},
-	{BITSOFFS(32, 16), "FECModeActive", mad_dump_uint},
-	{BITSOFFS(48, 16), "FDRFECModeSupported", mad_dump_hex},
-	{BITSOFFS(64, 16), "FDRFECModeEnabled", mad_dump_hex},
-	{BITSOFFS(80, 16), "EDRFECModeSupported", mad_dump_hex},
-	{BITSOFFS(96, 16), "EDRFECModeEnabled", mad_dump_hex},
-	{0, 0},			/* IB_PORT_EXT_LAST_F */
-
-	/*
-	 * PortExtendedSpeedsCounters RSFEC Active fields
-	 */
-	{BITSOFFS(8, 8), "PortSelect", mad_dump_uint},
-	{64, 64, "CounterSelect", mad_dump_hex},
-	{BITSOFFS(128, 16), "SyncHeaderErrorCounter", mad_dump_uint},
-	{BITSOFFS(144, 16), "UnknownBlockCounter", mad_dump_uint},
-	{352, 32, "FECCorrectableSymbolCtrLane0", mad_dump_uint},
-	{384, 32, "FECCorrectableSymbolCtrLane1", mad_dump_uint},
-	{416, 32, "FECCorrectableSymbolCtrLane2", mad_dump_uint},
-	{448, 32, "FECCorrectableSymbolCtrLane3", mad_dump_uint},
-	{480, 32, "FECCorrectableSymbolCtrLane4", mad_dump_uint},
-	{512, 32, "FECCorrectableSymbolCtrLane5", mad_dump_uint},
-	{544, 32, "FECCorrectableSymbolCtrLane6", mad_dump_uint},
-	{576, 32, "FECCorrectableSymbolCtrLane7", mad_dump_uint},
-	{608, 32, "FECCorrectableSymbolCtrLane8", mad_dump_uint},
-	{640, 32, "FECCorrectableSymbolCtrLane9", mad_dump_uint},
-	{672, 32, "FECCorrectableSymbolCtrLane10", mad_dump_uint},
-	{704, 32, "FECCorrectableSymbolCtrLane11", mad_dump_uint},
-	{1120, 32, "PortFECCorrectableBlockCtr", mad_dump_uint},
-	{1152, 32, "PortFECUncorrectableBlockCtr", mad_dump_uint},
-	{1184, 32, "PortFECCorrectedSymbolCtr", mad_dump_uint},
-	{0, 0},			/* IB_PESC_RSFEC_LAST_F */
-
 	{0, 0}			/* IB_FIELD_LAST_ */
+
 };
 
 static void _set_field64(void *buf, int base_offs, const ib_field_t * f,
@@ -993,15 +937,15 @@ static void _set_field64(void *buf, int base_offs, const ib_field_t * f,
 	uint64_t nval;
 
 	nval = htonll(val);
-	memcpy(((void *)(char *)buf + base_offs + f->bitoffs / 8),
-		(void *)&nval, sizeof(uint64_t));
+	memcpy((char *)buf + base_offs + f->bitoffs / 8, &nval,
+	       sizeof(uint64_t));
 }
 
 static uint64_t _get_field64(void *buf, int base_offs, const ib_field_t * f)
 {
 	uint64_t val;
-	memcpy((void *)&val, (void *)((char *)buf + base_offs + f->bitoffs / 8),
-		sizeof(uint64_t));
+	memcpy(&val, ((char *)buf + base_offs + f->bitoffs / 8),
+	       sizeof(uint64_t));
 	return ntohll(val);
 }
 

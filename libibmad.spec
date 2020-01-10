@@ -1,18 +1,16 @@
 Summary: OpenFabrics Alliance InfiniBand MAD library
 Name: libibmad
-Version: 1.3.13
-Release: 1%{?dist}
+Version: 1.3.9
+Release: 2%{?dist}
 License: GPLv2 or BSD
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source: http://www.openfabrics.org/downloads/management/%{name}-%{version}.tar.gz
 Url: http://www.openfabrics.org/
-BuildRequires: rdma-core-devel, glibc-static
-%ifnarch ia64 %{sparc} s390 s390x
-BuildRequires: valgrind-devel
-%endif
+BuildRequires: libibumad-devel = 1.3.8, libtool, glibc-static
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
+ExcludeArch: s390 s390x
 
 %description
 libibmad provides low layer IB functions for use by the IB diagnostic
@@ -39,11 +37,7 @@ Static version of the libibmad library
 %setup -q
 
 %build
-%ifnarch ia64 %{sparc} s390 s390x
-%configure --with-valgrind
-%else
 %configure
-%endif
 make %{?_smp_mflags}
 
 %install
@@ -73,23 +67,6 @@ rm -rf %{buildroot}
 %{_libdir}/libibmad.a
 
 %changelog
-* Mon May 22 2017 Jarod Wilson <jarod@redhat.com> - 1.3.13-1
-- Update to latest version for improved OPA and rdma-core compat
-- Resovles: rhbz#1454376
-
-* Fri Jun 05 2015 Doug Ledford <dledford@redhat.com> - 1.3.12-1
-- Build on s390
-- Update to latest version to work with OPA enabled libibumad
-- Related: bz1169962, bz1186159
-
-* Thu Oct 09 2014 Doug Ledford <dledford@redhat.com> - 1.3.11-1
-- Update to latest upstream release (dependency for another package)
-- Enable valgrind in build
-- Related: bz1092538
-
-* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.3.9-3
-- Mass rebuild 2013-12-27
-
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.3.9-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
