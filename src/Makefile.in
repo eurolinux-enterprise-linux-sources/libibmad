@@ -96,7 +96,7 @@ am__aclocal_m4_deps = $(top_srcdir)/config/libtool.m4 \
 	$(top_srcdir)/config/ltoptions.m4 \
 	$(top_srcdir)/config/ltsugar.m4 \
 	$(top_srcdir)/config/ltversion.m4 \
-	$(top_srcdir)/config/lt~obsolete.m4 $(top_srcdir)/configure.in
+	$(top_srcdir)/config/lt~obsolete.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
@@ -136,12 +136,15 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libibmadincludedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libibmad_la_LIBADD =
-am_libibmad_la_OBJECTS = libibmad_la-dump.lo libibmad_la-fields.lo \
-	libibmad_la-mad.lo libibmad_la-portid.lo \
-	libibmad_la-resolve.lo libibmad_la-rpc.lo libibmad_la-sa.lo \
-	libibmad_la-smp.lo libibmad_la-gs.lo libibmad_la-serv.lo \
-	libibmad_la-register.lo libibmad_la-vendor.lo \
-	libibmad_la-bm.lo libibmad_la-cc.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am_libibmad_la_OBJECTS = src/libibmad_la-dump.lo \
+	src/libibmad_la-fields.lo src/libibmad_la-mad.lo \
+	src/libibmad_la-portid.lo src/libibmad_la-resolve.lo \
+	src/libibmad_la-rpc.lo src/libibmad_la-sa.lo \
+	src/libibmad_la-smp.lo src/libibmad_la-gs.lo \
+	src/libibmad_la-serv.lo src/libibmad_la-register.lo \
+	src/libibmad_la-vendor.lo src/libibmad_la-bm.lo \
+	src/libibmad_la-cc.lo
 libibmad_la_OBJECTS = $(am_libibmad_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -391,7 +394,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 ACLOCAL_AMFLAGS = -I config
 SUBDIRS = .
-INCLUDES = -I$(srcdir)/include -I$(includedir)
+AM_CPPFLAGS = -I$(srcdir)/include -I$(includedir)
 lib_LTLIBRARIES = libibmad.la
 libibmad_la_CFLAGS = -Wall
 @HAVE_LD_VERSION_SCRIPT_FALSE@libibmad_version_script = 
@@ -501,155 +504,195 @@ clean-libLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/$(am__dirstamp):
+	@$(MKDIR_P) src
+	@: > src/$(am__dirstamp)
+src/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/$(DEPDIR)
+	@: > src/$(DEPDIR)/$(am__dirstamp)
+src/libibmad_la-dump.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libibmad_la-fields.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libibmad_la-mad.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libibmad_la-portid.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libibmad_la-resolve.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libibmad_la-rpc.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libibmad_la-sa.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libibmad_la-smp.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libibmad_la-gs.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libibmad_la-serv.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libibmad_la-register.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libibmad_la-vendor.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libibmad_la-bm.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libibmad_la-cc.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
 
 libibmad.la: $(libibmad_la_OBJECTS) $(libibmad_la_DEPENDENCIES) $(EXTRA_libibmad_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(libibmad_la_LINK) -rpath $(libdir) $(libibmad_la_OBJECTS) $(libibmad_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f src/*.$(OBJEXT)
+	-rm -f src/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-bm.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-cc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-dump.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-fields.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-gs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-mad.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-portid.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-register.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-resolve.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-rpc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-sa.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-serv.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-smp.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libibmad_la-vendor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libibmad_la-bm.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libibmad_la-cc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libibmad_la-dump.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libibmad_la-fields.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libibmad_la-gs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libibmad_la-mad.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libibmad_la-portid.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libibmad_la-register.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libibmad_la-resolve.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libibmad_la-rpc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libibmad_la-sa.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libibmad_la-serv.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libibmad_la-smp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libibmad_la-vendor.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c $<
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c `$(CYGPATH_W) '$<'`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libibmad_la-dump.lo: src/dump.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT libibmad_la-dump.lo -MD -MP -MF $(DEPDIR)/libibmad_la-dump.Tpo -c -o libibmad_la-dump.lo `test -f 'src/dump.c' || echo '$(srcdir)/'`src/dump.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libibmad_la-dump.Tpo $(DEPDIR)/libibmad_la-dump.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/dump.c' object='libibmad_la-dump.lo' libtool=yes @AMDEPBACKSLASH@
+src/libibmad_la-dump.lo: src/dump.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT src/libibmad_la-dump.lo -MD -MP -MF src/$(DEPDIR)/libibmad_la-dump.Tpo -c -o src/libibmad_la-dump.lo `test -f 'src/dump.c' || echo '$(srcdir)/'`src/dump.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/libibmad_la-dump.Tpo src/$(DEPDIR)/libibmad_la-dump.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/dump.c' object='src/libibmad_la-dump.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o libibmad_la-dump.lo `test -f 'src/dump.c' || echo '$(srcdir)/'`src/dump.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o src/libibmad_la-dump.lo `test -f 'src/dump.c' || echo '$(srcdir)/'`src/dump.c
 
-libibmad_la-fields.lo: src/fields.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT libibmad_la-fields.lo -MD -MP -MF $(DEPDIR)/libibmad_la-fields.Tpo -c -o libibmad_la-fields.lo `test -f 'src/fields.c' || echo '$(srcdir)/'`src/fields.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libibmad_la-fields.Tpo $(DEPDIR)/libibmad_la-fields.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/fields.c' object='libibmad_la-fields.lo' libtool=yes @AMDEPBACKSLASH@
+src/libibmad_la-fields.lo: src/fields.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT src/libibmad_la-fields.lo -MD -MP -MF src/$(DEPDIR)/libibmad_la-fields.Tpo -c -o src/libibmad_la-fields.lo `test -f 'src/fields.c' || echo '$(srcdir)/'`src/fields.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/libibmad_la-fields.Tpo src/$(DEPDIR)/libibmad_la-fields.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/fields.c' object='src/libibmad_la-fields.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o libibmad_la-fields.lo `test -f 'src/fields.c' || echo '$(srcdir)/'`src/fields.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o src/libibmad_la-fields.lo `test -f 'src/fields.c' || echo '$(srcdir)/'`src/fields.c
 
-libibmad_la-mad.lo: src/mad.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT libibmad_la-mad.lo -MD -MP -MF $(DEPDIR)/libibmad_la-mad.Tpo -c -o libibmad_la-mad.lo `test -f 'src/mad.c' || echo '$(srcdir)/'`src/mad.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libibmad_la-mad.Tpo $(DEPDIR)/libibmad_la-mad.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/mad.c' object='libibmad_la-mad.lo' libtool=yes @AMDEPBACKSLASH@
+src/libibmad_la-mad.lo: src/mad.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT src/libibmad_la-mad.lo -MD -MP -MF src/$(DEPDIR)/libibmad_la-mad.Tpo -c -o src/libibmad_la-mad.lo `test -f 'src/mad.c' || echo '$(srcdir)/'`src/mad.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/libibmad_la-mad.Tpo src/$(DEPDIR)/libibmad_la-mad.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/mad.c' object='src/libibmad_la-mad.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o libibmad_la-mad.lo `test -f 'src/mad.c' || echo '$(srcdir)/'`src/mad.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o src/libibmad_la-mad.lo `test -f 'src/mad.c' || echo '$(srcdir)/'`src/mad.c
 
-libibmad_la-portid.lo: src/portid.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT libibmad_la-portid.lo -MD -MP -MF $(DEPDIR)/libibmad_la-portid.Tpo -c -o libibmad_la-portid.lo `test -f 'src/portid.c' || echo '$(srcdir)/'`src/portid.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libibmad_la-portid.Tpo $(DEPDIR)/libibmad_la-portid.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/portid.c' object='libibmad_la-portid.lo' libtool=yes @AMDEPBACKSLASH@
+src/libibmad_la-portid.lo: src/portid.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT src/libibmad_la-portid.lo -MD -MP -MF src/$(DEPDIR)/libibmad_la-portid.Tpo -c -o src/libibmad_la-portid.lo `test -f 'src/portid.c' || echo '$(srcdir)/'`src/portid.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/libibmad_la-portid.Tpo src/$(DEPDIR)/libibmad_la-portid.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/portid.c' object='src/libibmad_la-portid.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o libibmad_la-portid.lo `test -f 'src/portid.c' || echo '$(srcdir)/'`src/portid.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o src/libibmad_la-portid.lo `test -f 'src/portid.c' || echo '$(srcdir)/'`src/portid.c
 
-libibmad_la-resolve.lo: src/resolve.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT libibmad_la-resolve.lo -MD -MP -MF $(DEPDIR)/libibmad_la-resolve.Tpo -c -o libibmad_la-resolve.lo `test -f 'src/resolve.c' || echo '$(srcdir)/'`src/resolve.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libibmad_la-resolve.Tpo $(DEPDIR)/libibmad_la-resolve.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/resolve.c' object='libibmad_la-resolve.lo' libtool=yes @AMDEPBACKSLASH@
+src/libibmad_la-resolve.lo: src/resolve.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT src/libibmad_la-resolve.lo -MD -MP -MF src/$(DEPDIR)/libibmad_la-resolve.Tpo -c -o src/libibmad_la-resolve.lo `test -f 'src/resolve.c' || echo '$(srcdir)/'`src/resolve.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/libibmad_la-resolve.Tpo src/$(DEPDIR)/libibmad_la-resolve.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/resolve.c' object='src/libibmad_la-resolve.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o libibmad_la-resolve.lo `test -f 'src/resolve.c' || echo '$(srcdir)/'`src/resolve.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o src/libibmad_la-resolve.lo `test -f 'src/resolve.c' || echo '$(srcdir)/'`src/resolve.c
 
-libibmad_la-rpc.lo: src/rpc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT libibmad_la-rpc.lo -MD -MP -MF $(DEPDIR)/libibmad_la-rpc.Tpo -c -o libibmad_la-rpc.lo `test -f 'src/rpc.c' || echo '$(srcdir)/'`src/rpc.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libibmad_la-rpc.Tpo $(DEPDIR)/libibmad_la-rpc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/rpc.c' object='libibmad_la-rpc.lo' libtool=yes @AMDEPBACKSLASH@
+src/libibmad_la-rpc.lo: src/rpc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT src/libibmad_la-rpc.lo -MD -MP -MF src/$(DEPDIR)/libibmad_la-rpc.Tpo -c -o src/libibmad_la-rpc.lo `test -f 'src/rpc.c' || echo '$(srcdir)/'`src/rpc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/libibmad_la-rpc.Tpo src/$(DEPDIR)/libibmad_la-rpc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/rpc.c' object='src/libibmad_la-rpc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o libibmad_la-rpc.lo `test -f 'src/rpc.c' || echo '$(srcdir)/'`src/rpc.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o src/libibmad_la-rpc.lo `test -f 'src/rpc.c' || echo '$(srcdir)/'`src/rpc.c
 
-libibmad_la-sa.lo: src/sa.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT libibmad_la-sa.lo -MD -MP -MF $(DEPDIR)/libibmad_la-sa.Tpo -c -o libibmad_la-sa.lo `test -f 'src/sa.c' || echo '$(srcdir)/'`src/sa.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libibmad_la-sa.Tpo $(DEPDIR)/libibmad_la-sa.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/sa.c' object='libibmad_la-sa.lo' libtool=yes @AMDEPBACKSLASH@
+src/libibmad_la-sa.lo: src/sa.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT src/libibmad_la-sa.lo -MD -MP -MF src/$(DEPDIR)/libibmad_la-sa.Tpo -c -o src/libibmad_la-sa.lo `test -f 'src/sa.c' || echo '$(srcdir)/'`src/sa.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/libibmad_la-sa.Tpo src/$(DEPDIR)/libibmad_la-sa.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/sa.c' object='src/libibmad_la-sa.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o libibmad_la-sa.lo `test -f 'src/sa.c' || echo '$(srcdir)/'`src/sa.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o src/libibmad_la-sa.lo `test -f 'src/sa.c' || echo '$(srcdir)/'`src/sa.c
 
-libibmad_la-smp.lo: src/smp.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT libibmad_la-smp.lo -MD -MP -MF $(DEPDIR)/libibmad_la-smp.Tpo -c -o libibmad_la-smp.lo `test -f 'src/smp.c' || echo '$(srcdir)/'`src/smp.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libibmad_la-smp.Tpo $(DEPDIR)/libibmad_la-smp.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/smp.c' object='libibmad_la-smp.lo' libtool=yes @AMDEPBACKSLASH@
+src/libibmad_la-smp.lo: src/smp.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT src/libibmad_la-smp.lo -MD -MP -MF src/$(DEPDIR)/libibmad_la-smp.Tpo -c -o src/libibmad_la-smp.lo `test -f 'src/smp.c' || echo '$(srcdir)/'`src/smp.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/libibmad_la-smp.Tpo src/$(DEPDIR)/libibmad_la-smp.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/smp.c' object='src/libibmad_la-smp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o libibmad_la-smp.lo `test -f 'src/smp.c' || echo '$(srcdir)/'`src/smp.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o src/libibmad_la-smp.lo `test -f 'src/smp.c' || echo '$(srcdir)/'`src/smp.c
 
-libibmad_la-gs.lo: src/gs.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT libibmad_la-gs.lo -MD -MP -MF $(DEPDIR)/libibmad_la-gs.Tpo -c -o libibmad_la-gs.lo `test -f 'src/gs.c' || echo '$(srcdir)/'`src/gs.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libibmad_la-gs.Tpo $(DEPDIR)/libibmad_la-gs.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/gs.c' object='libibmad_la-gs.lo' libtool=yes @AMDEPBACKSLASH@
+src/libibmad_la-gs.lo: src/gs.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT src/libibmad_la-gs.lo -MD -MP -MF src/$(DEPDIR)/libibmad_la-gs.Tpo -c -o src/libibmad_la-gs.lo `test -f 'src/gs.c' || echo '$(srcdir)/'`src/gs.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/libibmad_la-gs.Tpo src/$(DEPDIR)/libibmad_la-gs.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/gs.c' object='src/libibmad_la-gs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o libibmad_la-gs.lo `test -f 'src/gs.c' || echo '$(srcdir)/'`src/gs.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o src/libibmad_la-gs.lo `test -f 'src/gs.c' || echo '$(srcdir)/'`src/gs.c
 
-libibmad_la-serv.lo: src/serv.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT libibmad_la-serv.lo -MD -MP -MF $(DEPDIR)/libibmad_la-serv.Tpo -c -o libibmad_la-serv.lo `test -f 'src/serv.c' || echo '$(srcdir)/'`src/serv.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libibmad_la-serv.Tpo $(DEPDIR)/libibmad_la-serv.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/serv.c' object='libibmad_la-serv.lo' libtool=yes @AMDEPBACKSLASH@
+src/libibmad_la-serv.lo: src/serv.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT src/libibmad_la-serv.lo -MD -MP -MF src/$(DEPDIR)/libibmad_la-serv.Tpo -c -o src/libibmad_la-serv.lo `test -f 'src/serv.c' || echo '$(srcdir)/'`src/serv.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/libibmad_la-serv.Tpo src/$(DEPDIR)/libibmad_la-serv.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/serv.c' object='src/libibmad_la-serv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o libibmad_la-serv.lo `test -f 'src/serv.c' || echo '$(srcdir)/'`src/serv.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o src/libibmad_la-serv.lo `test -f 'src/serv.c' || echo '$(srcdir)/'`src/serv.c
 
-libibmad_la-register.lo: src/register.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT libibmad_la-register.lo -MD -MP -MF $(DEPDIR)/libibmad_la-register.Tpo -c -o libibmad_la-register.lo `test -f 'src/register.c' || echo '$(srcdir)/'`src/register.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libibmad_la-register.Tpo $(DEPDIR)/libibmad_la-register.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/register.c' object='libibmad_la-register.lo' libtool=yes @AMDEPBACKSLASH@
+src/libibmad_la-register.lo: src/register.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT src/libibmad_la-register.lo -MD -MP -MF src/$(DEPDIR)/libibmad_la-register.Tpo -c -o src/libibmad_la-register.lo `test -f 'src/register.c' || echo '$(srcdir)/'`src/register.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/libibmad_la-register.Tpo src/$(DEPDIR)/libibmad_la-register.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/register.c' object='src/libibmad_la-register.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o libibmad_la-register.lo `test -f 'src/register.c' || echo '$(srcdir)/'`src/register.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o src/libibmad_la-register.lo `test -f 'src/register.c' || echo '$(srcdir)/'`src/register.c
 
-libibmad_la-vendor.lo: src/vendor.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT libibmad_la-vendor.lo -MD -MP -MF $(DEPDIR)/libibmad_la-vendor.Tpo -c -o libibmad_la-vendor.lo `test -f 'src/vendor.c' || echo '$(srcdir)/'`src/vendor.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libibmad_la-vendor.Tpo $(DEPDIR)/libibmad_la-vendor.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/vendor.c' object='libibmad_la-vendor.lo' libtool=yes @AMDEPBACKSLASH@
+src/libibmad_la-vendor.lo: src/vendor.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT src/libibmad_la-vendor.lo -MD -MP -MF src/$(DEPDIR)/libibmad_la-vendor.Tpo -c -o src/libibmad_la-vendor.lo `test -f 'src/vendor.c' || echo '$(srcdir)/'`src/vendor.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/libibmad_la-vendor.Tpo src/$(DEPDIR)/libibmad_la-vendor.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/vendor.c' object='src/libibmad_la-vendor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o libibmad_la-vendor.lo `test -f 'src/vendor.c' || echo '$(srcdir)/'`src/vendor.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o src/libibmad_la-vendor.lo `test -f 'src/vendor.c' || echo '$(srcdir)/'`src/vendor.c
 
-libibmad_la-bm.lo: src/bm.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT libibmad_la-bm.lo -MD -MP -MF $(DEPDIR)/libibmad_la-bm.Tpo -c -o libibmad_la-bm.lo `test -f 'src/bm.c' || echo '$(srcdir)/'`src/bm.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libibmad_la-bm.Tpo $(DEPDIR)/libibmad_la-bm.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/bm.c' object='libibmad_la-bm.lo' libtool=yes @AMDEPBACKSLASH@
+src/libibmad_la-bm.lo: src/bm.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT src/libibmad_la-bm.lo -MD -MP -MF src/$(DEPDIR)/libibmad_la-bm.Tpo -c -o src/libibmad_la-bm.lo `test -f 'src/bm.c' || echo '$(srcdir)/'`src/bm.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/libibmad_la-bm.Tpo src/$(DEPDIR)/libibmad_la-bm.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/bm.c' object='src/libibmad_la-bm.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o libibmad_la-bm.lo `test -f 'src/bm.c' || echo '$(srcdir)/'`src/bm.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o src/libibmad_la-bm.lo `test -f 'src/bm.c' || echo '$(srcdir)/'`src/bm.c
 
-libibmad_la-cc.lo: src/cc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT libibmad_la-cc.lo -MD -MP -MF $(DEPDIR)/libibmad_la-cc.Tpo -c -o libibmad_la-cc.lo `test -f 'src/cc.c' || echo '$(srcdir)/'`src/cc.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libibmad_la-cc.Tpo $(DEPDIR)/libibmad_la-cc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/cc.c' object='libibmad_la-cc.lo' libtool=yes @AMDEPBACKSLASH@
+src/libibmad_la-cc.lo: src/cc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -MT src/libibmad_la-cc.lo -MD -MP -MF src/$(DEPDIR)/libibmad_la-cc.Tpo -c -o src/libibmad_la-cc.lo `test -f 'src/cc.c' || echo '$(srcdir)/'`src/cc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/libibmad_la-cc.Tpo src/$(DEPDIR)/libibmad_la-cc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/cc.c' object='src/libibmad_la-cc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o libibmad_la-cc.lo `test -f 'src/cc.c' || echo '$(srcdir)/'`src/cc.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libibmad_la_CFLAGS) $(CFLAGS) -c -o src/libibmad_la-cc.lo `test -f 'src/cc.c' || echo '$(srcdir)/'`src/cc.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf src/.libs src/_libs
 
 distclean-libtool:
 	-rm -f libtool config.lt
@@ -999,6 +1042,8 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f src/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1010,7 +1055,7 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 
 distclean: distclean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf ./$(DEPDIR)
+	-rm -rf src/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-libtool distclean-tags
@@ -1058,7 +1103,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf ./$(DEPDIR)
+	-rm -rf src/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

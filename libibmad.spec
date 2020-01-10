@@ -1,13 +1,13 @@
 Summary: OpenFabrics Alliance InfiniBand MAD library
 Name: libibmad
-Version: 1.3.12
+Version: 1.3.13
 Release: 1%{?dist}
 License: GPLv2 or BSD
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source: http://www.openfabrics.org/downloads/management/%{name}-%{version}.tar.gz
 Url: http://www.openfabrics.org/
-BuildRequires: libibumad-devel = 1.3.10.2, glibc-static
+BuildRequires: rdma-core-devel, glibc-static
 %ifnarch ia64 %{sparc} s390 s390x
 BuildRequires: valgrind-devel
 %endif
@@ -73,6 +73,10 @@ rm -rf %{buildroot}
 %{_libdir}/libibmad.a
 
 %changelog
+* Mon May 22 2017 Jarod Wilson <jarod@redhat.com> - 1.3.13-1
+- Update to latest version for improved OPA and rdma-core compat
+- Resovles: rhbz#1454376
+
 * Fri Jun 05 2015 Doug Ledford <dledford@redhat.com> - 1.3.12-1
 - Build on s390
 - Update to latest version to work with OPA enabled libibumad

@@ -1,6 +1,36 @@
 
 ** Version: HEAD
 
+Mon Mar 6 19:23:17 2017 -0500 Ira Weiny
+05cb05181388579134ae2c4fd5df1abe5f78cb32
+
+	* update README and version 1.3.13
+
+Fri Feb 24 00:25:39 2017 -0500 Ira Weiny
+288a871ff630be7159635184e99eb07123a385cf
+
+	* libibmad: Fix conflict with new umad.h header
+
+Mon Nov 14 16:34:36 2016 -0500 Hal Rosenstock
+fb2aaa0b2c79132124610786d0017de10cb4ec33
+
+	* configure.ac: Update AM_INIT_AUTOMAKE to use subdir-objects
+
+Mon Sep 26 02:08:25 2016 -0400 Ira Weiny
+2d36b994bbb486dd25a671428f26c91825ad4aca
+
+	* configure.ac: Update configure.in to configure.ac
+
+Mon Sep 26 01:49:46 2016 -0400 Ira Weiny
+80ef6e0b07a2f5b932293321fd0984bf710f7782
+
+	* libibmad: Makefile.am: Fix INCLUDES warning
+
+Tue Apr 28 18:35:28 2015 +0300 Vladimir Koushnir
+93456bc47f53f627548dab0a23dac502d8311a1d
+
+	* portid.c: Preserve routepath string in str2drpath
+
 Tue Feb 10 13:10:09 2015 -0500 Ira Weiny
 54c12c7cff3b3bd977cd07923b770c25fd7e7805
 
@@ -1159,6 +1189,70 @@ Thu Feb 24 14:57:25 2011 -0800 Ira Weiny
 0f1ffe6d7318389fa0d2c432e9b55300b73a8abd
 
 	* Add this file for Chaos build bot
+
+** Version: 1.3.13
+
+Mon Mar 6 19:23:17 2017 -0500 Ira Weiny
+05cb05181388579134ae2c4fd5df1abe5f78cb32
+
+	* update README and version 1.3.13
+
+Fri Feb 24 00:25:39 2017 -0500 Ira Weiny
+288a871ff630be7159635184e99eb07123a385cf
+
+	* libibmad: Fix conflict with new umad.h header
+
+Mon Nov 14 16:34:36 2016 -0500 Hal Rosenstock
+fb2aaa0b2c79132124610786d0017de10cb4ec33
+
+	* configure.ac: Update AM_INIT_AUTOMAKE to use subdir-objects
+
+Mon Sep 26 02:08:25 2016 -0400 Ira Weiny
+2d36b994bbb486dd25a671428f26c91825ad4aca
+
+	* configure.ac: Update configure.in to configure.ac
+
+Mon Sep 26 01:49:46 2016 -0400 Ira Weiny
+80ef6e0b07a2f5b932293321fd0984bf710f7782
+
+	* libibmad: Makefile.am: Fix INCLUDES warning
+
+Tue Apr 28 18:35:28 2015 +0300 Vladimir Koushnir
+93456bc47f53f627548dab0a23dac502d8311a1d
+
+	* portid.c: Preserve routepath string in str2drpath
+
+** Version: 1.3.12
+
+Tue Feb 10 13:10:09 2015 -0500 Ira Weiny
+54c12c7cff3b3bd977cd07923b770c25fd7e7805
+
+	* update README and version 1.3.12
+
+Mon Jan 12 14:08:25 2015 -0500 Hal Rosenstock
+4a190a768c47231a699b08b08dbfc24abfd8ada7
+
+	* fields.c: Fix commentary typo
+
+Fri Jan 9 16:05:59 2015 -0800 Al Chu
+eb419dfa6bdb1423dc673b30f69382c2c35de027
+
+	* libibmad/src/rpc.c: Remove superfluous packet dump
+
+Fri Jan 9 06:06:10 2015 -0500 Hal Rosenstock
+738f8ec71d902778e2837a61324745ae0b2de425
+
+	* fields.c: Print SwitchCongestionSetting threshold fields in hex rather than decimal
+
+Wed Nov 12 15:21:53 2014 +0200 Dan Ben Yosef
+059fdb43c0e46e43b30ce670b4b149d9683c9cee
+
+	* libibmad: Add new fields for SM:PortInfoExtended and for PM:PortExtendedSpeedsCounters
+
+Tue Apr 15 13:35:29 2014 -0400 Hal Rosenstock
+4b4e8aba7c5c232f275e5c21afbe07aec68a6869
+
+	* dump.c: In mad_dump_linkwidth, output undefined widths
 
 ** Version: 1.3.11
 
