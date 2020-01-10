@@ -1,7 +1,7 @@
 Summary: OpenFabrics Alliance InfiniBand MAD library
 Name: libibmad
 Version: 1.3.9
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPLv2 or BSD
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -67,6 +67,9 @@ rm -rf %{buildroot}
 %{_libdir}/libibmad.a
 
 %changelog
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.3.9-3
+- Mass rebuild 2013-12-27
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.3.9-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
