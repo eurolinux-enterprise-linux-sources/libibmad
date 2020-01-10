@@ -1,6 +1,36 @@
 
 ** Version: HEAD
 
+Tue Feb 10 13:10:09 2015 -0500 Ira Weiny
+54c12c7cff3b3bd977cd07923b770c25fd7e7805
+
+	* update README and version 1.3.12
+
+Mon Jan 12 14:08:25 2015 -0500 Hal Rosenstock
+4a190a768c47231a699b08b08dbfc24abfd8ada7
+
+	* fields.c: Fix commentary typo
+
+Fri Jan 9 16:05:59 2015 -0800 Al Chu
+eb419dfa6bdb1423dc673b30f69382c2c35de027
+
+	* libibmad/src/rpc.c: Remove superfluous packet dump
+
+Fri Jan 9 06:06:10 2015 -0500 Hal Rosenstock
+738f8ec71d902778e2837a61324745ae0b2de425
+
+	* fields.c: Print SwitchCongestionSetting threshold fields in hex rather than decimal
+
+Wed Nov 12 15:21:53 2014 +0200 Dan Ben Yosef
+059fdb43c0e46e43b30ce670b4b149d9683c9cee
+
+	* libibmad: Add new fields for SM:PortInfoExtended and for PM:PortExtendedSpeedsCounters
+
+Tue Apr 15 13:35:29 2014 -0400 Hal Rosenstock
+4b4e8aba7c5c232f275e5c21afbe07aec68a6869
+
+	* dump.c: In mad_dump_linkwidth, output undefined widths
+
 Fri Jan 24 19:16:46 2014 -0800 Ira Weiny
 e5ca2ddfc0d8f10c9de036fd5b88af51803e6a94
 

@@ -1,19 +1,18 @@
 Summary: OpenFabrics Alliance InfiniBand MAD library
 Name: libibmad
-Version: 1.3.11
+Version: 1.3.12
 Release: 1%{?dist}
 License: GPLv2 or BSD
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source: http://www.openfabrics.org/downloads/management/%{name}-%{version}.tar.gz
 Url: http://www.openfabrics.org/
-BuildRequires: libibumad-devel = 1.3.9, libtool, glibc-static
-%ifnarch ia64 %{sparc}
+BuildRequires: libibumad-devel = 1.3.10.2, glibc-static
+%ifnarch ia64 %{sparc} s390 s390x
 BuildRequires: valgrind-devel
 %endif
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
-ExcludeArch: s390 s390x
 
 %description
 libibmad provides low layer IB functions for use by the IB diagnostic
@@ -40,7 +39,7 @@ Static version of the libibmad library
 %setup -q
 
 %build
-%ifnarch ia64 %{sparc}
+%ifnarch ia64 %{sparc} s390 s390x
 %configure --with-valgrind
 %else
 %configure
@@ -74,6 +73,11 @@ rm -rf %{buildroot}
 %{_libdir}/libibmad.a
 
 %changelog
+* Fri Jun 05 2015 Doug Ledford <dledford@redhat.com> - 1.3.12-1
+- Build on s390
+- Update to latest version to work with OPA enabled libibumad
+- Related: bz1169962, bz1186159
+
 * Thu Oct 09 2014 Doug Ledford <dledford@redhat.com> - 1.3.11-1
 - Update to latest upstream release (dependency for another package)
 - Enable valgrind in build
